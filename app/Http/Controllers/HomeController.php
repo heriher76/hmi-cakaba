@@ -15,8 +15,7 @@ class HomeController extends Controller
     public function index()
     {
         $sliders = DB::table('sliders')->get();
-        $social = DB::table('social_media')->first();
 
-        return view('index', compact('sliders', 'social'));
+        return view('index', compact('sliders'));
     }
 }

@@ -13,6 +13,10 @@
 
 Route::get('/', 'HomeController@index');
 
+Route::get('/berita', 'NewsController@index');
+
+Route::get('/kontak', 'ContactController@index');
+
 Auth::routes();
 
 Route::group(['middleware' => ['role:super-admin']], function () {
