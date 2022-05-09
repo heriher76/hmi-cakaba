@@ -10,7 +10,7 @@
       <div class="d-flex justify-content-between align-items-center">
         <h2>Kontak</h2>
         <ol>
-          <li><a href="index.html">Beranda</a></li>
+          <li><a href="{{ url('/') }}">Beranda</a></li>
           <li>Kontak</li>
         </ol>
       </div>

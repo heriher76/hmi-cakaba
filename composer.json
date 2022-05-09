@@ -9,11 +9,14 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5|^8.0",
+        "barryvdh/laravel-dompdf": "^1.0",
         "fideloper/proxy": "^4.4",
         "laravel/framework": "^6.20.26",
         "laravel/tinker": "^2.5",
         "laravel/ui": "*",
         "laravelcollective/html": "^6.3",
+        "nesbot/carbon": "^2.58",
+        "realrashid/sweet-alert": "^5.0",
         "spatie/laravel-permission": "*"
     },
     "require-dev": {

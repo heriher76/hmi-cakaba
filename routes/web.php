@@ -14,8 +14,17 @@
 Route::get('/', 'HomeController@index');
 
 Route::get('/berita', 'NewsController@index');
+Route::get('/berita/{slug}', 'NewsController@show');
 
 Route::get('/kontak', 'ContactController@index');
+
+Route::get('/tentang', 'AboutController@tentang');
+Route::get('/visi-misi', 'AboutController@visimisi');
+Route::get('/program-kerja', 'AboutController@proker');
+
+Route::get('/surat-rekomendasi', 'RecommendLetterController@index');
+Route::post('/surat-rekomendasi', 'RecommendLetterController@store');
+Route::post('/surat-rekomendasi/export', 'RecommendLetterController@export');
 
 Auth::routes();
 

@@ -41,6 +41,8 @@
 
 <body>
 
+  @include('sweetalert::alert')
+  
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
@@ -51,7 +53,7 @@
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          <li><a href="{{ url('/') }}" class="active">Beranda</a></li>
+          <li><a href="{{ url('/') }}">Beranda</a></li>
 
           <li class="dropdown"><a href="#"><span>Tentang</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
@@ -70,6 +72,25 @@
           <li><a href="{{ url('/berita') }}">Berita</a></li>
           <li><a href="{{ url('/kontak') }}">Kontak</a></li>
 
+          @guest
+          <li><a href="{{ url('/login') }}" class="active">Masuk/Daftar</a></li>
+          @else
+          <li class="dropdown"><a href="#" class="active"><span>{{ 'Hi,' . auth()->user()->name }}</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li>
+                <a href="{{ route('logout') }}"
+                   onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();">
+                    {{ __('Keluar') }}
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+              </li>
+            </ul>
+          </li>
+          @endguest
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

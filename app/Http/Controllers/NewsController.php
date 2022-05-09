@@ -11,4 +11,9 @@ class NewsController extends Controller
     {
         return view('news');
     }
+
+    public function show($slug)
+    {
+        return view('news-detail');
+    }
 }
