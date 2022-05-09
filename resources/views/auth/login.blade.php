@@ -15,16 +15,21 @@
                         <h2 class="h4 mb-1">Masuk</h2>
                         
                         <h3 class="h6 font-weight-semibold opacity-70 pt-4 pb-2">Pastikan email akun mu sudah terverifikasi.</h3>
-                        <form class="needs-validation" novalidate="">
+                        <form class="needs-validation" novalidate="" method="POST" action="{{ route('login') }}">
+                            @csrf
                             <div class="input-group form-group">
                                 <div class="input-group-prepend"><span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></span></div>
-                                <input class="form-control" name="login_email" type="email" placeholder="Email" required="">
-                                <div class="invalid-feedback">Mohon masukkan email yang valid!</div>
+                                <input class="form-control" name="login_email" type="email" placeholder="Email" required=""value="{{ old('login_email') }}">
+                                @if($errors->has('login_email'))
+                                    <div class="invalid-feedback" style="display: block" role="alert">Email atau password salah!</div>
+                                @endif
                             </div>
                             <div class="input-group form-group">
                                 <div class="input-group-prepend"><span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></div>
                                 <input class="form-control" name="login_password" type="password" placeholder="Password" required="">
-                                <div class="invalid-feedback">Password salah!</div>
+                                @if($errors->has('login_password'))
+                                    <div class="invalid-feedback" style="display: block" role="alert">Password salah!</div>
+                                @endif
                             </div>
                             <div class="d-flex flex-wrap justify-content-between">
                                 <div class="custom-control custom-checkbox">
