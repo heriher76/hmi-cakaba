@@ -78,7 +78,7 @@
             <div class="sidebar-item categories">
               <ul>
                 @foreach($categories as $category)
-                <li><a href="{{ url('berita/category?q='.$category->name) }}">{{ $category->name }} <span>></span></a></li>
+                <li><a href="{{ url('berita/'.\Str::slug($category->name)) }}">{{ $category->name }} <span>></span></a></li>
                 @endforeach
               </ul>
             </div><!-- End sidebar categories-->
@@ -89,7 +89,7 @@
               @foreach($popularNews as $news)
               <div class="post-item clearfix">
                 <img src="{{ env('URL_API_NEWS', 'http://localhost/pembaharuan') }}/public/images/{{ $news->image }}" alt="">
-                <h4><a href="{{ url('/berita/'.$categorySlug.'/'.$news->slug) }}">{{ $news->title }}</a></h4>
+                <h4><a href="{{ url('/berita/'.$news->category->slug.'/'.$news->slug) }}">{{ $news->title }}</a></h4>
                 <time datetime="{{ $news->created_at }}">{{ $news->created_at }}</time>
               </div>
               @endforeach
