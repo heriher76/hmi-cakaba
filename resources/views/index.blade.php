@@ -46,51 +46,22 @@
       <h3>Kabar Terkini</h3>
 
       <div class="bootstrap snippets bootdey row">
+          @foreach($allNews as $news)
           <div class="col-sm-4">
             <div class="widget single-news">
               <div class="image">
-                <img src="https://via.placeholder.com/300x200/FFB6C1/000000" class="img-responsive">
+                <img src="{{ env('URL_API_NEWS', 'http://localhost/pembaharuan') }}/public/images/{{ $news->image }}" class="img-responsive">
                 <span class="gradient"></span>
               </div>
               <div class="details">
-                <div class="category"><a href="">News</a></div>
-                <h3><a href="{{ url('/berita/test') }}">More rain at salt flats delays racer's pursuit of land speed record</a></h3>
-                <time>Today, 18 August</time>
+                <div class="category"><a href="">{{ $news->category->name }}</a></div>
+                <h3><a href="{{ url('/berita/'.$news->category->slug.'/'.$news->slug) }}">{{ $news->title }}</a></h3>
+                <time>{{ $news->created_at }}</time>
               </div>
             </div>
           </div>
-          
-          <div class="col-sm-4">
-            <div class="widget single-news">
-              <div class="image">
-                <img src="https://via.placeholder.com/300x200/87CEFA/000000" class="img-responsive">
-                <span class="gradient"></span>
-              </div>
-              <div class="details">
-                <div class="category"><a href="">News</a></div>
-                <h3><a href="{{ url('/berita/test') }}">More rain at salt flats delays racer's pursuit of land speed record</a></h3>
-                <time>Today, 18 August</time>
-              </div>
-            </div>
-          </div>
-          
-          <div class="col-sm-4">
-            <div class="widget single-news">
-              <div class="image">
-                <img src="https://via.placeholder.com/300x200/FF7F50/000000" class="img-responsive">
-                <span class="gradient"></span>
-              </div>
-              <div class="details">
-                <div class="category"><a href="">News</a></div>
-                <h3><a href="{{ url('/berita/test') }}">More rain at salt flats delays racer's pursuit of land speed record</a></h3>
-                <time>Today, 18 August</time>
-              </div>
-            </div>
-          </div>
+          @endforeach
       </div>
-      <center>
-        <a href="{{ url('/berita') }}" class="btn btn-success">Baca Lainnya</a>
-      </center>
 
     </div>
   </section><!-- End Services Section -->
