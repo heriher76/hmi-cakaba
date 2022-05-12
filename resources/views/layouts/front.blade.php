@@ -69,7 +69,14 @@
             </ul>
           </li>
 
-          <li><a href="{{ url('/berita') }}">Berita</a></li>
+          <li class="dropdown"><a href="#"><span>Berita</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              @foreach($categories as $category)
+              <li><a href="{{ url('/berita/'.\Str::slug($category->name)) }}">{{ $category->name }}</a></li>
+              @endforeach
+            </ul>
+          </li>
+
           <li><a href="{{ url('/kontak') }}">Kontak</a></li>
 
           @guest

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'HMI Kab.Bandung | Login')
+
 @section('content')
 <div class="container">
     <div class="container pb-5 mb-sm-4">
@@ -46,48 +48,61 @@
             </div>
             <div class="col-md-6 pt-sm-3">
                 <h2 class="h4 mb-3">Tidak punya akun? Daftar</h2>
-                <form class="needs-validation" novalidate="">
+                <form class="needs-validation" novalidate="" method="POST" action="{{ route('register') }}">
+                    @csrf
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="reg-fn">Nama Lengkap</label>
-                                <input class="form-control" name="regist_name" type="text" required="" id="reg-fn">
-                                <div class="invalid-feedback">Masukkan nama yang valid!</div>
+                                <input class="form-control" name="name" type="text" required="" id="reg-fn">
+                                @if($errors->has('name'))
+                                <div class="invalid-feedback" style="display: block" role="alert">Masukkan nama yang valid!</div>
+                                @endif
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="reg-email">Alamat E-mail</label>
-                                <input class="form-control" name="regist_email" type="email" required="" id="reg-email" autocomplete="new-email">
-                                <div class="invalid-feedback">Masukkan alamat email yang valid!</div>
+                                <input class="form-control" name="email" type="email" required="" id="reg-email" autocomplete="new-email">
+                                @if($errors->has('email'))
+                                <div class="invalid-feedback" style="display: block" role="alert">Masukkan alamat email yang valid!</div>
+                                @endif
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="reg-ln">Kode Registrasi</label>
                                 <input class="form-control" name="kata_kunci" type="text" required="" id="reg-ln">
-                                <div class="invalid-feedback">Kode registrasi tidak ditemukan.</div>
+                                @if($errors->has('kata_kunci'))
+                                <div class="invalid-feedback" style="display: block" role="alert">Kode registrasi tidak ditemukan.</div>
+                                @endif
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="reg-phone">Nomor HP/WA</label>
-                                <input class="form-control" name="regist_phone" type="text" required="" id="reg-phone">
-                                <div class="invalid-feedback">Masukkan nomor handphone yang valid!</div>
+                                <input class="form-control" name="phone" type="text" required="" id="reg-phone">
+                                @if($errors->has('phone'))
+                                <div class="invalid-feedback" style="display: block" role="alert">Masukkan nomor handphone yang valid!</div>
+                                @endif
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="reg-password">Password</label>
-                                <input class="form-control" name="regist_password" type="password" required="" id="reg-password" autocomplete="new-password">
-                                <div class="invalid-feedback">Silahkan masukkan password!</div>
+                                <input class="form-control" name="password" type="password" required="" id="reg-password" autocomplete="new-password">
+                                @if($errors->has('password'))
+                                <div class="invalid-feedback" style="display: block" role="alert">Silahkan masukkan password!</div>
+                                @endif
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="reg-password-confirm">Konfirmasi Password</label>
-                                <input class="form-control" name="regist_confirm_password" type="password" required="" id="reg-password-confirm">
-                                <div class="invalid-feedback">Password tidak sama!</div>
+                                <input class="form-control" name="password_confirmation" type="password" required="" id="reg-password-confirm">
+                                @if($errors->has('password_confirmation'))
+                                <div class="invalid-feedback" style="display: block" role="alert">Password tidak sama!</div>
+                                @endif
                             </div>
                         </div>
                     </div>

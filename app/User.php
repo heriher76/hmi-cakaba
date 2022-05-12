@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
     use HasRoles;
@@ -18,7 +18,29 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
+        'phone',
+        'ttl',
+        'alamat_sekarang',
+        'alamat_asal',
+        'jk',
+        'hobby',
+        'jurusan',
+        'fakultas',
+        'angkatan',
+        'angkatan_lk',
+        'komisariat_lk',
+        'riwayat_pendidikan',
+        'riwayat_organisasi',
+        'photo',
+        'alasan_daftar_lk',
+        'pekerjaan',
+        'sudah_lk1',
+        'sudah_lk2',
+        'sudah_lk3',
+        'tidak_lk',
     ];
 
     /**

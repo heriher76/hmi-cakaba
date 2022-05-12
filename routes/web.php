@@ -13,8 +13,8 @@
 
 Route::get('/', 'HomeController@index');
 
-Route::get('/berita', 'NewsController@index');
-Route::get('/berita/{slug}', 'NewsController@show');
+Route::get('/berita/{category}', 'NewsController@index');
+Route::get('/berita/{category}/{slug}', 'NewsController@show');
 
 Route::get('/kontak', 'ContactController@index');
 
@@ -26,8 +26,11 @@ Route::get('/surat-rekomendasi', 'RecommendLetterController@index');
 Route::post('/surat-rekomendasi', 'RecommendLetterController@store');
 Route::post('/surat-rekomendasi/export', 'RecommendLetterController@export');
 
-Auth::routes();
+Route::get('/daftar-lk/{slug}', 'DaftarLKController@index');
+Route::post('/daftar-lk/{slug}', 'DaftarLKController@store');
 
-Route::group(['middleware' => ['role:super-admin']], function () {
+Auth::routes(['verify' => true]);
+
+Route::group(['middleware' => ['role:super-admin', 'verified']], function () {
     //
 });

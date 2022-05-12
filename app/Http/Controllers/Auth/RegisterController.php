@@ -8,6 +8,9 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
+use DB;
 
 class RegisterController extends Controller
 {
@@ -53,6 +56,8 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'phone' => ['required', 'max:100'],
+            'kata_kunci' => ['required', 'string', 'max:100'],
         ]);
     }
 
@@ -64,10 +69,34 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $isCodeApproved = DB::table('komisariat')->where('kata_kunci', $data['kata_kunci'])->count();
+        if ($isCodeApproved == 0) {
+            alert()->error('Kata Kunci Salah', 'Silahkan cek dan masukkan kembali.');
+
+            return 'kata_kunci_salah';
+        }
+
+        alert()->success('Verifikasi Email Anda', 'Silahkan cek email dan klik tombol verifikasi.');
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'phone' => $data['phone'],
         ]);
+    }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        // $this->guard()->login($user);
+
+        if($user == 'kata_kunci_salah') return redirect('/login');
+
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath());
     }
 }
