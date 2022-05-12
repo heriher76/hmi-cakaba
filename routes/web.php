@@ -31,6 +31,14 @@ Route::post('/daftar-lk/{slug}', 'DaftarLKController@store');
 
 Auth::routes(['verify' => true]);
 
-Route::group(['middleware' => ['role:super-admin', 'verified']], function () {
+Route::group(['middleware' => ['auth', 'verified']], function () {
     //
+});
+
+Route::group(['middleware' => ['role:super-admin'], 'prefix' => 'admin'], function () {
+    Route::get('/', 'Admin\DashboardController@index');
+    Route::get('/about', 'Admin\AboutController@index');
+    Route::put('/about', 'Admin\AboutController@update');
+    Route::resource('/slider', 'Admin\SliderController');
+    Route::resource('/news-category', 'Admin\NewsCategoryController');
 });
