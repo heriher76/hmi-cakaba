@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use DB;
 
 class AboutController extends Controller
@@ -36,6 +37,7 @@ class AboutController extends Controller
             'profile' => $input['profile'],
             'proker' => $input['proker'],
             'image' => $namaThumbnail ?? $about->image,
+            'updated_at' => Carbon::now(),
         ]);
 
         alert()->success('Berhasil mengubah konten.', '');

@@ -53,7 +53,7 @@ class SliderController extends Controller
 
         $slider = DB::table('sliders')->where('id', $id)->first();
 
-        (isset($input['image'])) ? $namaThumbnail = 'images/slider/'.\Str::random(16).'.'.$input['image']->getClientOriginalExtension() : $namaThumbnail = null;
+        (isset($input['image'])) ? $namaThumbnail = 'images/slider/'.\Str::random(16).'.'.$input['image']->getClientOriginalExtension() : true;
 
         if (!empty($input['image'])) {
             if (!empty($slider->image)) {
@@ -66,7 +66,7 @@ class SliderController extends Controller
             'title' => $input['title'],
             'description' => $input['description'],
             'url' => $input['url'],
-            'image' => $namaThumbnail,
+            'image' => $namaThumbnail ?? $slider->image,
             'updated_at' => Carbon::now(),
         ]);
 

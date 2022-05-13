@@ -11,9 +11,9 @@
 
             <div class="card">
               <div class="card-header">
-            	<h1 class="m-0 text-dark">List Komisariat</h1>
-            	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-      					Tambah Komisariat
+            	<h1 class="m-0 text-dark">List Pengajuan</h1>
+            	<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+      					Tambah Pengajuan
       				</button>
 
       				<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -26,14 +26,10 @@
       				        </button>
       				      </div>
       				      <div class="modal-body">
-      				        <form action="{{ url('/admin/komisariat') }}" id="slider-form" method="POST" enctype="multipart/form-data">
+      				        <form action="{{ url('/admin/news-category') }}" id="slider-form" method="POST" enctype="multipart/form-data">
       				        	@csrf
                         <label>Nama</label>
       				        	<input type="text" name="name" class="form-control">
-                        <label>Slug</label>
-                        <input type="text" class="form-control" name="slug">
-                        <label>Gambar</label>
-                        <input type="file" name="image" class="form-control">
       				        </form>
       				      </div>
       				      <div class="modal-footer">
@@ -41,7 +37,7 @@
       				      </div>
       				    </div>
       				  </div>
-      				</div>
+      				</div> -->
 
               </div>
               <!-- /.card-header -->
@@ -51,25 +47,39 @@
                   <tr>
                     <th>No</th>
                     <th>Nama</th>
-                    <th>Slug</th>
-                    <th>Kata Kunci</th>
-                    <th>Buka LK</th>
-                    <th>Link Gambar</th>
+                    <th>Tipe</th>
+                    <th>Judul</th>
+                    <th>Tanggal</th>
+                    <th>BPL</th>
+                    <th>PA Cabang</th>
                     <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
-                  @foreach($listKomisariat as $key => $komisariat)
+                  @foreach($listPengajuan as $key => $pengajuan)
                   <tr>
                     <td>{{ $key+1 }}</td>
-                    <td>{{ $komisariat->name }}</td>
-                    <td>{{ $komisariat->slug }}</td>
-                    <td>{{ $komisariat->kata_kunci }}</td>
-                    <td>@if($komisariat->buka_lk) Ya @else Tidak @endif</td>
-                    <td>{{ $komisariat->image }}</td>
+                    <td>{{ \DB::table('users')->where('id', $pengajuan->user_id)->first()->name ?? '-' }}</td>
+                    <td>{{ $pengajuan->type_training }}</td>
+                    <td>{{ $pengajuan->title_training }}</td>
+                    <td>{{ $pengajuan->date_training }}</td>
                     <td>
-                    	<a href="{{ url('/admin/komisariat/'.$komisariat->id.'/edit') }}" class="btn btn-success">Edit</a>
-                    	<form action="{{ url('admin/komisariat/'.$komisariat->id) }}" method="POST" style="display: inline;">
+                    	@if($pengajuan->approve_bpl)
+                    		Sudah ACC
+                    	@else
+                    		<a href="{{ url('/admin/pengajuan-surat/'.$pengajuan->id.'/acc-bpl') }}" class="btn btn-success">Terima</a>
+                    	@endif
+                    </td>
+                    <td>
+                    	@if($pengajuan->approve_pa)
+                    		Sudah ACC
+                    	@else
+                    		<a href="{{ url('/admin/pengajuan-surat/'.$pengajuan->id.'/acc-pa') }}" class="btn btn-success">Terima</a>
+                    	@endif
+                    </td>
+                    <td>
+                    	<a href="{{ url('/admin/pengajuan-surat/'.$pengajuan->id.'/reset') }}" class="btn btn-primary">Reset</a>
+                    	<form action="{{ url('admin/pengajuan-surat/'.$pengajuan->id) }}" method="POST" style="display: inline;">
                             {{ csrf_field() }}
                             {{ method_field('delete') }}
                             <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda Ingin Menghapus Item Ini ?');">Delete</button>

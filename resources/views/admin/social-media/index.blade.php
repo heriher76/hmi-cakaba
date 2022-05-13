@@ -11,31 +11,32 @@
 
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Edit Komisariat</h3>
+                <h3 class="card-title">Edit Sosial Media</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="{{ url('admin/komisariat/'.$komisariat->id) }}" method="POST" enctype="multipart/form-data">
+              <form role="form" action="{{ url('admin/social-media') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 {{method_field('PUT')}}
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputTitle1">Nama</label>
-                    <input type="text" name="name" class="form-control" id="exampleInputTitle1" placeholder="Masukkan Nama" value="{{$komisariat->name}}">
+                    <label for="exampleInputTitle1">Instagram</label>
+                    <input type="text" name="instagram" class="form-control" value="{{ $social->instagram }}">
                   </div>
+
                   <div class="form-group">
-                    <label for="exampleInputTitle1">Slug</label>
-                    <input type="text" name="slug" class="form-control" id="exampleInputTitle1" placeholder="Masukkan Slug" value="{{$komisariat->slug}}">
+                    <label for="exampleInputTitle1">Email</label>
+                    <input type="text" name="email" class="form-control" value="{{ $social->email }}">
                   </div>
+
                   <div class="form-group">
-                    <label for="exampleInputTitle1">Image</label>
-                    <br>
-                    @if(!empty($komisariat->image))
-                      <img src="{{ url($komisariat->image) }}" class="img-responsive" style="width: 100px;">
-                      <br>
-                      <label>*Upload untuk mengubah</label>
-                    @endif
-                    <input type="file" name="image" class="form-control">
+                    <label for="exampleInputTitle1">Kontak HP</label>
+                    <input type="text" name="contact" class="form-control" value="{{ $social->contact }}">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputTitle1">Alamat</label>
+                    <input type="text" name="address" class="form-control" value="{{ $social->address }}">
                   </div>
                 </div>
                 <!-- /.card-body -->

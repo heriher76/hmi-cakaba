@@ -39,6 +39,20 @@ Route::group(['middleware' => ['role:super-admin'], 'prefix' => 'admin'], functi
     Route::get('/', 'Admin\DashboardController@index');
     Route::get('/about', 'Admin\AboutController@index');
     Route::put('/about', 'Admin\AboutController@update');
+    Route::get('/social-media', 'Admin\SocialMediaController@index');
+    Route::put('/social-media', 'Admin\SocialMediaController@update');
     Route::resource('/slider', 'Admin\SliderController');
     Route::resource('/news-category', 'Admin\NewsCategoryController');
+    Route::resource('/komisariat', 'Admin\KomisariatController');
+    Route::resource('/users', 'Admin\UsersController');
+
+    Route::get('/pengajuan-surat', 'Admin\RecommendLetterController@pengajuanSurat');
+    Route::delete('/pengajuan-surat/{id}', 'Admin\RecommendLetterController@destroyPengajuanSurat');
+    Route::get('/pengajuan-surat/{id}/reset', 'Admin\RecommendLetterController@resetPengajuanSurat');
+
+    Route::get('/pengajuan-surat/{id}/acc-bpl', 'Admin\RecommendLetterController@accBPL');
+    Route::get('/pengajuan-surat/{id}/acc-pa', 'Admin\RecommendLetterController@accPA');
+    
+    Route::get('/template-surat', 'Admin\RecommendLetterController@templateSurat');
+    Route::put('/template-surat', 'Admin\RecommendLetterController@updateTemplateSurat');
 });
