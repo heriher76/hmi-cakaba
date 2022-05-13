@@ -79,9 +79,9 @@ class UsersController extends Controller
         $input = $request->all();
 
         $user = DB::table('users')->where('id', $id)->first();
-        
-        (isset($input['photo'])) ? $namaThumbnail = 'images/users/'.\Str::random(16).'.'.$input['photo']->getClientOriginalExtension() : null;
-        
+
+        (isset($input['photo'])) ? $namaThumbnail = 'images/users/'.\Str::random(16).'.'.$input['photo']->getClientOriginalExtension() : true;
+
         if (!empty($input['photo'])) {
             if (!empty($user->photo)) {
                 unlink(public_path($user->photo));
@@ -89,28 +89,65 @@ class UsersController extends Controller
             $input['photo']->move(public_path('images/users'), $namaThumbnail);
         }
 
-        if (!empty($input['password']) && !empty($input['c_password'])) {
-            if ($input['password'] == $input['c_password']) {
-                DB::table('users')->where('id', $id)->update([
-                    'password' => bcrypt($input['password'])
-                ]);                
-            }
-        }
-
         if(!empty($input['confirm-email'])) {
             $confirmed = Carbon::now();
         }
 
-        DB::table('users')->where('id', $id)->update([
-            'name' => $input['name'],
-            'email' => $input['email'],
+        if (!empty($request->sudah_lk1)) $sudah_lk1 = 1;
+
+        if (!empty($request->sudah_lk2)) $sudah_lk2 = 1;
+
+        if (!empty($request->sudah_lk3)) $sudah_lk3 = 1; 
+
+        if (!empty($request->tidak_lk)) { 
+            $sudah_lk1 = 0;
+            $sudah_lk2 = 0;
+            $sudah_lk3 = 0;
+            $tidak_lk = 1;
+        }
+
+        DB::table('users')->where('id', $user->id)->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'ttl' => $request->ttl,
+            'alamat_sekarang' => $request->alamat_sekarang,
+            'alamat_asal' => $request->alamat_asal,
+            'jk' => $request->jk,
+            'phone' => $request->phone,
+            'hobby' => $request->hobby,
+            'jurusan' => $request->jurusan,
+            'fakultas' => $request->fakultas,
+            'angkatan' => $request->angkatan,
+            'angkatan_lk' => $request->angkatan_lk,
+            'komisariat_lk' => $request->komisariat_lk,
+            'riwayat_pendidikan' => $request->riwayat_pendidikan,
+            'riwayat_organisasi' => $request->riwayat_organisasi,
+            'alasan_daftar_lk' => $request->alasan_daftar_lk,
+            'pekerjaan' => $request->pekerjaan,
+            'photo' => $namaThumbnail ?? $user->photo,
             'email_verified_at' => $confirmed ?? $user->email_verified_at,
-            'photo' => $namaThumbnail ?? $user->photo
+            'sudah_lk1' => $sudah_lk1 ?? null,
+            'sudah_lk2' => $sudah_lk2 ?? null,
+            'sudah_lk3' => $sudah_lk3 ?? null,
+            'tidak_lk' => $tidak_lk ?? null,
         ]);
 
-        alert()->success('User Berhasil Diupdate!', '...');
-
-        return back();
+        if (!empty($input['new_password']) && !empty($input['new_password_confirmation'])) {
+            if ($input['new_password'] == $input['new_password_confirmation']) {
+                DB::table('users')->where('id', $user->id)->update([
+                    'password' => bcrypt($input['new_password'])
+                ]);                
+                
+                alert()->success('Profil Berhasil Diupdate!', '...');
+                return back()->with('passwordChanged','Please Login Again.');
+            }else{
+                alert()->info('Profil Berhasil Diupdate Namun Password Gagal Diperbarui!', 'Password dan Konfirmasi Password Baru Tidak Sama.');
+                return back();
+            }
+        }else{
+            alert()->success('Berhasil memperbarui profil.', '');
+            return back();
+        }
     }
 
     /**

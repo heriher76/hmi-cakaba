@@ -22,17 +22,18 @@ Route::get('/tentang', 'AboutController@tentang');
 Route::get('/visi-misi', 'AboutController@visimisi');
 Route::get('/program-kerja', 'AboutController@proker');
 
-Route::get('/surat-rekomendasi', 'RecommendLetterController@index');
-Route::post('/surat-rekomendasi', 'RecommendLetterController@store');
-Route::post('/surat-rekomendasi/export', 'RecommendLetterController@export');
-
 Route::get('/daftar-lk/{slug}', 'DaftarLKController@index');
 Route::post('/daftar-lk/{slug}', 'DaftarLKController@store');
 
 Auth::routes(['verify' => true]);
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
-    //
+    Route::get('/my-profile', 'MyProfileController@index');
+    Route::put('/my-profile', 'MyProfileController@update');
+
+    Route::get('/surat-rekomendasi', 'RecommendLetterController@index');
+    Route::post('/surat-rekomendasi', 'RecommendLetterController@store');
+    Route::post('/surat-rekomendasi/export', 'RecommendLetterController@export');
 });
 
 Route::group(['middleware' => ['role:super-admin'], 'prefix' => 'admin'], function () {

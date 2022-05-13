@@ -84,6 +84,7 @@
           @else
           <li class="dropdown"><a href="#" class="active"><span>{{ 'Hi,' . auth()->user()->name }}</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
+              <li><a href="{{ url('/my-profile') }}">Profil Saya</a></li>
               <li>
                 <a href="{{ route('logout') }}"
                    onclick="event.preventDefault();

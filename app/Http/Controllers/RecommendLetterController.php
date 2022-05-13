@@ -12,7 +12,7 @@ class RecommendLetterController extends Controller
 {
     public function index()
     {
-        $myQueue = DB::table('queue_recommend_letter')->where('user_id', 1)->get();
+        $myQueue = DB::table('queue_recommend_letter')->where('user_id', auth()->user()->id)->get();
 
         return view('recommend-letter', compact('myQueue'));
     }
@@ -20,7 +20,7 @@ class RecommendLetterController extends Controller
     public function store(Request $request)
     {
         DB::table('queue_recommend_letter')->insert([
-            'user_id' => 1,
+            'user_id' => auth()->user()->id,
             'type_training' => $request->type_training,
             'title_training' => $request->title_training,
             'date_training' => $request->date_training,
