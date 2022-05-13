@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('contents')
 <div class="content-wrapper">
@@ -11,11 +11,11 @@
 
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Tambah User Customer</h3>
+                <h3 class="card-title">Tambah User ({{ $slug }})</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="{{ url('user-apps') }}" method="POST" enctype="multipart/form-data">
+              <form role="form" action="{{ url('admin/user/'.$slug) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                   <div class="form-group">
@@ -29,23 +29,21 @@
                   <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
                     <input type="password" name="password" 
-                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$!%*?&])[A-Za-z\d@#$!%*?&]{8,}$" title="Minimum delapan karakter, setidaknya satu huruf besar, satu huruf kecil, satu angka dan satu simbol" 
                     class="form-control" id="exampleInputPassword1" placeholder="Password" required>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword2">Konfirmasi Password</label>
-                    <input type="password" name="c_password" 
-                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$!%*?&])[A-Za-z\d@#$!%*?&]{8,}$"
-                    class="form-control" id="exampleInputPassword2" placeholder="Ulangi Password" title="Minimum delapan karakter, setidaknya satu huruf besar, satu huruf kecil, satu angka dan satu simbol" required>
+                    <input type="password" name="c_password"
+                    class="form-control" id="exampleInputPassword2" placeholder="Ulangi Password" required>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputFile">Foto</label>
                     <div class="input-group">
-                        <input type="file" name="image_profile" id="exampleInputFile" required>
+                        <input type="file" name="image_profile" id="exampleInputFile">
                     </div>
                   </div>
                   <div class="form-check">
-                    <input type="checkbox" name="confirm-email" class="form-check-input" id="exampleCheck1">
+                    <input type="checkbox" name="confirm-email" class="form-check-input" id="exampleCheck1" checked>
                     <label class="form-check-label" for="exampleCheck1">Klik untuk konfirmasi email otomatis.</label>
                   </div>
                 </div>

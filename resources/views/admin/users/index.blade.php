@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('contents')
 <div class="content-wrapper">
@@ -11,8 +11,8 @@
 
             <div class="card">
               <div class="card-header">
-            	<h1 class="m-0 text-dark">User</h1>
-            	<a href="{{ url('user-apps/create') }}" class="btn btn-primary">Tambah User</a>
+            	<h1 class="m-0 text-dark">User ({{$role->name}})</h1>
+            	<a href="{{ url('admin/user/'.$role->name.'/create') }}" class="btn btn-primary">Tambah User</a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -20,10 +20,10 @@
                   <thead>
                   <tr>
                     <th>No</th>
-                    <th>ID Pengguna</th>
                     <th>Nama</th>
                     <th>Email</th>
-                    <th>Status</th>
+                    <th>HP</th>
+                    <th>Komisariat</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -31,27 +31,13 @@
                   @foreach($users as $key => $user)
                   <tr>
                     <td>{{ $key+1 }}</td>
-                    <td>{{ $user->id }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
+                    <td>{{ $user->phone }}</td>
+                    <td>{{ $user->komisariat_lk }}</td>
                     <td>
-                      @if($user->is_blocked)
-                      <form action="{{ url('user-apps/unblock/'.$user->id) }}" method="POST" style="display: inline;">
-                            {{ csrf_field() }}
-                            {{ method_field('put') }}
-                            <button type="submit" class="btn btn-primary" onclick="return confirm('Apakah Anda Ingin Aktifkan Pengguna Ini ?');">Aktifkan</button>
-                        </form>
-                      @else
-                      <form action="{{ url('user-apps/block/'.$user->id) }}" method="POST" style="display: inline;">
-                            {{ csrf_field() }}
-                            {{ method_field('put') }}
-                            <button type="submit" class="btn btn-warning" onclick="return confirm('Apakah Anda Ingin Blokir Pengguna Ini ?');">Blokir</button>
-                        </form>
-                      @endif
-                    </td>
-                    <td>
-                    	<a href="{{ url('/user-apps/'.$user->id.'/edit') }}" class="btn btn-success">Edit</a>
-                    	<form action="{{ url('user-apps/'.$user->id) }}" method="POST" style="display: inline;">
+                    	<a href="{{ url('admin/user/'.$role->name.'/'.$user->id.'/edit') }}" class="btn btn-success">Edit</a>
+                    	<form action="{{ url('admin/user/'.$role->name.'/'.$user->id) }}" method="POST" style="display: inline;">
                             {{ csrf_field() }}
                             {{ method_field('delete') }}
                             <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda Ingin Menghapus Pengguna Ini ?');">Delete</button>

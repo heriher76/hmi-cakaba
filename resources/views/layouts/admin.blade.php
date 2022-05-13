@@ -85,7 +85,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="{{ url('/') }}" class="nav-link">
+            <a href="{{ url('/admin') }}" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -165,43 +165,43 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ url('/admin/user-publik') }}" class="nav-link">
+                <a href="{{ url('/admin/user/publik') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Publik</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('/admin/user-kader') }}" class="nav-link">
+                <a href="{{ url('/admin/user/kader') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Kader</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('/admin/user-kahmi') }}" class="nav-link">
+                <a href="{{ url('/admin/user/kahmi') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Kahmi</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('/admin/user-komisariat') }}" class="nav-link">
+                <a href="{{ url('/admin/user/admin-komisariat') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Komisariat</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('/admin/user-bpl') }}" class="nav-link">
+                <a href="{{ url('/admin/user/admin-bpl') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>BPL</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('/admin/user-cabang') }}" class="nav-link">
+                <a href="{{ url('/admin/user/admin-cabang') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Cabang</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('/admin/user-superadmin') }}" class="nav-link">
+                <a href="{{ url('/admin/user/super-admin') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Super Admin</p>
                 </a>

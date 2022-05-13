@@ -55,4 +55,13 @@ Route::group(['middleware' => ['role:super-admin'], 'prefix' => 'admin'], functi
     
     Route::get('/template-surat', 'Admin\RecommendLetterController@templateSurat');
     Route::put('/template-surat', 'Admin\RecommendLetterController@updateTemplateSurat');
+
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('/{slug}/create', 'Admin\UsersController@create');
+        Route::get('/{slug}/{id}/edit', 'Admin\UsersController@edit');
+        Route::put('/{slug}/{id}', 'Admin\UsersController@update');
+        Route::delete('/{slug}/{id}', 'Admin\UsersController@destroy');
+        Route::post('/{slug}', 'Admin\UsersController@store');
+        Route::get('/{slug}', 'Admin\UsersController@index');
+    });
 });

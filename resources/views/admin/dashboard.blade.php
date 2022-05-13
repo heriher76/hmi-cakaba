@@ -23,7 +23,7 @@
             <!-- small box -->
             <div class="small-box bg-secondary">
               <div class="inner">
-                <h5>22</h5>
+                <h5>{{ $jumlahKomisariat }}</h5>
 
                 <p>Jumlah Komisariat</p>
               </div>
@@ -37,7 +37,7 @@
             <!-- small box -->
             <div class="small-box bg-primary">
               <div class="inner">
-                <h5>11</h5>
+                <h5>{{ $jumlahKahmi }}</h5>
 
                 <p>Jumlah KAHMI</p>
               </div>
@@ -52,7 +52,7 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h5>33</h5>
+                <h5>{{ $jumlahKader }}</h5>
 
                 <p>Kader Terdaftar</p>
               </div>
@@ -67,9 +67,9 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h5>44</h5>
+                <h5>{{ $jumlahKategoriBerita }}</h5>
 
-                <p>Jumlah Berita</p>
+                <p>Jumlah Kategori Berita</p>
               </div>
               <div class="icon">
                 <i class="ion ion-navicon"></i>
@@ -85,7 +85,7 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h5>55</h5>
+                <h5>{{ $jumlahPendaftarLK }}</h5>
 
                 <p>Jumlah Mhs Mendaftar LK</p>
               </div>
@@ -100,9 +100,15 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h5>Sains dan Teknologi</h5>
+                <h5>
+                  Komisariat Mengadakan LK
+                </h5>
 
-                <p>Komisariat Mengadakan LK</p>
+                <p>
+                  @foreach($komisariatLK as $kom)
+                    {{ $kom->name }},
+                  @endforeach
+                </p>
               </div>
               <div class="icon">
                 <i class="ion ion-checkmark"></i>
