@@ -12,6 +12,12 @@ class RecommendLetterController extends Controller
 {
     public function index()
     {
+        if (empty(auth()->user()->alamat_asal) || empty(auth()->user()->alamat_sekarang)) {
+            alert()->warning('Silahkan isi data profil anda terlebih dahulu', '');
+
+            return redirect('my-profile');
+        }
+
         $myQueue = DB::table('queue_recommend_letter')->where('user_id', auth()->user()->id)->get();
 
         return view('recommend-letter', compact('myQueue'));
