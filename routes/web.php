@@ -36,33 +36,52 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::post('/surat-rekomendasi/export', 'RecommendLetterController@export');
 });
 
-Route::group(['middleware' => ['role:super-admin'], 'prefix' => 'admin'], function () {
-    Route::get('/', 'Admin\DashboardController@index');
-    Route::get('/about', 'Admin\AboutController@index');
-    Route::put('/about', 'Admin\AboutController@update');
-    Route::get('/social-media', 'Admin\SocialMediaController@index');
-    Route::put('/social-media', 'Admin\SocialMediaController@update');
-    Route::resource('/slider', 'Admin\SliderController');
-    Route::resource('/news-category', 'Admin\NewsCategoryController');
-    Route::resource('/komisariat', 'Admin\KomisariatController');
-    Route::resource('/users', 'Admin\UsersController');
+Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
+    Route::group(['middleware' => ['role:super-admin|admin-cabang|admin-bpl|admin-komisariat']], function () {    
+        Route::get('/', 'Admin\DashboardController@index');
+    });
 
-    Route::get('/pengajuan-surat', 'Admin\RecommendLetterController@pengajuanSurat');
-    Route::delete('/pengajuan-surat/{id}', 'Admin\RecommendLetterController@destroyPengajuanSurat');
-    Route::get('/pengajuan-surat/{id}/reset', 'Admin\RecommendLetterController@resetPengajuanSurat');
+    Route::group(['middleware' => ['role:admin-komisariat']], function () {
+        Route::group(['prefix' => 'user'], function () {
+            Route::get('/pendaftar-lk', 'Admin\UsersController@pendaftarLK');
+        });
+    });
 
-    Route::get('/pengajuan-surat/{id}/acc-bpl', 'Admin\RecommendLetterController@accBPL');
-    Route::get('/pengajuan-surat/{id}/acc-pa', 'Admin\RecommendLetterController@accPA');
+    Route::group(['middleware' => ['role:super-admin']], function () {
+        Route::get('/about', 'Admin\AboutController@index');
+        Route::put('/about', 'Admin\AboutController@update');
+        Route::get('/social-media', 'Admin\SocialMediaController@index');
+        Route::put('/social-media', 'Admin\SocialMediaController@update');
+        Route::resource('/slider', 'Admin\SliderController');
+        Route::resource('/news-category', 'Admin\NewsCategoryController');
+        Route::resource('/komisariat', 'Admin\KomisariatController');
+        Route::resource('/users', 'Admin\UsersController');
+        Route::get('/template-surat', 'Admin\RecommendLetterController@templateSurat');
+        Route::put('/template-surat', 'Admin\RecommendLetterController@updateTemplateSurat');
+        Route::group(['prefix' => 'user'], function () {
+            Route::get('/{slug}/create', 'Admin\UsersController@create');
+            Route::get('/{slug}/{id}/edit', 'Admin\UsersController@edit');
+            Route::put('/{slug}/{id}', 'Admin\UsersController@update');
+            Route::delete('/{slug}/{id}', 'Admin\UsersController@destroy');
+            Route::post('/{slug}', 'Admin\UsersController@store');
+            Route::get('/{slug}', 'Admin\UsersController@index');
+        });
+    });
+
+    Route::group(['middleware' => ['role:super-admin|admin-cabang|admin-bpl']], function () {
+        Route::get('/pengajuan-surat', 'Admin\RecommendLetterController@pengajuanSurat');
+
+        Route::delete('/pengajuan-surat/{id}', 'Admin\RecommendLetterController@destroyPengajuanSurat');
+        Route::get('/pengajuan-surat/{id}/reset', 'Admin\RecommendLetterController@resetPengajuanSurat');
+    });
     
-    Route::get('/template-surat', 'Admin\RecommendLetterController@templateSurat');
-    Route::put('/template-surat', 'Admin\RecommendLetterController@updateTemplateSurat');
+    Route::group(['middleware' => ['role:super-admin|admin-cabang']], function () {
+        Route::post('/pengajuan-surat/{id}/acc-pa', 'Admin\RecommendLetterController@accPA');
+        Route::get('/pengajuan-surat/{id}/reject-pa', 'Admin\RecommendLetterController@rejectPA');
+    });
 
-    Route::group(['prefix' => 'user'], function () {
-        Route::get('/{slug}/create', 'Admin\UsersController@create');
-        Route::get('/{slug}/{id}/edit', 'Admin\UsersController@edit');
-        Route::put('/{slug}/{id}', 'Admin\UsersController@update');
-        Route::delete('/{slug}/{id}', 'Admin\UsersController@destroy');
-        Route::post('/{slug}', 'Admin\UsersController@store');
-        Route::get('/{slug}', 'Admin\UsersController@index');
+    Route::group(['middleware' => ['role:super-admin|admin-bpl']], function () {
+        Route::get('/pengajuan-surat/{id}/acc-bpl', 'Admin\RecommendLetterController@accBPL');
+        Route::get('/pengajuan-surat/{id}/reject-bpl', 'Admin\RecommendLetterController@rejectBPL');
     });
 });

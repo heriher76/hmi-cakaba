@@ -84,6 +84,9 @@
           @else
           <li class="dropdown"><a href="#" class="active"><span>{{ 'Hi,' . auth()->user()->name }}</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
+              @if(auth()->user()->hasRole(['super-admin', 'admin-komisariat', 'admin-bpl', 'admin-cabang']))
+              <li><a href="{{ url('/admin') }}">Dashboard</a></li>
+              @endif
               <li><a href="{{ url('/my-profile') }}">Profil Saya</a></li>
               <li>
                 <a href="{{ route('logout') }}"
@@ -106,7 +109,7 @@
       <div class="header-social-links d-flex">
         <a href="//{{ $social->instagram ?? '#' }}" target="_blank" class="instagram"><i class="bu bi-instagram"></i></a>
         <a href="//wa.me/{{ $social->contact ?? '#' }}" target="_blank" class="instagram"><i class="bu bi-whatsapp"></i></a>
-        <a href="mailto:{{ $social->email ?? '#' }}" target="_blank" class="linkedin"><i class="bu bi-envelope"></i></i></a>
+        <a href="//mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&to={{ $social->email ?? '#' }}&subject=Kader-HMI-Cakaba&body=Assalamualaikum" target="_blank" class="linkedin"><i class="bu bi-envelope"></i></i></a>
       </div>
 
     </div>

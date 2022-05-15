@@ -24,7 +24,7 @@
 
       <div class="row content">
         <div class="col-lg-6" data-aos="fade-right">
-          <h2>Visi Misi HMI CAKABA</h2>
+          <h2>Visi Misi HMI CAKABA {{ ' periode '.$tempLetter->periode ?? ' ' }}</h2>
           <b>{!! $about->visi !!}</b>
         </div>
         <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-left">

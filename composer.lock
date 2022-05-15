@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0bf121e97f4961df3a710bde3d5f7cee",
+    "content-hash": "8628bfe748927ede578b5dd70df044ca",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -1524,6 +1524,50 @@
                 }
             ],
             "time": "2022-05-10T09:36:00+00:00"
+        },
+        {
+            "name": "nazir/go2hi",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/NazirArifin/go2hi.git",
+                "reference": "2f29686876f01ccd1d40b7ea5ebd84980f864e16"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/NazirArifin/go2hi/zipball/2f29686876f01ccd1d40b7ea5ebd84980f864e16",
+                "reference": "2f29686876f01ccd1d40b7ea5ebd84980f864e16",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "go2hi": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nazir Arifin",
+                    "email": "ceylon.rizan@gmail.com"
+                }
+            ],
+            "description": "GO2HI - Gregorian To Hijri Converter",
+            "keywords": [
+                "go2hi",
+                "hijri calendar"
+            ],
+            "support": {
+                "issues": "https://github.com/NazirArifin/go2hi/issues",
+                "source": "https://github.com/NazirArifin/go2hi/tree/master"
+            },
+            "time": "2017-02-05T06:51:15+00:00"
         },
         {
             "name": "nesbot/carbon",

@@ -67,14 +67,39 @@ class RecommendLetterController extends Controller
         return back();
     }
 
-    public function accPA($id)
+    public function accPA(Request $request, $id)
     {
         DB::table('queue_recommend_letter')->where('id', $id)->update([
+            'number_letter' => $request->number_letter,
             'approve_pa' => 1,
             'updated_at' => Carbon::now()
         ]);
 
         alert()->success('Berhasil menerima pengajuan.', '');
+
+        return back();
+    }
+
+    public function rejectBPL($id)
+    {
+        DB::table('queue_recommend_letter')->where('id', $id)->update([
+            'approve_bpl' => 2,
+            'updated_at' => Carbon::now()
+        ]);
+
+        alert()->info('Pengajuan telah ditolak.', '');
+
+        return back();
+    }
+
+    public function rejectPA(Request $request, $id)
+    {
+        DB::table('queue_recommend_letter')->where('id', $id)->update([
+            'approve_pa' => 2,
+            'updated_at' => Carbon::now()
+        ]);
+
+        alert()->info('Pengajuan telah ditolak.', '');
 
         return back();
     }

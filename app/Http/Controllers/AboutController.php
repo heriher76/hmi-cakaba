@@ -17,8 +17,9 @@ class AboutController extends Controller
     public function visimisi()
     {
         $about = DB::table('about')->first();
+        $tempLetter = DB::table('temp_recommend_letter')->first();
 
-        return view('visimisi', compact('about'));
+        return view('visimisi', compact('about', 'tempLetter'));
     }
 
     public function proker()

@@ -27,9 +27,11 @@
         	<form action="{{ url('surat-rekomendasi') }}" method="post" role="form">
         	  @csrf
               <div class="form-group mt-3">
-                <input type="text" class="form-control" name="name" id="subject" placeholder="Nama" value="@php auth()->user()->name ?? '' @endphp" required disabled>
+                <label>Nama Pengaju</label>
+                <input type="text" class="form-control" name="name" id="subject" placeholder="Nama" value="{{ auth()->user()->name ?? '' }}" required disabled>
               </div>
               <div class="form-group mt-3">
+                <label>Tipe Training</label>
               	<select name="type_training" required class="form-control">
               		<option value="LK2">LK2</option>
               		<option value="LK3">LK3</option>
@@ -39,10 +41,16 @@
               	</select>
               </div>
               <div class="form-group mt-3">
-                <input type="text" class="form-control" name="title_training" id="subject" placeholder="Nama Training" required>
+                <label>Judul Training</label>
+                <input type="text" class="form-control" name="title_training" id="subject" placeholder="contoh: Intermediate Training / Advance Training / ..." required>
               </div>
               <div class="form-group mt-3">
+                <label>Tanggal Training</label>
                 <input type="date" class="form-control" name="date_training" id="subject" placeholder="Tanggal Training" required>
+              </div>
+              <div class="form-group mt-3">
+                <label>Cabang Pelaksana</label>
+                <input type="text" class="form-control" name="cabang_training" id="subject" placeholder="contoh: Cabang Kab.Bandung / Cabang Bandar Lampung / ..." required>
               </div>
               <br>
               <div class="text-center">
