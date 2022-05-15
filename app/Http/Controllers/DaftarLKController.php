@@ -56,7 +56,7 @@ class DaftarLKController extends Controller
             'fakultas' => $request->fakultas,
             'angkatan' => $request->angkatan,
             'angkatan_lk' => null,
-            'komisariat_lk' => $komisariat->name,
+            'komisariat_lk' => $komisariat->slug,
             'riwayat_pendidikan' => $request->riwayat_pendidikan,
             'riwayat_organisasi' => $request->riwayat_organisasi,
             'photo' => $savedLocation,

@@ -42,9 +42,12 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     });
 
     Route::group(['middleware' => ['role:admin-komisariat']], function () {
-        Route::group(['prefix' => 'user'], function () {
-            Route::get('/pendaftar-lk', 'Admin\UsersController@pendaftarLK');
-        });
+        Route::get('/pendaftar-lk', 'Admin\PendaftarLKController@index');
+        Route::get('/pendaftar-lk/{id}', 'Admin\PendaftarLKController@show');
+        Route::get('/pendaftar-lk/{id}/sudah-lk', 'Admin\PendaftarLKController@sudahLK');
+        Route::get('/pendaftar-lk/{id}/tidak-lk', 'Admin\PendaftarLKController@tidakLK');
+
+        Route::get('/kader-komisariat', 'Admin\KaderKomisariatController@index');
     });
 
     Route::group(['middleware' => ['role:super-admin']], function () {

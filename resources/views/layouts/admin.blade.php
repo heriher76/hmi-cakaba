@@ -96,9 +96,17 @@
           @if(auth()->user()->hasRole('admin-komisariat'))
           <li class="nav-item">
             <a href="{{ url('/admin/pendaftar-lk') }}" class="nav-link">
-              <i class="nav-icon fas fa-home"></i>
+              <i class="nav-icon fas fa-user"></i>
               <p>
                 Pendaftar LK1
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('/admin/kader-komisariat') }}" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Kader Komisariat
               </p>
             </a>
           </li>
