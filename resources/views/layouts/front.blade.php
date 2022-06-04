@@ -165,7 +165,7 @@
             <h4>Kategori Berita</h4>
             <ul>
               @foreach($categories as $category)
-              <li><i class="bx bx-chevron-right"></i> <a href="{{ url('berita/category?q='.$category->name) }}">{{ $category->name }}</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ url('berita/'.\Str::slug($category->name)) }}">{{ $category->name }}</a></li>
               @endforeach
             </ul>
           </div>
