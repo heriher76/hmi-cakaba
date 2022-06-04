@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Imports\UsersImport;
+use App\Exports\KaderExport;
 use Maatwebsite\Excel\Facades\Excel;
 use DB;
 
@@ -44,5 +45,12 @@ class KaderKomisariatController extends Controller
  
         // alihkan halaman kembali
         return back();
+    }
+
+    public function download()
+    {
+        $komisariat = DB::table('komisariat')->where('id', auth()->user()->admin_id_komisariat)->first();
+
+        return Excel::download(new KaderExport($komisariat->slug), 'Kader Komisariat '.$komisariat->name.'.xlsx');
     }
 }

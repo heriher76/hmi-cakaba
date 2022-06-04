@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Exports\PendaftarLKExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use DB;
@@ -45,5 +47,12 @@ class PendaftarLKController extends Controller
 
         alert()->info('Berhasil mengubah menjadi belum pernah LK', '');
         return back();
+    }
+
+    public function download()
+    {
+        $komisariat = DB::table('komisariat')->where('id', auth()->user()->admin_id_komisariat)->first();
+
+        return Excel::download(new PendaftarLKExport($komisariat->slug), 'Pendaftar LK1 Kom '.$komisariat->name.'.xlsx');
     }
 }

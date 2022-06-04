@@ -20,9 +20,12 @@
                   <label>Import Kader Excel</label>
                   <br>
                   <input type="file" name="import-kader-cakaba">
-                  <br>  
                   <button type="submit" class="btn btn-success">Kirim</button>
                 </form>
+                <hr>
+                  <label>Export Kader Excel</label>
+                  <br>
+                  <a href="{{ url('/admin/kader-komisariat/download') }}" class="btn btn-primary">Download Database Kader</a>
                 <hr>
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>

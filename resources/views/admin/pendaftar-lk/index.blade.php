@@ -12,6 +12,10 @@
             <div class="card">
               <div class="card-header">
             	<h1 class="m-0 text-dark">Komisariat ({{$komisariat->name}})</h1>
+              <hr>
+                <label>Export Kader Excel</label>
+                <br>
+                <a href="{{ url('/admin/pendaftar-lk/download') }}" class="btn btn-primary">Download Pendaftar LK1</a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
