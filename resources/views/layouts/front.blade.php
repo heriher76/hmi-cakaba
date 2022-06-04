@@ -29,6 +29,22 @@
   <!-- Template Main CSS File -->
   <link href="{{ url('front/assets/css/style.css') }}" rel="stylesheet">
 
+  <style type="text/css">
+    .read-more a {
+      display: inline-block;
+      background: #1bbd36;
+      color: #fff;
+      padding: 17px 20px;
+      font-size: 0.6rem;
+      margin-left: 15px;
+      transition: 0.3s;
+      border-radius: 4px;
+    }
+    .read-more a:hover {
+      color: black;
+    }
+  </style>
+
   @yield('style')
 
   <!-- =======================================================
@@ -107,9 +123,9 @@
       </nav><!-- .navbar -->
 
       <div class="header-social-links d-flex">
-        <a href="//{{ $social->instagram ?? '#' }}" target="_blank" class="instagram"><i class="bu bi-instagram"></i></a>
-        <a href="//wa.me/{{ $social->contact ?? '#' }}" target="_blank" class="instagram"><i class="bu bi-whatsapp"></i></a>
-        <a href="//mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&to={{ $social->email ?? '#' }}&subject=Kader-HMI-Cakaba&body=Assalamualaikum" target="_blank" class="linkedin"><i class="bu bi-envelope"></i></i></a>
+        <div class="read-more">
+          <a href="{{ url('join-hmi') }}"><b>Join HMI</b></a>
+        </div>
       </div>
 
     </div>

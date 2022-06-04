@@ -11,9 +11,9 @@
 
             <div class="card">
               <div class="card-header">
-            	<h1 class="m-0 text-dark">List Komisariat</h1>
+            	<h1 class="m-0 text-dark">List Entitas</h1>
             	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-      					Tambah Komisariat
+      					Tambah Entitas
       				</button>
 
       				<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

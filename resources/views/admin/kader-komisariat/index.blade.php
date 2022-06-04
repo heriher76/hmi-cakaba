@@ -11,10 +11,19 @@
 
             <div class="card">
               <div class="card-header">
-            	<h1 class="m-0 text-dark">Komisariat ({{$komisariat->name}})</h1>
+            	 <h1 class="m-0 text-dark">Komisariat ({{$komisariat->name}})</h1>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
+                <form action="{{ url('/admin/import-excel') }}" method="POST" enctype="multipart/form-data">
+                  @csrf
+                  <label>Import Kader Excel</label>
+                  <br>
+                  <input type="file" name="import-kader-cakaba">
+                  <br>  
+                  <button type="submit" class="btn btn-success">Kirim</button>
+                </form>
+                <hr>
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>

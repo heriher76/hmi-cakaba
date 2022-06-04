@@ -39,7 +39,7 @@ class KomisariatController extends Controller
             $input['image']->move(public_path('images/komisariat'), $namaThumbnail);
         }
 
-        alert()->success('Berhasil menambahkan komisariat.', '');
+        alert()->success('Berhasil menambahkan entitas.', '');
 
         return back();
     }
@@ -88,7 +88,7 @@ class KomisariatController extends Controller
 
         DB::table('komisariat')->delete($id);
         
-        alert()->info('Komisariat Berhasil Dihapus!', '...');
+        alert()->info('Entitas Berhasil Dihapus!', '...');
 
         return back();
     }

@@ -22,6 +22,9 @@ Route::get('/tentang', 'AboutController@tentang');
 Route::get('/visi-misi', 'AboutController@visimisi');
 Route::get('/program-kerja', 'AboutController@proker');
 
+Route::get('/join-hmi', 'JoinHMIController@index');
+Route::post('/join-hmi', 'JoinHMIController@store');
+
 Route::get('/daftar-lk/{slug}', 'DaftarLKController@index');
 Route::post('/daftar-lk/{slug}', 'DaftarLKController@store');
 
@@ -48,6 +51,11 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
         Route::get('/pendaftar-lk/{id}/tidak-lk', 'Admin\PendaftarLKController@tidakLK');
 
         Route::get('/kader-komisariat', 'Admin\KaderKomisariatController@index');
+
+        Route::get('/opsi-komisariat', 'Admin\OpsiKomisariatController@index');
+        Route::put('/opsi-komisariat', 'Admin\OpsiKomisariatController@update');
+
+        Route::post('/import-excel', 'Admin\KaderKomisariatController@importExcel');
     });
 
     Route::group(['middleware' => ['role:super-admin']], function () {

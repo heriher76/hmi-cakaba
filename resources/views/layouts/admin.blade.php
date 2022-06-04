@@ -116,6 +116,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ url('/admin/opsi-komisariat') }}" class="nav-link">
+              <i class="nav-icon fas fa-cog"></i>
+              <p>
+                Opsi Komisariat
+              </p>
+            </a>
+          </li>
           @endif
 
           @if(auth()->user()->hasRole('super-admin'))
@@ -131,7 +139,7 @@
             <a href="{{ url('/admin/komisariat') }}" class="nav-link">
               <i class="nav-icon fas fa-home"></i>
               <p>
-                Komisariat
+                Interkoneksi Cakaba
               </p>
             </a>
           </li>

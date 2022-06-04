@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Daftar LK '.$komisariat->name)
+@section('title', 'Daftar LK 1 HMI Cakaba')
 
 @section('content')
 <div class="container">
     <div class="container pb-5 mb-sm-4">
         <center>
             <img src="{{ url('front/assets/img/logo_hmi.png') }}" style="width: 40px; margin-right: 20px;">
-            <img src="{{ url($komisariat->image) }}" style="width: 80px;">
+            <img src="{{ url('front/assets/img/logo_cakaba_white.png') }}" style="width: 70px;">
         </center>
         <br>
         <div class="row">
@@ -15,9 +15,9 @@
                 <div class="card-body">
 		            <div class="col-md-12 pt-sm-3">
             			<center>
-            				<h2>LK 1 HMI Komisariat {{$komisariat->name}}</h2>
+            				<h2>Daftar LK 1 HMI Kab.Bandung</h2>
             			</center>
-		                <form class="needs-validation" novalidate="" method="POST" action="{{ url('daftar-lk/'.$komisariat->slug) }}" enctype="multipart/form-data">
+		                <form class="needs-validation" novalidate="" method="POST" action="{{ url('join-hmi') }}" enctype="multipart/form-data">
 		                    @csrf
 		                    <div class="row">
 		                        <div class="col-sm-6">
@@ -173,6 +173,19 @@
 		                                <input type="file" class="form-control" name="photo" required="" id="reg-photo"></input>
 		                                @if($errors->has('photo'))
 		                                <div class="invalid-feedback" style="display: block" role="alert">Masukkan foto yang valid!</div>
+		                                @endif
+		                            </div>
+		                        </div>
+		                        <div class="col-sm-6">
+		                            <div class="form-group">
+		                                <label for="reg-komisariat_lk">Pilih Komisariat Tujuan</label>
+		                                <select class="form-control" name="komisariat_lk" required id="reg-komisariat_lk">
+		                                	@foreach($list_komisariat as $kom)
+		                                		<option value="{{ $kom->slug }}">{{ $kom->name }}</option>
+		                                	@endforeach
+		                                </select>
+		                                @if($errors->has('komisariat_lk'))
+		                                <div class="invalid-feedback" style="display: block" role="alert">Masukkan data yang valid!</div>
 		                                @endif
 		                            </div>
 		                        </div>
