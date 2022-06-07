@@ -36,6 +36,16 @@
                     <input type="password" name="c_password"
                     class="form-control" id="exampleInputPassword2" placeholder="Ulangi Password" required>
                   </div>
+                  @if($slug == 'admin-komisariat')
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Pilih Komisariat</label>
+                    <select required class="form-control" name="admin_id_komisariat">
+                      @foreach($listKom as $kom)
+                      <option value="{{ $kom->id }}">{{ $kom->name }}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                  @endif
                   <div class="form-group">
                     <label for="exampleInputFile">Foto</label>
                     <div class="input-group">

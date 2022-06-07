@@ -28,7 +28,10 @@ class UsersController extends Controller
 
     public function create($slug)
     {
-        return view('admin.users.create', compact('slug'));
+        if ($slug == 'admin-komisariat') {
+            $listKom = DB::table('komisariat')->whereNotIn('name', ['KAHMI'])->get();
+        }
+        return view('admin.users.create', compact('slug', 'listKom'));
     }
 
     public function store(Request $request, $slug)
@@ -44,7 +47,8 @@ class UsersController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'email_verified_at' => $confirmed
+            'email_verified_at' => $confirmed,
+            'admin_id_komisariat' => $data['admin_id_komisariat'] ?? null
         ]);
 
         User::where('id', $idUser)->first()->assignRole($slug);
