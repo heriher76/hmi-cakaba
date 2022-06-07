@@ -96,7 +96,7 @@
           <li><a href="{{ url('/kontak') }}">Kontak</a></li>
 
           @guest
-          <li><a href="{{ url('/login') }}" class="active">Masuk/Daftar</a></li>
+          <li><a href="{{ url('/login') }}">Masuk/Daftar</a></li>  <!-- class="active" -->
           @else
           <li class="dropdown"><a href="#" class="active"><span>{{ 'Hi,' . auth()->user()->name }}</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
@@ -124,7 +124,7 @@
 
       <div class="header-social-links d-flex">
         <div class="read-more">
-          <a href="{{ url('join-hmi') }}"><b>Join HMI</b></a>
+          <a href="{{ url('join-hmi') }}"><b style="font-family: 'Roboto' !important;">Join HMI</b></a>
         </div>
       </div>
 
