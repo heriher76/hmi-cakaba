@@ -17,7 +17,7 @@
             			<center>
             				<h2>Daftar LK 1 HMI Kab.Bandung</h2>
             			</center>
-		                <form class="needs-validation" novalidate="" method="POST" action="{{ url('join-hmi') }}" enctype="multipart/form-data">
+		                <form class="needs-validation" method="POST" action="{{ url('join-hmi') }}" enctype="multipart/form-data">
 		                    @csrf
 		                    <div class="row">
 		                        <div class="col-sm-6">
@@ -188,7 +188,7 @@
 		                        <div class="col-sm-6">
 		                            <div class="form-group">
 		                                <label for="reg-photo">Foto Pribadi</label>
-		                                <input type="file" class="form-control" name="photo" required="" id="reg-photo"></input>
+		                                <input type="file" class="form-control" name="photo" required="true" id="reg-photo"></input>
 		                                @if($errors->has('photo'))
 		                                <div class="invalid-feedback" style="display: block" role="alert">Masukkan foto yang valid!</div>
 		                                @endif

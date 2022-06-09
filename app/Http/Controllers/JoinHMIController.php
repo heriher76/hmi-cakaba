@@ -66,7 +66,7 @@ class JoinHMIController extends Controller
 
         event(new Registered($user));
         
-        alert()->success('Berhasil Daftar!', 'Terimakasih, silahkan cek email dan tunggu kami menghubungi anda.');
+        alert()->html('Berhasil Daftar!', "Terimakasih, silahkan cek email dan segera masuk grup LK1 berikut. <br> <a href='//".$komisariat->grup_lk."' target='_blank' class='btn btn-success'>Klik Disini Untuk Masuk Grup</a> <hr>",'success')->autoClose(50000);
         return redirect('/');
     }
 }

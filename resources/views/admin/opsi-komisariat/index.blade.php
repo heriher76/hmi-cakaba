@@ -23,10 +23,14 @@
                     <label for="exampleInputTitle1">Buka Latihan Kader 1?</label>
                     <br>
                     <!-- Rounded switch -->
-					<label class="switch">
-					  <input type="checkbox" name="buka_lk" @if($komisariat->buka_lk) checked @endif>
-					  <span class="slider round"></span>
-					</label>
+										<label class="switch">
+										  <input type="checkbox" name="buka_lk" @if($komisariat->buka_lk) checked @endif>
+										  <span class="slider round"></span>
+										</label>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputTitle1">Grup Latihan Kader 1 (Untuk Cakader)</label>
+                    <input type="text" name="grup_lk" class="form-control" id="exampleInputTitle1" placeholder="Masukkan Link Grup" value="{{$komisariat->grup_lk}}">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputTitle1">Nama</label>

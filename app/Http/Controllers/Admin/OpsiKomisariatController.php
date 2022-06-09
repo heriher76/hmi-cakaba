@@ -41,6 +41,7 @@ class OpsiKomisariatController extends Controller
             'name' => $input['name'],
             'image' => $namaThumbnail ?? $komisariat->image,
             'buka_lk' => $bukaLK,
+            'grup_lk' => $input['grup_lk'],
             'updated_at' => Carbon::now(),
         ]);
 
