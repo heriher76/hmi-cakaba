@@ -10,17 +10,51 @@ use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithMapping;
 
-class PendaftarLKExport implements FromQuery,ShouldAutoSize,WithColumnFormatting,WithHeadings,WithStyles
+class PendaftarLKExport implements FromQuery,ShouldAutoSize,WithColumnFormatting,WithHeadings,WithStyles,WithMapping
 {
     public function __construct($slug)
     {
         $this->slug = $slug;
+        $this->counter = 1;
+    }
+
+    public function map($user): array
+    {
+        return [
+            $this->counter++,
+            $user->name,
+            $user->email,
+            $user->email_verified_at,
+            $user->created_at,
+            $user->updated_at,
+            $user->ttl,
+            $user->alamat_sekarang,
+            $user->alamat_asal,
+            $user->jk,
+            $user->phone,
+            $user->hobby,
+            $user->jurusan,
+            $user->fakultas,
+            $user->angkatan,
+            $user->angkatan_lk,
+            $user->komisariat_lk,
+            $user->riwayat_pendidikan,
+            $user->riwayat_organisasi,
+            $user->riwayat_penyakit,
+            $user->photo,
+            $user->alasan_daftar_lk,
+            $user->pekerjaan,
+            $user->sumber_informasi,
+        ];
     }
 
     public function query()
     {
-        return User::query()->where('komisariat_lk', $this->slug)->whereIn('sudah_lk1', [null, 0]);
+        $users = User::query()->where('komisariat_lk', $this->slug)->whereIn('sudah_lk1', [null, 0]);
+
+        return $users;
     }
 
     public function columnFormats(): array
@@ -32,7 +66,7 @@ class PendaftarLKExport implements FromQuery,ShouldAutoSize,WithColumnFormatting
 
     public function headings(): array
     {
-        return ["No", "Nama", "Email", "Tgl Verifikasi Email", "Tgl Dibuat", "Tgl Terbarui", "Tempat, Tgl Lahir", "Alamat Sekarang", "Alamat Asal", "Jenis Kelamin", "No HP", "Hobi", "Jurusan", "Fakultas", "Angkatan Mhs", "Angkatan LK", "Komisariat Asal LK", "Riwayat Pendidikan", "Riwayat Organisasi", "URL Foto", "Alasan Daftar LK", "Pekerjaan"];
+        return ["No", "Nama", "Email", "Tgl Verifikasi Email", "Tgl Dibuat", "Tgl Terbarui", "Tempat, Tgl Lahir", "Alamat Sekarang", "Alamat Asal", "Jenis Kelamin", "No HP", "Hobi", "Jurusan", "Fakultas", "Angkatan Mhs", "Angkatan LK", "Komisariat Asal LK", "Riwayat Pendidikan", "Riwayat Organisasi", "Riwayat Penyakit", "URL Foto", "Alasan Daftar LK", "Pekerjaan", "Sumber Informasi"];
     }
 
     public function styles(Worksheet $sheet)

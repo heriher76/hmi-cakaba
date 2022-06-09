@@ -142,6 +142,15 @@
                       </div>
                       <div class="col-sm-6">
                           <div class="form-group">
+                              <label for="reg-ln">Sumber Informasi LK</label>
+                              <input class="form-control" name="sumber_informasi" type="text" value="{{ $user->sumber_informasi }}" id="reg-ln">
+                              @if($errors->has('sumber_informasi'))
+                              <div class="invalid-feedback" style="display: block" role="alert">Sumber Informasi LK tidak valid.</div>
+                              @endif
+                          </div>
+                      </div>
+                      <div class="col-sm-6">
+                          <div class="form-group">
                               <label for="reg-ln">Riwayat Pendidikan</label>
                               <textarea class="form-control" name="riwayat_pendidikan" type="text" id="reg-ln">{{ $user->riwayat_pendidikan }}</textarea>
                               @if($errors->has('riwayat_pendidikan'))
@@ -155,6 +164,15 @@
                               <textarea class="form-control" name="riwayat_organisasi" type="text" id="reg-ln">{{ $user->riwayat_organisasi }}</textarea>
                               @if($errors->has('riwayat_organisasi'))
                               <div class="invalid-feedback" style="display: block" role="alert">Riwayat Organisasi tidak valid.</div>
+                              @endif
+                          </div>
+                      </div>
+                      <div class="col-sm-6">
+                          <div class="form-group">
+                              <label for="reg-ln">Riwayat Penyakit</label>
+                              <textarea class="form-control" name="riwayat_penyakit" type="text" id="reg-ln">{{ $user->riwayat_penyakit }}</textarea>
+                              @if($errors->has('riwayat_penyakit'))
+                              <div class="invalid-feedback" style="display: block" role="alert">Riwayat Penyakit tidak valid.</div>
                               @endif
                           </div>
                       </div>

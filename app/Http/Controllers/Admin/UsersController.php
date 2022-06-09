@@ -126,6 +126,8 @@ class UsersController extends Controller
             'komisariat_lk' => $request->komisariat_lk,
             'riwayat_pendidikan' => $request->riwayat_pendidikan,
             'riwayat_organisasi' => $request->riwayat_organisasi,
+            'riwayat_penyakit' => $request->riwayat_penyakit,
+            'sumber_informasi' => $request->sumber_informasi,
             'alasan_daftar_lk' => $request->alasan_daftar_lk,
             'pekerjaan' => $request->pekerjaan,
             'photo' => $namaThumbnail ?? $user->photo,

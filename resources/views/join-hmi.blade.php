@@ -142,6 +142,24 @@
 		                        </div>
 		                        <div class="col-sm-6">
 		                            <div class="form-group">
+		                                <label for="reg-sumber_informasi">Dapat Informasi LK1 Darimana?</label>
+		                                <input class="form-control" name="sumber_informasi" type="text" required="" id="reg-sumber_informasi">
+		                                @if($errors->has('sumber_informasi'))
+		                                <div class="invalid-feedback" style="display: block" role="alert">Masukkan data yang valid!</div>
+		                                @endif
+		                            </div>
+		                        </div>
+		                        <div class="col-sm-6">
+		                            <div class="form-group">
+		                                <label for="reg-riwayat_penyakit">Riwayat Penyakit</label>
+		                                <textarea class="form-control" name="riwayat_penyakit" required="" id="reg-riwayat_penyakit"></textarea>
+		                                @if($errors->has('riwayat_penyakit'))
+		                                <div class="invalid-feedback" style="display: block" role="alert">Masukkan riwayat penyakit yang valid!</div>
+		                                @endif
+		                            </div>
+		                        </div>
+		                        <div class="col-sm-6">
+		                            <div class="form-group">
 		                                <label for="reg-riwayat_pendidikan">Riwayat Pendidikan</label>
 		                                <textarea class="form-control" name="riwayat_pendidikan" required="" id="reg-riwayat_pendidikan"></textarea>
 		                                @if($errors->has('riwayat_pendidikan'))

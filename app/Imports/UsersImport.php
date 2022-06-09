@@ -6,6 +6,7 @@ use App\User;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 class UsersImport implements ToModel, WithStartRow
 {
@@ -35,11 +36,13 @@ class UsersImport implements ToModel, WithStartRow
             'riwayat_organisasi' => $row[15],
             'alasan_daftar_lk' => $row[16],
             'pekerjaan' => $row[17],
+            'riwayat_penyakit' => $row[18],
+            'sumber_informasi' => $row[19],
             'photo' => null,
-            'email_verified_at' => null,
-            'sudah_lk1' => $row[18],
-            'sudah_lk2' => $row[19],
-            'sudah_lk3' => $row[20],
+            'email_verified_at' => Carbon::now(),
+            'sudah_lk1' => $row[20],
+            'sudah_lk2' => $row[21],
+            'sudah_lk3' => $row[22],
             'tidak_lk' => null
         ]);
     }

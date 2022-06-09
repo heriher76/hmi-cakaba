@@ -15,7 +15,7 @@ class PendaftarLKController extends Controller
     {
         $komisariat = DB::table('komisariat')->where('id', auth()->user()->admin_id_komisariat)->first();
 
-        $users = DB::table('users')->where('komisariat_lk', $komisariat->slug)->where('tidak_lk', null)->where('sudah_lk1', null)->get();
+        $users = DB::table('users')->where('komisariat_lk', $komisariat->slug)->whereIn('tidak_lk', [null, 0])->whereIn('sudah_lk1', [null, 0])->get();
 
         return view('admin.pendaftar-lk.index', compact('komisariat', 'users'));
     }

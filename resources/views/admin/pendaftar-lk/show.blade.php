@@ -100,6 +100,12 @@
                       </div>
                       <div class="col-sm-6">
                           <div class="form-group">
+                              <label for="reg-ln">Sumber Informasi LK</label>
+                              <input disabled class="form-control" name="sumber_informasi" type="text" value="{{ $user->sumber_informasi }}" id="reg-ln">
+                          </div>
+                      </div>
+                      <div class="col-sm-6">
+                          <div class="form-group">
                               <label for="reg-ln">Riwayat Pendidikan</label>
                               <textarea disabled class="form-control" name="riwayat_pendidikan" type="text" id="reg-ln">{{ $user->riwayat_pendidikan }}</textarea>
                           </div>
@@ -108,6 +114,12 @@
                           <div class="form-group">
                               <label for="reg-ln">Riwayat Organisasi</label>
                               <textarea disabled class="form-control" name="riwayat_organisasi" type="text" id="reg-ln">{{ $user->riwayat_organisasi }}</textarea>
+                          </div>
+                      </div>
+                      <div class="col-sm-6">
+                          <div class="form-group">
+                              <label for="reg-ln">Riwayat Penyakit</label>
+                              <textarea disabled class="form-control" name="riwayat_penyakit" type="text" id="reg-ln">{{ $user->riwayat_penyakit }}</textarea>
                           </div>
                       </div>
                       <div class="col-sm-6">
