@@ -30,6 +30,8 @@ class UsersController extends Controller
     {
         if ($slug == 'admin-komisariat') {
             $listKom = DB::table('komisariat')->whereNotIn('name', ['KAHMI'])->get();
+        }else{
+            $listKom = [];
         }
         return view('admin.users.create', compact('slug', 'listKom'));
     }

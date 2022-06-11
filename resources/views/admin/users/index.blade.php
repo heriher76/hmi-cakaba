@@ -12,7 +12,9 @@
             <div class="card">
               <div class="card-header">
             	<h1 class="m-0 text-dark">User ({{$role->name}})</h1>
+              @if($role->name != 'kader')
             	<a href="{{ url('admin/user/'.$role->name.'/create') }}" class="btn btn-primary">Tambah User</a>
+              @endif
               </div>
               <!-- /.card-header -->
               <div class="card-body">
