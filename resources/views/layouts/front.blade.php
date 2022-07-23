@@ -70,6 +70,8 @@
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
           <li><a href="{{ url('/') }}">Beranda</a></li>
+          
+          <li><a href="{{ url('/daftar-training-raya') }}">Daftar Training Raya</a></li>
 
           <li class="dropdown"><a href="#"><span>Tentang</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
@@ -100,10 +102,14 @@
           @else
           <li class="dropdown"><a href="#" class="active"><span>{{ 'Hi,' . auth()->user()->name }}</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              @if(auth()->user()->hasRole(['super-admin', 'admin-komisariat', 'admin-bpl', 'admin-cabang']))
+              @if(auth()->user()->hasRole(['super-admin', 'admin-komisariat', 'admin-bpl', 'admin-cabang', 'admin-kohati']))
               <li><a href="{{ url('/admin') }}">Dashboard</a></li>
               @endif
+              @if(auth()->user()->hasRole(['user-lk2', 'user-lkk', 'user-sc']))
+              <li><a href="{{ url('/dashboard-training') }}">Dashboard Training</a></li>
+              @else
               <li><a href="{{ url('/my-profile') }}">Profil Saya</a></li>
+              @endif
               <li>
                 <a href="{{ route('logout') }}"
                    onclick="event.preventDefault();

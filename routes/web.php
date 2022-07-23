@@ -30,7 +30,7 @@ Route::post('/daftar-lk/{slug}', 'DaftarLKController@store');
 
 Auth::routes(['verify' => true]);
 
-Route::group(['middleware' => ['auth', 'verified']], function () {
+Route::group(['middleware' => ['auth', 'verified', 'role:super-admin|admin-cabang|admin-bpl|admin-komisariat|admin-kohati|kader|publik']], function () {
     Route::get('/my-profile', 'MyProfileController@index');
     Route::put('/my-profile', 'MyProfileController@update');
 
@@ -40,7 +40,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 });
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
-    Route::group(['middleware' => ['role:super-admin|admin-cabang|admin-bpl|admin-komisariat']], function () {    
+    Route::group(['middleware' => ['role:super-admin|admin-cabang|admin-bpl|admin-komisariat|admin-kohati']], function () {    
         Route::get('/', 'Admin\DashboardController@index');
     });
 
@@ -97,4 +97,12 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
         Route::get('/pengajuan-surat/{id}/acc-bpl', 'Admin\RecommendLetterController@accBPL');
         Route::get('/pengajuan-surat/{id}/reject-bpl', 'Admin\RecommendLetterController@rejectBPL');
     });
+});
+
+Route::get('/daftar-training-raya', 'TrainingRaya\DaftarController@index');
+Route::post('/daftar-training-raya', 'TrainingRaya\DaftarController@store');
+
+Route::group(['middleware' => ['auth', 'role:user-lk2|user-lkk|user-sc']], function () {
+    Route::get('/dashboard-training', 'TrainingRaya\DashboardController@index');
+    Route::get('/dashboard-training/jurnal/{id}', 'TrainingRaya\JurnalController@show');
 });

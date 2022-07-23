@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\User;
@@ -63,6 +64,10 @@ class JoinHMIController extends Controller
             'sudah_lk3' => 0,
             'tidak_lk' => 0,
         ]);
+
+        $role = Role::where('name', 'publik')->first();
+   
+        $user->assignRole([$role->id]);
 
         event(new Registered($user));
         

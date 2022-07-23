@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
+use Spatie\Permission\Models\Role;
 use Carbon\Carbon;
 use App\User;
 use DB;
@@ -69,6 +70,10 @@ class DaftarLKController extends Controller
             'sudah_lk3' => 0,
             'tidak_lk' => 0,
         ]);
+        
+        $role = Role::where('name', 'publik')->first();
+   
+        $user->assignRole([$role->id]);
 
         event(new Registered($user));
 

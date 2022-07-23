@@ -41,6 +41,14 @@ class User extends Authenticatable implements MustVerifyEmail
         'sudah_lk2',
         'sudah_lk3',
         'tidak_lk',
+        'asal_cabang',
+        'sertifikat_lk1',
+        'file_jurnal',
+        'ss_hasil_plagiarism',
+        'surat_rekomendasi_training_raya',
+        'training_raya_status_lulus_daftar',
+        'training_raya_status_lulus_forum',
+        'training_raya_kategori_id'
     ];
 
     /**
