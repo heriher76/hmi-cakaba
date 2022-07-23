@@ -252,6 +252,38 @@
             </ul>
           </li>
           @endif
+
+          @if(auth()->user()->hasRole(['super-admin', 'admin-bpl', 'admin-cabang', 'admin-kohati']))
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-star"></i>
+              <p>
+                Training Raya
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ url('/admin/training-raya/pendaftar-lk2') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Pendaftar LK2</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('/admin/training-raya/pendaftar-lkk') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Pendaftar LKK</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('/admin/training-raya/pendaftar-sc') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Pendaftar SC</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          @endif
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

@@ -25,6 +25,14 @@
 
         <div class="col-lg-10">
 
+			<div class="alert alert-success" role="alert">
+			Selamat anda dinyatakan <b>LULUS</b> menjadi peserta Training Raya di HMI Cabang Kabupaten Bandung. Silahkan masuk grup Whatsapp berikut. <a href="#" class="alert-link">Klik Disini</a>
+			</div>
+			
+			<div class="alert alert-warning" role="alert">
+			Mohon maaf anda dinyatakan <b>TIDAK LULUS</b> tetapi jangan putus semangat, tetap junjung kaderisasi. Yakinkan pada diri bahwa proses tidak akan mengkhianati hasil. Yakin Usaha Sampai!
+			</div>
+
           	<div class="info-wrap">
 			  	<nav>
 					<div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -209,6 +217,7 @@
 			</div>
 			<div class="modal-body">
 				<form action="{{ url('/selesai-screening') }}" id="formScreeningModal">
+					@csrf
 					<input type="hidden" name="materi_id" id="idMateri">
 					<input type="hidden" name="training_raya_kategori_id" value="{{ $me->training_raya_kategori_id }}">
 					<div class="form-group">

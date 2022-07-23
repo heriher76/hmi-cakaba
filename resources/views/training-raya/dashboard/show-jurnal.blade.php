@@ -41,7 +41,7 @@
             @foreach($list_komentar as $komentar)
             @php $user_komentar = \DB::table('users')->where('id', $komentar->user_komentar_id)->first(); @endphp
             <div class="media mt-3">
-                <img src="http://cdn.onlinewebfonts.com/svg/img_212716.png" class="mr-3" alt="..." style="width: 3vw;">
+                <img src="http://cdn.onlinewebfonts.com/svg/img_212716.png" class="mr-3" alt="profile-photo" style="width: 3vw;">
                 <div class="media-body">
                     <b class="mt-0">{{ $user_komentar->name }}</b>
                     <br>

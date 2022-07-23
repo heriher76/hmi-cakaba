@@ -97,6 +97,12 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
         Route::get('/pengajuan-surat/{id}/acc-bpl', 'Admin\RecommendLetterController@accBPL');
         Route::get('/pengajuan-surat/{id}/reject-bpl', 'Admin\RecommendLetterController@rejectBPL');
     });
+
+    Route::group(['middleware' => ['role:super-admin|admin-cabang|admin-bpl|admin-kohati']], function () {    
+        Route::get('/training-raya/pendaftar-lk2', 'TrainingRaya\PendaftarController@pendaftar_lk2');    
+        Route::get('/training-raya/pendaftar-lkk', 'TrainingRaya\PendaftarController@pendaftar_lkk');    
+        Route::get('/training-raya/pendaftar-sc', 'TrainingRaya\PendaftarController@pendaftar_sc');
+    });
 });
 
 Route::get('/daftar-training-raya', 'TrainingRaya\DaftarController@index');
