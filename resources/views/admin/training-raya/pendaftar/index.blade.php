@@ -31,7 +31,7 @@
                   @foreach($list_pendaftar as $key => $user)
                   <tr>
                     <td>{{ $key+1 }}</td>
-                    <td>{{ $user->name }}</td>
+                    <td><a href="{{ url('training-raya/user/'.$user->id) }}">{{ $user->name }}</a></td>
                     <td>{{ $user->asal_cabang }}</td>
                     <td>{{ $user->phone }}</td>
                     <td>

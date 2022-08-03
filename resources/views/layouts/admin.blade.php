@@ -254,6 +254,7 @@
           @endif
 
           @if(auth()->user()->hasRole(['super-admin', 'admin-bpl', 'admin-cabang', 'admin-kohati']))
+          
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-star"></i>
@@ -263,24 +264,175 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ url('/admin/training-raya/pendaftar-lk2') }}" class="nav-link">
+              <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Pendaftar LK2</p>
+                  <p>
+                    LK2
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
                 </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/screener-lk2') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Screener LK2</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/pendaftar-lk2') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Pendaftar LK2</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/lk2/resume') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Resume LK2</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/lk2/respon-harian') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Respon Harian LK2</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/lk2/middle-test') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Middle Test LK2</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/lk2/final-test') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Final Test LK2</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/lk2/kelulusan-akhir') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Kelulusan Akhir</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
-              <li class="nav-item">
-                <a href="{{ url('/admin/training-raya/pendaftar-lkk') }}" class="nav-link">
+              
+              
+              <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Pendaftar LKK</p>
+                  <p>
+                    LKK
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
                 </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/screener-lkk') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Screener LKK</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/pendaftar-lkk') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Pendaftar LKK</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/lkk/resume') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Resume LKK</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/lkk/respon-harian') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Respon Harian LKK</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/lkk/middle-test') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Middle Test LKK</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/lkk/final-test') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Final Test LKK</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/lkk/kelulusan-akhir') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Kelulusan Akhir</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
-              <li class="nav-item">
-                <a href="{{ url('/admin/training-raya/pendaftar-sc') }}" class="nav-link">
+              
+              <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Pendaftar SC</p>
+                  <p>
+                    SC
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
                 </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/screener-sc') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Screener SC</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/pendaftar-sc') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Pendaftar SC</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/sc/resume') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Resume SC</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/sc/respon-harian') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Respon Harian SC</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/sc/middle-test') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Middle Test SC</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/sc/final-test') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Final Test SC</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/sc/final-test') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Final Test SC</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/sc/kelulusan-akhir') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Kelulusan Akhir</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
+              
             </ul>
           </li>
           @endif

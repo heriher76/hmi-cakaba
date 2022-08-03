@@ -29,7 +29,9 @@ class DashboardController extends Controller
                                     
         $list_jurnal = DB::table('users')->where('training_raya_kategori_id', $me->training_raya_kategori_id)
                                     ->get();
+        
+        $list_absen_saya = DB::table('training_raya_absensi')->where('user_id', $me->id)->get();
                                     
-        return view('training-raya.dashboard.index', compact('me', 'list_informasi', 'list_materi_screening', 'list_screener', 'all_materi_screening', 'list_jurnal'));
+        return view('training-raya.dashboard.index', compact('me', 'list_informasi', 'list_materi_screening', 'list_screener', 'all_materi_screening', 'list_jurnal', 'list_absen_saya'));
     }
 }

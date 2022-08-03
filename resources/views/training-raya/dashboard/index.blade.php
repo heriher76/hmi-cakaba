@@ -41,6 +41,7 @@
 						<a class="nav-item nav-link" id="nav-screening-tab" data-toggle="tab" href="#nav-screening" role="tab" aria-controls="nav-screening" aria-selected="false">Kartu Screening</a>
 						<a class="nav-item nav-link" id="nav-resume-tab" data-toggle="tab" href="#nav-resume" role="tab" aria-controls="nav-resume" aria-selected="false">Resume Materi</a>
 						<a class="nav-item nav-link" id="nav-makalah-tab" data-toggle="tab" href="#nav-makalah" role="tab" aria-controls="nav-makalah" aria-selected="false">Jurnal Peserta</a>
+						<a class="nav-item nav-link" id="nav-absensi-tab" data-toggle="tab" href="#nav-absensi" role="tab" aria-controls="nav-absensi" aria-selected="false">Absensi</a>
 					</div>
 				</nav>
 				<div class="tab-content" id="nav-tabContent">
@@ -197,6 +198,23 @@
 							</div>
 							@endforeach
 						</div>
+					</div>
+					<div class="tab-pane fade" id="nav-absensi" role="tabpanel" aria-labelledby="nav-absensi-tab">
+						<br>
+						<table class="table table-striped">
+							<tr>
+								<th>No</th>
+								<th>Materi</th>
+								<th>Waktu Absen</th>
+							</tr>
+							@foreach($list_absen_saya as $key => $absen)
+							<tr>
+								<td>{{ $key+1 }}</td>
+								<td>{{ \DB::table('training_raya_materi_forum')->where('id', $absen->training_raya_materi_forum_id)->first()->nama ?? '-' }}</td>
+								<td>{{ \Carbon\Carbon::parse($absen->tanggal)->locale('id')->settings(['formatFunction' => 'translatedFormat'])->format('l, j F Y H:i') ?? '-' }}</td>
+							</tr>
+							@endforeach
+						</table>
 					</div>
 				</div>
 			</div>

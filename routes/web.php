@@ -102,6 +102,14 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
         Route::get('/training-raya/pendaftar-lk2', 'TrainingRaya\PendaftarController@pendaftar_lk2');    
         Route::get('/training-raya/pendaftar-lkk', 'TrainingRaya\PendaftarController@pendaftar_lkk');    
         Route::get('/training-raya/pendaftar-sc', 'TrainingRaya\PendaftarController@pendaftar_sc');
+           
+        Route::get('/training-raya/screener-lk2', 'TrainingRaya\ScreenerController@screener_lk2');   
+        Route::get('/training-raya/screener-lkk', 'TrainingRaya\ScreenerController@screener_lkk');   
+        Route::get('/training-raya/screener-sc', 'TrainingRaya\ScreenerController@screener_sc');
+
+        Route::get('/training-raya/resume-lk2', 'TrainingRaya\ResumeController@resume_lk2');   
+        Route::get('/training-raya/resume-lkk', 'TrainingRaya\ResumeController@resume_lkk');   
+        Route::get('/training-raya/resume-sc', 'TrainingRaya\ResumeController@resume_sc');
     });
 });
 
@@ -111,4 +119,6 @@ Route::post('/daftar-training-raya', 'TrainingRaya\DaftarController@store');
 Route::group(['middleware' => ['auth', 'role:user-lk2|user-lkk|user-sc']], function () {
     Route::get('/dashboard-training', 'TrainingRaya\DashboardController@index');
     Route::get('/dashboard-training/jurnal/{id}', 'TrainingRaya\JurnalController@show');
+    
+    Route::get('/absensi/{idKategori}/{idMateri}', 'TrainingRaya\AbsensiController@store');
 });
