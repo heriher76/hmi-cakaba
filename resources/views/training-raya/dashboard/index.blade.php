@@ -42,6 +42,8 @@
 						<a class="nav-item nav-link" id="nav-resume-tab" data-toggle="tab" href="#nav-resume" role="tab" aria-controls="nav-resume" aria-selected="false">Resume Materi</a>
 						<a class="nav-item nav-link" id="nav-makalah-tab" data-toggle="tab" href="#nav-makalah" role="tab" aria-controls="nav-makalah" aria-selected="false">Jurnal Peserta</a>
 						<a class="nav-item nav-link" id="nav-absensi-tab" data-toggle="tab" href="#nav-absensi" role="tab" aria-controls="nav-absensi" aria-selected="false">Absensi</a>
+						<a class="nav-item nav-link" id="nav-middle-test-tab" data-toggle="tab" href="#nav-middle-test" role="tab" aria-controls="nav-middle-test" aria-selected="false">Middle Test</a>
+						<a class="nav-item nav-link" id="nav-final-test-tab" data-toggle="tab" href="#nav-final-test" role="tab" aria-controls="nav-final-test" aria-selected="false">Final Test</a>
 					</div>
 				</nav>
 				<div class="tab-content" id="nav-tabContent">
