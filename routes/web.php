@@ -104,15 +104,30 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
         Route::get('/training-raya/pendaftar-sc', 'TrainingRaya\PendaftarController@pendaftar_sc');
            
         Route::get('/training-raya/screener-lk2', 'TrainingRaya\ScreenerController@screener_lk2');  
-        Route::post('/training-raya/screener', 'TrainingRaya\ScreenerController@store_screener');  
-        Route::get('/training-raya/screener/delete/{id}', 'TrainingRaya\ScreenerController@delete_screener');  
-
         Route::get('/training-raya/screener-lkk', 'TrainingRaya\ScreenerController@screener_lkk');   
         Route::get('/training-raya/screener-sc', 'TrainingRaya\ScreenerController@screener_sc');
+        Route::post('/training-raya/screener', 'TrainingRaya\ScreenerController@store_screener');  
+        Route::get('/training-raya/screener/delete/{id}', 'TrainingRaya\ScreenerController@delete_screener');  
+        
+        Route::get('/training-raya/materi-forum-lk2', 'TrainingRaya\MateriForumController@materi_forum_lk2');  
+        Route::get('/training-raya/materi-forum-lkk', 'TrainingRaya\MateriForumController@materi_forum_lkk');  
+        Route::get('/training-raya/materi-forum-sc', 'TrainingRaya\MateriForumController@materi_forum_sc');  
+        Route::post('/training-raya/materi-forum', 'TrainingRaya\MateriForumController@store_materi_forum');  
+        Route::get('/training-raya/materi-forum/delete/{id}', 'TrainingRaya\MateriForumController@delete_materi_forum');  
+
+        Route::get('/training-raya/materi-screening-lk2', 'TrainingRaya\MateriScreeningController@materi_screening_lk2');  
+        Route::get('/training-raya/materi-screening-lkk', 'TrainingRaya\MateriScreeningController@materi_screening_lkk');  
+        Route::get('/training-raya/materi-screening-sc', 'TrainingRaya\MateriScreeningController@materi_screening_sc');  
+        Route::post('/training-raya/materi-screening', 'TrainingRaya\MateriScreeningController@store_materi_screening');  
+        Route::get('/training-raya/materi-screening/delete/{id}', 'TrainingRaya\MateriScreeningController@delete_materi_screening');  
 
         Route::get('/training-raya/resume-lk2', 'TrainingRaya\ResumeController@resume_lk2');   
+        Route::get('/training-raya/resume-lk2/{idMateri}', 'TrainingRaya\ResumeController@resume_lk2_list_data');   
         Route::get('/training-raya/resume-lkk', 'TrainingRaya\ResumeController@resume_lkk');   
+        Route::get('/training-raya/resume-lkk/{idMateri}', 'TrainingRaya\ResumeController@resume_lkk_list_data');
         Route::get('/training-raya/resume-sc', 'TrainingRaya\ResumeController@resume_sc');
+        Route::get('/training-raya/resume-sc/{idMateri}', 'TrainingRaya\ResumeController@resume_sc_list_data');
+        Route::get('/training-raya/resume/delete/{id}', 'TrainingRaya\ResumeController@delete_resume');   
     });
 });
 

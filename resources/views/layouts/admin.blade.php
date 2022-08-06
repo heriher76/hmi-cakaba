@@ -274,6 +274,18 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/materi-screening-lk2') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Materi Screening LK2</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/materi-forum-lk2') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Materi Forum LK2</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
                     <a href="{{ url('/admin/training-raya/screener-lk2') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Screener LK2</p>
@@ -286,31 +298,31 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ url('/admin/training-raya/lk2/resume') }}" class="nav-link">
+                    <a href="{{ url('/admin/training-raya/resume-lk2') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Resume LK2</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ url('/admin/training-raya/lk2/respon-harian') }}" class="nav-link">
+                    <a href="{{ url('/admin/training-raya/respon-harian-lk2') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Respon Harian LK2</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ url('/admin/training-raya/lk2/middle-test') }}" class="nav-link">
+                    <a href="{{ url('/admin/training-raya/middle-test-lk2') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Middle Test LK2</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ url('/admin/training-raya/lk2/final-test') }}" class="nav-link">
+                    <a href="{{ url('/admin/training-raya/final-test-lk2') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Final Test LK2</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ url('/admin/training-raya/lk2/kelulusan-akhir') }}" class="nav-link">
+                    <a href="{{ url('/admin/training-raya/kelulusan-akhir-lk2') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Kelulusan Akhir</p>
                     </a>
@@ -329,6 +341,18 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/materi-screening-lkk') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Materi Screening LKK</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/materi-forum-lkk') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Materi Forum LKK</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
                     <a href="{{ url('/admin/training-raya/screener-lkk') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Screener LKK</p>
@@ -341,31 +365,31 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ url('/admin/training-raya/lkk/resume') }}" class="nav-link">
+                    <a href="{{ url('/admin/training-raya/resume-lkk') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Resume LKK</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ url('/admin/training-raya/lkk/respon-harian') }}" class="nav-link">
+                    <a href="{{ url('/admin/training-raya/respon-harian-lkk') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Respon Harian LKK</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ url('/admin/training-raya/lkk/middle-test') }}" class="nav-link">
+                    <a href="{{ url('/admin/training-raya/middle-test-lkk') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Middle Test LKK</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ url('/admin/training-raya/lkk/final-test') }}" class="nav-link">
+                    <a href="{{ url('/admin/training-raya/final-test-lkk') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Final Test LKK</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ url('/admin/training-raya/lkk/kelulusan-akhir') }}" class="nav-link">
+                    <a href="{{ url('/admin/training-raya/kelulusan-akhir-lkk') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Kelulusan Akhir</p>
                     </a>
@@ -383,6 +407,18 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/materi-screening-sc') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Materi Screening SC</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/materi-forum-sc') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Materi Forum SC</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
                     <a href="{{ url('/admin/training-raya/screener-sc') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Screener SC</p>
@@ -395,37 +431,37 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ url('/admin/training-raya/sc/resume') }}" class="nav-link">
+                    <a href="{{ url('/admin/training-raya/resume-sc') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Resume SC</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ url('/admin/training-raya/sc/respon-harian') }}" class="nav-link">
+                    <a href="{{ url('/admin/training-raya/respon-harian-sc') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Respon Harian SC</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ url('/admin/training-raya/sc/middle-test') }}" class="nav-link">
+                    <a href="{{ url('/admin/training-raya/middle-test-sc') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Middle Test SC</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ url('/admin/training-raya/sc/final-test') }}" class="nav-link">
+                    <a href="{{ url('/admin/training-raya/final-test-sc') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Final Test SC</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ url('/admin/training-raya/sc/final-test') }}" class="nav-link">
+                    <a href="{{ url('/admin/training-raya/final-test-sc') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Final Test SC</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ url('/admin/training-raya/sc/kelulusan-akhir') }}" class="nav-link">
+                    <a href="{{ url('/admin/training-raya/kelulusan-akhir-sc') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Kelulusan Akhir</p>
                     </a>
