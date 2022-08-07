@@ -167,7 +167,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 Route::get('/daftar-training-raya', 'TrainingRaya\DaftarController@index');
 Route::post('/daftar-training-raya', 'TrainingRaya\DaftarController@store');
 
-Route::group(['middleware' => ['auth', 'role:user-lk2|user-lkk|user-sc']], function () {
+Route::group(['middleware' => ['auth', 'role:user-lk2|user-lkk|user-sc', 'verified']], function () {
     Route::get('/dashboard-training', 'TrainingRaya\DashboardController@index');
     Route::get('/dashboard-training/jurnal/{id}', 'TrainingRaya\JurnalController@show');
     
