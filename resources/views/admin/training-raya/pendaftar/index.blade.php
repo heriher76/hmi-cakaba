@@ -24,14 +24,14 @@
                     <th>HP</th>
                     <th>SS Plagiarism</th>
                     <th>Jurnal</th>
-                    <th>Action</th>
+                    <th>Verifikasi Lulus Berkas</th>
                   </tr>
                   </thead>
                   <tbody>
                   @foreach($list_pendaftar as $key => $user)
                   <tr>
                     <td>{{ $key+1 }}</td>
-                    <td><a href="{{ url('training-raya/user/'.$user->id) }}">{{ $user->name }}</a></td>
+                    <td><a href="{{ url('admin/training-raya/user/'.$user->id) }}">{{ $user->name }}</a></td>
                     <td>{{ $user->asal_cabang }}</td>
                     <td>{{ $user->phone }}</td>
                     <td>
@@ -43,13 +43,23 @@
                     </td>
                     <td>
                     	<a href="{{ url($user->file_jurnal) }}" class="btn btn-success btn-xs">Download Jurnal</a>
-                        <button type="button" class="btn btn-primary btn-xs openModalPlagiarism" data-toggle="modal" data-target="#plagiarismModal" data-id="{{ $user->id }}">
-                            Upload Plagiarism
-                        </button>
+                      <button type="button" class="btn btn-primary btn-xs openModalPlagiarism" data-toggle="modal" data-target="#plagiarismModal" data-id="{{ $user->id }}">
+                      @if(!empty($user->ss_hasil_plagiarism))
+                        Upload Ulang Plagiarism
+                      @else
+                        Upload Plagiarism
+                      @endif
+                      </button>
                     </td>
                     <td>
-                    	<a href="{{ url('/admin/training-raya/lulus/'.$user->id) }}" class="btn btn-success btn-xs" onclick="return confirm('Verifikasi Lulus Pendaftar Ini?')">Lulus</a>
-                    	<a href="{{ url('/admin/training-raya/tidak-lulus/'.$user->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Verifikasi Tidak Lulus Pendaftar Ini?')">Tidak Lulus</a>
+                      @if($user->training_raya_status_lulus_daftar == 1)
+                      <p style="color: green">Sudah Lulus Berkas</p>
+                      @elseif($user->training_raya_status_lulus_daftar == 2)
+                      <p style="color: red">Tidak Lulus Berkas</p>
+                      @else
+                    	<a href="{{ url('/admin/training-raya/lulus-berkas/'.$user->id) }}" class="btn btn-success btn-xs" onclick="return confirm('Verifikasi Lulus Berkas Pendaftar Ini?')">Lulus</a>
+                    	<a href="{{ url('/admin/training-raya/tidak-lulus-berkas/'.$user->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Verifikasi Tidak Lulus Berkas Pendaftar Ini?')">Tidak Lulus</a>
+                      @endif
                     </td>
                   </tr>
                   @endforeach
@@ -72,7 +82,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ url('/admin/training-raya/upload-plagiarism') }}" id="formPlagiarismModal">
+                    <form action="{{ url('/admin/training-raya/upload-plagiarism') }}" id="formPlagiarismModal" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="user_id" id="idUser">
                         <input type="hidden" name="training_raya_kategori_id" value="{{ $kategori_id }}">
@@ -86,7 +96,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" form="formPlagiarismModal" class="btn btn-primary">Kirim</button>
+                    <button type="submit" form="formPlagiarismModal" class="btn btn-primary">Kirim</button>
                 </div>
                 </div>
             </div>

@@ -102,7 +102,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
         Route::get('/training-raya/pendaftar-lk2', 'TrainingRaya\PendaftarController@pendaftar_lk2');    
         Route::get('/training-raya/pendaftar-lkk', 'TrainingRaya\PendaftarController@pendaftar_lkk');    
         Route::get('/training-raya/pendaftar-sc', 'TrainingRaya\PendaftarController@pendaftar_sc');
-           
+
+        Route::get('/training-raya/user/{id}', 'TrainingRaya\PendaftarController@detail');
+
         Route::get('/training-raya/screener-lk2', 'TrainingRaya\ScreenerController@screener_lk2');  
         Route::get('/training-raya/screener-lkk', 'TrainingRaya\ScreenerController@screener_lkk');   
         Route::get('/training-raya/screener-sc', 'TrainingRaya\ScreenerController@screener_sc');
@@ -140,6 +142,25 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
         Route::post('/training-raya/middle-test', 'TrainingRaya\MiddleTestController@store_question_middle_test');   
         Route::get('/training-raya/middle-test/delete/{id}', 'TrainingRaya\MiddleTestController@delete_question_middle_test');   
         Route::post('/training-raya/middle-test/detail', 'TrainingRaya\MiddleTestController@detail_jawaban');   
+        
+        Route::get('/training-raya/final-test-lk2', 'TrainingRaya\FinalTestController@final_test_lk2');  
+        Route::get('/training-raya/final-test-lkk', 'TrainingRaya\FinalTestController@final_test_lkk');  
+        Route::get('/training-raya/final-test-sc', 'TrainingRaya\FinalTestController@final_test_sc');  
+        Route::post('/training-raya/final-test', 'TrainingRaya\FinalTestController@store_question_final_test');   
+        Route::get('/training-raya/final-test/delete/{id}', 'TrainingRaya\FinalTestController@delete_question_final_test');   
+        Route::post('/training-raya/final-test/detail', 'TrainingRaya\FinalTestController@detail_jawaban');   
+        
+        Route::get('/training-raya/kelulusan-akhir-lk2', 'TrainingRaya\KelulusanAkhirController@kelulusan_akhir_lk2');    
+        Route::get('/training-raya/kelulusan-akhir-lkk', 'TrainingRaya\KelulusanAkhirController@kelulusan_akhir_lkk');    
+        Route::get('/training-raya/kelulusan-akhir-sc', 'TrainingRaya\KelulusanAkhirController@kelulusan_akhir_sc');
+        
+        Route::get('/training-raya/lulus-berkas/{id}', 'TrainingRaya\StatusLulusController@lulus_berkas');
+        Route::get('/training-raya/tidak-lulus-berkas/{id}', 'TrainingRaya\StatusLulusController@tidak_lulus_berkas');
+        
+        Route::get('/training-raya/lulus-training/{id}', 'TrainingRaya\StatusLulusController@lulus_training');
+        Route::get('/training-raya/tidak-lulus-training/{id}', 'TrainingRaya\StatusLulusController@tidak_lulus_training');
+        
+        Route::post('/training-raya/upload-plagiarism', 'TrainingRaya\PendaftarController@upload_plagiarism');
     });
 });
 

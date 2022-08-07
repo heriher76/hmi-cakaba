@@ -12,10 +12,32 @@ class MiddleTestController extends Controller
     public function middle_test_lk2()
     {
         $list_pertanyaan = DB::table('training_raya_question_test')->where('training_raya_kategori_id', 1)->where('tipe', 'middle')->get();
-        $list_jawaban = DB::table('training_raya_user_question_test')->where('training_raya_kategori_id', 1)->select('user_id')->distinct()->get();
+        $list_jawaban = DB::table('training_raya_user_question_test')->where('training_raya_kategori_id', 1)->where('tipe', 'middle')->select('user_id')->distinct()->get();
         $title = 'LK 2';
         $tipe = 'middle';
         $kategori_id = 1;
+        
+        return view('admin.training-raya.middle-test.index', compact('list_pertanyaan', 'list_jawaban', 'title', 'kategori_id', 'tipe'));
+    }
+    
+    public function middle_test_lkk()
+    {
+        $list_pertanyaan = DB::table('training_raya_question_test')->where('training_raya_kategori_id', 2)->where('tipe', 'middle')->get();
+        $list_jawaban = DB::table('training_raya_user_question_test')->where('training_raya_kategori_id', 2)->where('tipe', 'middle')->select('user_id')->distinct()->get();
+        $title = 'LKK';
+        $tipe = 'middle';
+        $kategori_id = 2;
+        
+        return view('admin.training-raya.middle-test.index', compact('list_pertanyaan', 'list_jawaban', 'title', 'kategori_id', 'tipe'));
+    }
+    
+    public function middle_test_sc()
+    {
+        $list_pertanyaan = DB::table('training_raya_question_test')->where('training_raya_kategori_id', 3)->where('tipe', 'middle')->get();
+        $list_jawaban = DB::table('training_raya_user_question_test')->where('training_raya_kategori_id', 3)->where('tipe', 'middle')->select('user_id')->distinct()->get();
+        $title = 'SC';
+        $tipe = 'middle';
+        $kategori_id = 3;
         
         return view('admin.training-raya.middle-test.index', compact('list_pertanyaan', 'list_jawaban', 'title', 'kategori_id', 'tipe'));
     }

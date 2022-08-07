@@ -455,12 +455,6 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ url('/admin/training-raya/final-test-sc') }}" class="nav-link">
-                      <i class="far fa-dot-circle nav-icon"></i>
-                      <p>Final Test SC</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
                     <a href="{{ url('/admin/training-raya/kelulusan-akhir-sc') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Kelulusan Akhir</p>
