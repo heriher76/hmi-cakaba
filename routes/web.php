@@ -128,6 +128,18 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
         Route::get('/training-raya/resume-sc', 'TrainingRaya\ResumeController@resume_sc');
         Route::get('/training-raya/resume-sc/{idMateri}', 'TrainingRaya\ResumeController@resume_sc_list_data');
         Route::get('/training-raya/resume/delete/{id}', 'TrainingRaya\ResumeController@delete_resume');   
+        
+        Route::get('/training-raya/respon-harian-lk2', 'TrainingRaya\ResponHarianController@respon_harian_lk2');  
+        Route::get('/training-raya/respon-harian-lkk', 'TrainingRaya\ResponHarianController@respon_harian_lkk');  
+        Route::get('/training-raya/respon-harian-sc', 'TrainingRaya\ResponHarianController@respon_harian_sc');  
+        Route::get('/training-raya/respon-harian/delete/{id}', 'TrainingRaya\ResponHarianController@delete_respon_harian');  
+        
+        Route::get('/training-raya/middle-test-lk2', 'TrainingRaya\MiddleTestController@middle_test_lk2');  
+        Route::get('/training-raya/middle-test-lkk', 'TrainingRaya\MiddleTestController@middle_test_lkk');  
+        Route::get('/training-raya/middle-test-sc', 'TrainingRaya\MiddleTestController@middle_test_sc');  
+        Route::post('/training-raya/middle-test', 'TrainingRaya\MiddleTestController@store_question_middle_test');   
+        Route::get('/training-raya/middle-test/delete/{id}', 'TrainingRaya\MiddleTestController@delete_question_middle_test');   
+        Route::post('/training-raya/middle-test/detail', 'TrainingRaya\MiddleTestController@detail_jawaban');   
     });
 });
 
