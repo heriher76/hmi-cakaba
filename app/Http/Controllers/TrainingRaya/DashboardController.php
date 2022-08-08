@@ -37,7 +37,11 @@ class DashboardController extends Controller
                                     ->get();
         
         $list_absen_saya = DB::table('training_raya_absensi')->where('user_id', $me->id)->get();
+
+        $list_pertanyaan_middle_test = DB::table('training_raya_question_test')->where('tipe', 'middle')->where('training_raya_kategori_id', $me->training_raya_kategori_id)->get();
+        
+        $list_pertanyaan_final_test = DB::table('training_raya_question_test')->where('tipe', 'final')->where('training_raya_kategori_id', $me->training_raya_kategori_id)->get();
                                     
-        return view('training-raya.dashboard.index', compact('me', 'list_informasi', 'list_materi_screening', 'list_screener', 'all_materi_forum', 'list_jurnal', 'list_absen_saya', 'my_resume'));
+        return view('training-raya.dashboard.index', compact('me', 'list_informasi', 'list_materi_screening', 'list_screener', 'all_materi_forum', 'list_jurnal', 'list_absen_saya', 'my_resume', 'list_pertanyaan_middle_test', 'list_pertanyaan_final_test'));
     }
 }

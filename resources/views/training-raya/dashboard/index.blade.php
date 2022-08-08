@@ -55,6 +55,7 @@
 						<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Upload Persyaratan</a>
 						<a class="nav-item nav-link" id="nav-screening-tab" data-toggle="tab" href="#nav-screening" role="tab" aria-controls="nav-screening" aria-selected="false">Kartu Screening</a>
 						<a class="nav-item nav-link" id="nav-resume-tab" data-toggle="tab" href="#nav-resume" role="tab" aria-controls="nav-resume" aria-selected="false">Resume Materi</a>
+						<a class="nav-item nav-link" id="nav-respon-harian-tab" data-toggle="tab" href="#nav-respon-harian" role="tab" aria-controls="nav-respon-harian" aria-selected="false">Respon Harian</a>
 						<a class="nav-item nav-link" id="nav-makalah-tab" data-toggle="tab" href="#nav-makalah" role="tab" aria-controls="nav-makalah" aria-selected="false">
 							@if($me->training_raya_kategori_id != 3)
 							Jurnal Peserta
@@ -71,7 +72,7 @@
 					<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 						<br>	
 						@if(count($list_informasi) == 0)
-							<center><b>Belum ada informasi</b></center>
+							<center><h4>Belum ada informasi</h4></center>
 						@endif
 						@foreach($list_informasi as $info)
 							<b>{{ \Carbon\Carbon::parse($info->tanggal)->locale('id')->settings(['formatFunction' => 'translatedFormat'])->format('l, j F Y') }}</b>
@@ -353,6 +354,26 @@
 							</center>
 						</form>
 					</div>
+					<div class="tab-pane fade" id="nav-respon-harian" role="tabpanel" aria-labelledby="nav-respon-harian-tab">
+						<br>
+						<center><h5>Kirim Respon Harian</h5></center>
+						<form action="{{ url('/dashboard-training/kirim-respon-harian') }}" method="POST">
+							@csrf
+							<input type="hidden" name="training_raya_kategori_id" value="{{ $me->training_raya_kategori_id }}">
+							<br>
+							<div class="form-group">
+								<label for="reg-ln">Deskripsi</label>
+								<textarea name="deskripsi" cols="30" rows="10"></textarea>
+								@if($errors->has('deskripsi'))
+									<div class="invalid-feedback" style="display: block" role="alert">Data tidak valid.</div>
+								@endif
+							</div>
+							<br>
+							<center>
+								<button type="submit" class="btn btn-primary">Kirim</button>
+							</center>
+						</form>
+					</div>
 					<div class="tab-pane fade" id="nav-makalah" role="tabpanel" aria-labelledby="nav-makalah-tab">
 						<br>
 						<div class="row">
@@ -413,6 +434,60 @@
 							</tr>
 							@endforeach
 						</table>
+					</div>
+					<div class="tab-pane fade" id="nav-middle-test" role="tabpanel" aria-labelledby="nav-middle-test-tab">
+						<br>
+						@php $check = \DB::table('training_raya_user_question_test')->where('tipe', 'middle')->where('training_raya_kategori_id', $me->training_raya_kategori_id)->where('user_id', $me->id)->first(); @endphp
+						@if(!empty($check))
+						<center><h4>Anda sudah mengisi Middle Test</h4></center>
+						@else
+						<center><h4>Middle Test</h4></center>
+						<hr>
+						<form action="{{ url('/dashboard-training/middle-test') }}" method="POST">
+							@csrf
+							<input type="hidden" name="training_raya_kategori_id" value="{{ $me->training_raya_kategori_id }}">
+							@foreach($list_pertanyaan_middle_test as $key => $pertanyaan)
+							<div class="form-group">
+								<h5>{{ $key+1 . '. ' . $pertanyaan->pertanyaan }}</h5>
+								<textarea name="jawaban[{{ $pertanyaan->id }}]" cols="30" rows="10"></textarea>
+								@if($errors->has('jawaban['.$pertanyaan->id.']'))
+									<div class="invalid-feedback" style="display: block" role="alert">Data tidak valid.</div>
+								@endif
+							</div>
+							<br>
+							@endforeach
+							<center>
+								<button type="submit" class="btn btn-primary">Kirim</button>
+							</center>
+						</form>
+						@endif
+					</div>
+					<div class="tab-pane fade" id="nav-final-test" role="tabpanel" aria-labelledby="nav-final-test-tab">
+						<br>
+						@php $check = \DB::table('training_raya_user_question_test')->where('tipe', 'final')->where('training_raya_kategori_id', $me->training_raya_kategori_id)->where('user_id', $me->id)->first(); @endphp
+						@if(!empty($check))
+						<center><h4>Anda sudah mengisi Final Test</h4></center>
+						@else
+						<center><h4>Final Test</h4></center>
+						<hr>
+						<form action="{{ url('/dashboard-training/final-test') }}" method="POST">
+							@csrf
+							<input type="hidden" name="training_raya_kategori_id" value="{{ $me->training_raya_kategori_id }}">
+							@foreach($list_pertanyaan_final_test as $key => $pertanyaan)
+							<div class="form-group">
+								<h5>{{ $key+1 . '. ' . $pertanyaan->pertanyaan }}</h5>
+								<textarea name="jawaban[{{ $pertanyaan->id }}]" cols="30" rows="10"></textarea>
+								@if($errors->has('jawaban['.$pertanyaan->id.']'))
+									<div class="invalid-feedback" style="display: block" role="alert">Data tidak valid.</div>
+								@endif
+							</div>
+							<br>
+							@endforeach
+							<center>
+								<button type="submit" class="btn btn-primary">Kirim</button>
+							</center>
+						</form>
+						@endif
 					</div>
 				</div>
 			</div>

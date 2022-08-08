@@ -178,6 +178,12 @@ Route::group(['middleware' => ['auth', 'role:user-lk2|user-lkk|user-sc', 'verifi
     
     Route::post('/dashboard-training/kirim-resume', 'TrainingRaya\KirimResumeController@store');
     
+    Route::post('/dashboard-training/kirim-respon-harian', 'TrainingRaya\KirimResponHarianController@store');
+    
+    Route::post('/dashboard-training/middle-test', 'TrainingRaya\KirimMiddleTestController@store');
+    
+    Route::post('/dashboard-training/final-test', 'TrainingRaya\KirimFinalTestController@store');
+    
     Route::post('/dashboard-training/kirim-komentar/{idUser}', 'TrainingRaya\KomentarController@store');
     
     Route::post('/dashboard-training/selesai-screening', 'TrainingRaya\SelesaiScreeningController@store');
