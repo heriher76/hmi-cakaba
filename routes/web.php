@@ -171,11 +171,16 @@ Route::group(['middleware' => ['auth', 'role:user-lk2|user-lkk|user-sc', 'verifi
     Route::get('/dashboard-training', 'TrainingRaya\DashboardController@index');
     Route::get('/dashboard-training/jurnal/{idUser}', 'TrainingRaya\JurnalController@show');
     Route::get('/dashboard-training/essay/{idUser}', 'TrainingRaya\JurnalController@show_essay');
-    Route::get('/dashboard-training/sindikat/{idUser}', 'TrainingRaya\JurnalController@show_sindikat');
+    Route::get('/dashboard-training/sindikat-wajib/{idUser}', 'TrainingRaya\JurnalController@show_sindikat_wajib');
+    Route::get('/dashboard-training/sindikat-pilihan/{idUser}', 'TrainingRaya\JurnalController@show_sindikat_pilihan');
     
     Route::post('/dashboard-training/upload-persyaratan', 'TrainingRaya\UploadPersyaratanController@store');
     
+    Route::post('/dashboard-training/kirim-resume', 'TrainingRaya\KirimResumeController@store');
+    
     Route::post('/dashboard-training/kirim-komentar/{idUser}', 'TrainingRaya\KomentarController@store');
+    
+    Route::post('/dashboard-training/selesai-screening', 'TrainingRaya\SelesaiScreeningController@store');
     
     Route::get('/absensi/{idKategori}/{idMateri}', 'TrainingRaya\AbsensiController@store');
 });

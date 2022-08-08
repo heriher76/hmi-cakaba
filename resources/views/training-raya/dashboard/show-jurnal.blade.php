@@ -32,8 +32,10 @@
                 <iframe src="{{ url($jurnal->file_jurnal) }}" style="width:100%; height:100%;" frameborder="0"></iframe>
                 @elseif($tipe == 'essay')
                 <iframe src="{{ url($jurnal->file_essay) }}" style="width:100%; height:100%;" frameborder="0"></iframe>
-                @elseif($tipe == 'sindikat')
+                @elseif($tipe == 'sindikat wajib')
                 <iframe src="{{ url($jurnal->file_sindikat) }}" style="width:100%; height:100%;" frameborder="0"></iframe>
+                @elseif($tipe == 'sindikat pilihan')
+                <iframe src="{{ url($jurnal->file_sindikat_pilihan) }}" style="width:100%; height:100%;" frameborder="0"></iframe>
                 @endif
             </div>
           </div>
@@ -44,8 +46,10 @@
                   {{ $jurnal->judul_jurnal }}
                   @elseif($tipe == 'essay')
                   {{ $jurnal->judul_essay }}
-                  @elseif($tipe == 'sindikat')
+                  @elseif($tipe == 'sindikat wajib')
                   {{ $jurnal->judul_sindikat }}
+                  @elseif($tipe == 'sindikat pilihan')
+                  {{ $jurnal->judul_sindikat_pilihan }}
                   @endif
                 </h3>
                 <b>{{ $jurnal->name }}</b>
@@ -73,7 +77,8 @@
     <div class="row mt-5 justify-content-center">
       <div class="col-lg-10">
         <form action="{{ url('/dashboard-training/kirim-komentar/'.$jurnal->id) }}" method="post">
-            @csrf
+          @csrf
+          <input type="hidden" name="tipe" value="{{$tipe}}">
           <div class="row">
           <div class="form-group mt-3">
             <textarea class="form-control" name="komentar" rows="5" placeholder="Tulis Komentar" required></textarea>

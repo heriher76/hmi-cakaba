@@ -14,6 +14,7 @@ class KomentarController extends Controller
         DB::table('training_raya_komentar_jurnal')->insert([
             'user_komentar_id' => \Auth::user()->id,
             'user_pembuat_jurnal_id' => $id,
+            'tipe' => $request->tipe,
             'komentar' => $request->komentar,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),

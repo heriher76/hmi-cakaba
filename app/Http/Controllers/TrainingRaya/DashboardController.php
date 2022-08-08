@@ -23,7 +23,13 @@ class DashboardController extends Controller
 
         $list_screener = DB::table('training_raya_screener')->where('training_raya_kategori_id', $me->training_raya_kategori_id)->get();
 
-        $all_materi_screening = DB::table('training_raya_materi_screening')
+        $my_resume = DB::table('training_raya_resume')
+                        ->where('training_raya_resume.training_raya_kategori_id', $me->training_raya_kategori_id)->where('user_id', $me->id)
+                        ->join('training_raya_materi_forum', 'training_raya_resume.training_raya_materi_forum_id', '=', 'training_raya_materi_forum.id')
+                        ->select('training_raya_resume.*', 'training_raya_materi_forum.nama')
+                        ->get();
+                        
+        $all_materi_forum = DB::table('training_raya_materi_forum')
                                     ->where('training_raya_kategori_id', $me->training_raya_kategori_id)
                                     ->get();
                                     
@@ -32,6 +38,6 @@ class DashboardController extends Controller
         
         $list_absen_saya = DB::table('training_raya_absensi')->where('user_id', $me->id)->get();
                                     
-        return view('training-raya.dashboard.index', compact('me', 'list_informasi', 'list_materi_screening', 'list_screener', 'all_materi_screening', 'list_jurnal', 'list_absen_saya'));
+        return view('training-raya.dashboard.index', compact('me', 'list_informasi', 'list_materi_screening', 'list_screener', 'all_materi_forum', 'list_jurnal', 'list_absen_saya', 'my_resume'));
     }
 }

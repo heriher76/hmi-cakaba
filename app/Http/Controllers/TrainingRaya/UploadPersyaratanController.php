@@ -57,6 +57,15 @@ class UploadPersyaratanController extends Controller
                 $input['file_sindikat']->move(public_path('training-raya/file-sindikat'), $namaThumbnailSindikat);
             }
 
+            (isset($input['file_sindikat_pilihan'])) ? $namaThumbnailSindikatPilihan = 'training-raya/file-sindikat-pilihan/'.\Str::random(16).'.'.$input['file_sindikat_pilihan']->getClientOriginalExtension() : true;
+    
+            if (!empty($input['file_sindikat_pilihan'])) {
+                if (!empty($user->file_sindikat_pilihan)) {
+                    unlink(public_path($user->file_sindikat_pilihan));
+                }
+                $input['file_sindikat_pilihan']->move(public_path('training-raya/file-sindikat-pilihan'), $namaThumbnailSindikatPilihan);
+            }
+
             (isset($input['surat_rekomendasi_training_raya'])) ? $namaThumbnailRekomendasi = 'training-raya/surat-rekomendasi/'.\Str::random(16).'.'.$input['surat_rekomendasi_training_raya']->getClientOriginalExtension() : true;
     
             if (!empty($input['surat_rekomendasi_training_raya'])) {
@@ -71,6 +80,8 @@ class UploadPersyaratanController extends Controller
                 'file_essay' => $namaThumbnailEssay ?? $user->file_essay,
                 'judul_sindikat' => $input['judul_sindikat'],
                 'file_sindikat' => $namaThumbnailSindikat ?? $user->file_sindikat,
+                'judul_sindikat_pilihan' => $input['judul_sindikat_pilihan'],
+                'file_sindikat_pilihan' => $namaThumbnailSindikatPilihan ?? $user->file_sindikat_pilihan,
                 'surat_rekomendasi_training_raya' => $namaThumbnailRekomendasi ?? $user->surat_rekomendasi_training_raya,
             ]);
         }

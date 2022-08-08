@@ -160,7 +160,7 @@
 							<div class="row">
 								<div class="col-sm-12">	
 									<div class="form-group">
-										<label for="reg-ln">Judul Sindikat</label>
+										<label for="reg-ln">Judul Sindikat Wajib</label>
 										<input type="text" name="judul_sindikat" class="form-control" required value="{{ $me->judul_sindikat }}">
 										@if($errors->has('judul_sindikat'))
 											<div class="invalid-feedback" style="display: block" role="alert">Data tidak valid.</div>
@@ -172,7 +172,7 @@
 							<div class="row">
 								<div class="col-sm-6">
 									<div class="form-group">
-										<label for="reg-ln">Upload File Sindikat</label>
+										<label for="reg-ln">Upload File Sindikat Wajib</label>
 										@if(!empty($me->file_sindikat))
 											<input class="form-control" name="file_sindikat" type="file" id="reg-ln">
 											<p style="color: red;">*Upload kembali untuk mengubah</p>
@@ -187,7 +187,43 @@
 								<div class="col-sm-6">
 									@if(!empty($me->file_sindikat))
 										<br> 
-											<a href="{{ url($me->file_sindikat) }}" class="btn btn-primary btn-xs" target="_blank">Lihat Sindikat Saya</a>
+											<a href="{{ url($me->file_sindikat) }}" class="btn btn-primary btn-xs" target="_blank">Lihat Sindikat Wajib Saya</a>
+										<br>
+									@endif
+								</div>
+							</div>
+							<hr>
+							<div class="row">
+								<div class="col-sm-12">	
+									<div class="form-group">
+										<label for="reg-ln">Judul Sindikat Pilihan</label>
+										<input type="text" name="judul_sindikat_pilihan" class="form-control" required value="{{ $me->judul_sindikat_pilihan }}">
+										@if($errors->has('judul_sindikat_pilihan'))
+											<div class="invalid-feedback" style="display: block" role="alert">Data tidak valid.</div>
+										@endif
+									</div>
+								</div>
+							</div>
+							<hr>
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label for="reg-ln">Upload File Sindikat Pilihan</label>
+										@if(!empty($me->file_sindikat_pilihan))
+											<input class="form-control" name="file_sindikat_pilihan" type="file" id="reg-ln">
+											<p style="color: red;">*Upload kembali untuk mengubah</p>
+										@else
+											<input class="form-control" name="file_sindikat_pilihan" type="file" id="reg-ln" required>
+										@endif
+										@if($errors->has('file_sindikat_pilihan'))
+											<div class="invalid-feedback" style="display: block" role="alert">Sindikat tidak valid.</div>
+										@endif
+									</div>
+								</div>
+								<div class="col-sm-6">
+									@if(!empty($me->file_sindikat_pilihan))
+										<br> 
+											<a href="{{ url($me->file_sindikat_pilihan) }}" class="btn btn-primary btn-xs" target="_blank">Lihat Sindikat Pilihan Saya</a>
 										<br>
 									@endif
 								</div>
@@ -229,16 +265,32 @@
 							<tr>
 								<th>No</th>
 								<th>Materi</th>
+								<th>Status</th>
 								<th>Opsi</th>
 							</tr>
 							@foreach($list_materi_screening as $key => $materi)
+							@php $check = \DB::table('training_raya_kartu_screening')->where('user_id', $me->id)->where('training_raya_materi_screening_id', $materi->id)->where('training_raya_kategori_id', $me->training_raya_kategori_id)->first(); @endphp
 							<tr>
 								<td>{{ $key+1 }}</td>
 								<td>{{ $materi->nama }}</td>
 								<td>
+									@if(!empty($check))
+									Selesai
+									@else
+									Belum Selesai
+									@endif
+								</td>
+								<td>
+									@if(!empty($check))
+									<a href="{{ url($check->bukti_foto) }}" class="btn btn-primary btn-sm" target="_blank">Lihat Bukti</a>
+									<button type="button" class="btn btn-warning btn-sm openModalScreening" data-toggle="modal" data-target="#screeningModal" data-id="{{ $materi->id }}">
+										Ubah Bukti
+									</button>
+									@else
 									<button type="button" class="btn btn-primary openModalScreening" data-toggle="modal" data-target="#screeningModal" data-id="{{ $materi->id }}">
 										Tandai Selesai
 									</button>
+									@endif
 								</td>
 							</tr>
 							@endforeach
@@ -246,16 +298,36 @@
 					</div>
 					<div class="tab-pane fade" id="nav-resume" role="tabpanel" aria-labelledby="nav-resume-tab">
 						<br>
-						<form action="{{ url('/kirim-resume') }}" id="formScreeningModal">
+						<center><h5>Resume yang telah dikirim</h5></center>
+						<table class="table table-striped">
+							<tr>
+								<th>No</th>
+								<th>Materi</th>
+								<th>Waktu Dikirim</th>
+							</tr>
+							@foreach($my_resume as $key => $resume)
+							<tr>
+								<td>{{ $key+1 }}</td>
+								<td>{{ $resume->nama ?? '-' }}</td>
+								<td>{{ \Carbon\Carbon::parse($resume->created_at)->locale('id')->settings(['formatFunction' => 'translatedFormat'])->format('l, j F Y H:i') ?? '-' }}</td>
+							</tr>
+							@endforeach
+						</table>
+						<br>
+						<hr>
+						<br>
+						<center><h5>Buat resume</h5></center>
+						<form action="{{ url('/dashboard-training/kirim-resume') }}" id="formResumeModal" method="POST">
+							@csrf
 							<input type="hidden" name="training_raya_kategori_id" value="{{ $me->training_raya_kategori_id }}">
 							<div class="form-group">
 								<label for="reg-ln">Pilih Materi</label>
-								<select name="training_raya_materi_screening" id="" class="form-control">
-									@foreach($all_materi_screening as $materi)
+								<select name="training_raya_materi_forum" id="" class="form-control">
+									@foreach($all_materi_forum as $materi)
 									<option value="{{$materi->id}}">{{ $materi->nama }}</option>
 									@endforeach
 								</select>
-								@if($errors->has('training_raya_materi_screening'))
+								@if($errors->has('training_raya_materi_forum'))
 								<div class="invalid-feedback" style="display: block" role="alert">Data tidak valid.</div>
 								@endif
 							</div>
@@ -301,7 +373,7 @@
 								@endforeach
 							@elseif($me->training_raya_kategori_id == 3)
 								@foreach($list_jurnal as $jurnal)
-								@if(!empty($jurnal->judul_essay) && !empty($jurnal->file_essay) && !empty($jurnal->judul_sindikat) && !empty($jurnal->file_sindikat))
+								@if(!empty($jurnal->judul_essay) && !empty($jurnal->file_essay) && !empty($jurnal->judul_sindikat) && !empty($jurnal->file_sindikat) && !empty($jurnal->judul_sindikat_pilihan) && !empty($jurnal->file_sindikat_pilihan))
 								<div class="col-md-3 col-sm-4 col-xs-6">
 									<div class="card" style="width: 18rem;">
 										<div class="card-body">
@@ -311,8 +383,12 @@
 											<a href="{{ url($me->file_essay) }}" class="card-link" target="_blank">Unduh</a>
 											<hr>
 											<h6 class="card-subtitle mb-2 text-muted">{{ $jurnal->judul_sindikat }}</h6>
-											<a href="{{ url('/dashboard-training/sindikat/'.$me->id) }}" class="card-link">Lihat Sindikat</a>
+											<a href="{{ url('/dashboard-training/sindikat-wajib/'.$me->id) }}" class="card-link">Lihat Sindikat Wajib</a>
 											<a href="{{ url($me->file_sindikat) }}" class="card-link" target="_blank">Unduh</a>
+											<hr>
+											<h6 class="card-subtitle mb-2 text-muted">{{ $jurnal->judul_sindikat_pilihan }}</h6>
+											<a href="{{ url('/dashboard-training/sindikat-pilihan/'.$me->id) }}" class="card-link">Lihat Sindikat Pilihan</a>
+											<a href="{{ url($me->file_sindikat_pilihan) }}" class="card-link" target="_blank">Unduh</a>
 										</div>
 									</div>
 								</div>
@@ -356,7 +432,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form action="{{ url('/selesai-screening') }}" id="formScreeningModal">
+				<form action="{{ url('/dashboard-training/selesai-screening') }}" id="formScreeningModal" method="POST" enctype="multipart/form-data">
 					@csrf
 					<input type="hidden" name="materi_id" id="idMateri">
 					<input type="hidden" name="training_raya_kategori_id" value="{{ $me->training_raya_kategori_id }}">
@@ -381,7 +457,7 @@
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" form="formScreeningModal" class="btn btn-primary">Kirim</button>
+				<button type="submit" form="formScreeningModal" class="btn btn-primary">Kirim</button>
 			</div>
 			</div>
 		</div>
