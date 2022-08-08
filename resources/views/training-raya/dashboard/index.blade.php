@@ -8,7 +8,22 @@
     <div class="container">
 
       <div class="d-flex justify-content-between align-items-center">
-        <h2>Dashboard Training Raya</h2>
+        <h2>
+			Dashboard Training Raya 
+			@php
+				switch($me->training_raya_kategori_id){
+					case 1:
+						echo '(Latihan Kader 2)';
+						break;
+					case 2:
+						echo '(Latihan Khusus Kohati)';
+						break;
+					case 3:
+						echo '(Senior Course)';
+						break;
+				}
+			@endphp
+		</h2>
         <ol>
           <li><a href="{{ url('/') }}">Beranda</a></li>
           <li>Dashboard</li>
@@ -40,7 +55,13 @@
 						<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Upload Persyaratan</a>
 						<a class="nav-item nav-link" id="nav-screening-tab" data-toggle="tab" href="#nav-screening" role="tab" aria-controls="nav-screening" aria-selected="false">Kartu Screening</a>
 						<a class="nav-item nav-link" id="nav-resume-tab" data-toggle="tab" href="#nav-resume" role="tab" aria-controls="nav-resume" aria-selected="false">Resume Materi</a>
-						<a class="nav-item nav-link" id="nav-makalah-tab" data-toggle="tab" href="#nav-makalah" role="tab" aria-controls="nav-makalah" aria-selected="false">Jurnal Peserta</a>
+						<a class="nav-item nav-link" id="nav-makalah-tab" data-toggle="tab" href="#nav-makalah" role="tab" aria-controls="nav-makalah" aria-selected="false">
+							@if($me->training_raya_kategori_id != 3)
+							Jurnal Peserta
+							@elseif($me->training_raya_kategori_id == 3)
+							Essay/Sindikat Peserta
+							@endif
+						</a>
 						<a class="nav-item nav-link" id="nav-absensi-tab" data-toggle="tab" href="#nav-absensi" role="tab" aria-controls="nav-absensi" aria-selected="false">Absensi</a>
 						<a class="nav-item nav-link" id="nav-middle-test-tab" data-toggle="tab" href="#nav-middle-test" role="tab" aria-controls="nav-middle-test" aria-selected="false">Middle Test</a>
 						<a class="nav-item nav-link" id="nav-final-test-tab" data-toggle="tab" href="#nav-final-test" role="tab" aria-controls="nav-final-test" aria-selected="false">Final Test</a>
@@ -49,6 +70,9 @@
 				<div class="tab-content" id="nav-tabContent">
 					<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 						<br>	
+						@if(count($list_informasi) == 0)
+							<center><b>Belum ada informasi</b></center>
+						@endif
 						@foreach($list_informasi as $info)
 							<b>{{ \Carbon\Carbon::parse($info->tanggal)->locale('id')->settings(['formatFunction' => 'translatedFormat'])->format('l, j F Y') }}</b>
 							<ul>
@@ -58,14 +82,14 @@
 					</div>
 					<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
 						<br>
-						<form action="{{ url('/upload-persyaratan') }}" method="POST" enctype="multipart/form-data">
+						<form action="{{ url('/dashboard-training/upload-persyaratan') }}" method="POST" enctype="multipart/form-data">
 							@csrf
-							{{ method_field('put') }}
+							@if($me->training_raya_kategori_id != 3)
 							<div class="row">
 								<div class="col-sm-12">	
 									<div class="form-group">
 										<label for="reg-ln">Judul Jurnal</label>
-										<input type="text" name="judul_jurnal" class="form-control">
+										<input type="text" name="judul_jurnal" class="form-control" required value="{{ $me->judul_jurnal }}">
 										@if($errors->has('judul_jurnal'))
 											<div class="invalid-feedback" style="display: block" role="alert">Data tidak valid.</div>
 										@endif
@@ -81,7 +105,7 @@
 											<input class="form-control" name="file_jurnal" type="file" id="reg-ln">
 											<p style="color: red;">*Upload kembali untuk mengubah</p>
 										@else
-											<input class="form-control" name="file_jurnal" type="file" id="reg-ln">
+											<input class="form-control" name="file_jurnal" type="file" id="reg-ln" required>
 										@endif
 										@if($errors->has('file_jurnal'))
 											<div class="invalid-feedback" style="display: block" role="alert">Jurnal tidak valid.</div>
@@ -96,6 +120,79 @@
 									@endif
 								</div>
 							</div>
+							@else
+							<div class="row">
+								<div class="col-sm-12">	
+									<div class="form-group">
+										<label for="reg-ln">Judul Essay</label>
+										<input type="text" name="judul_essay" class="form-control" required value="{{ $me->judul_essay }}">
+										@if($errors->has('judul_essay'))
+											<div class="invalid-feedback" style="display: block" role="alert">Data tidak valid.</div>
+										@endif
+									</div>
+								</div>
+							</div>
+							<hr>
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label for="reg-ln">Upload File Essay</label>
+										@if(!empty($me->file_essay))
+											<input class="form-control" name="file_essay" type="file" id="reg-ln">
+											<p style="color: red;">*Upload kembali untuk mengubah</p>
+										@else
+											<input class="form-control" name="file_essay" type="file" id="reg-ln" required>
+										@endif
+										@if($errors->has('file_essay'))
+											<div class="invalid-feedback" style="display: block" role="alert">Essay tidak valid.</div>
+										@endif
+									</div>
+								</div>
+								<div class="col-sm-6">
+									@if(!empty($me->file_essay))
+										<br> 
+											<a href="{{ url($me->file_essay) }}" class="btn btn-primary btn-xs" target="_blank">Lihat Essay Saya</a>
+										<br>
+									@endif
+								</div>
+							</div>
+							<hr>
+							<div class="row">
+								<div class="col-sm-12">	
+									<div class="form-group">
+										<label for="reg-ln">Judul Sindikat</label>
+										<input type="text" name="judul_sindikat" class="form-control" required value="{{ $me->judul_sindikat }}">
+										@if($errors->has('judul_sindikat'))
+											<div class="invalid-feedback" style="display: block" role="alert">Data tidak valid.</div>
+										@endif
+									</div>
+								</div>
+							</div>
+							<hr>
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label for="reg-ln">Upload File Sindikat</label>
+										@if(!empty($me->file_sindikat))
+											<input class="form-control" name="file_sindikat" type="file" id="reg-ln">
+											<p style="color: red;">*Upload kembali untuk mengubah</p>
+										@else
+											<input class="form-control" name="file_sindikat" type="file" id="reg-ln" required>
+										@endif
+										@if($errors->has('file_sindikat'))
+											<div class="invalid-feedback" style="display: block" role="alert">Sindikat tidak valid.</div>
+										@endif
+									</div>
+								</div>
+								<div class="col-sm-6">
+									@if(!empty($me->file_sindikat))
+										<br> 
+											<a href="{{ url($me->file_sindikat) }}" class="btn btn-primary btn-xs" target="_blank">Lihat Sindikat Saya</a>
+										<br>
+									@endif
+								</div>
+							</div>
+							@endif
 							<hr>
 							<div class="row">
 								<div class="col-sm-6">
@@ -105,7 +202,7 @@
 											<input class="form-control" name="surat_rekomendasi_training_raya" type="file" id="reg-ln">
 											<p style="color: red;">*Upload kembali untuk mengubah</p>
 										@else
-											<input class="form-control" name="surat_rekomendasi_training_raya" type="file" id="reg-ln">
+											<input class="form-control" name="surat_rekomendasi_training_raya" type="file" id="reg-ln" required>
 										@endif
 										@if($errors->has('surat_rekomendasi_training_raya'))
 											<div class="invalid-feedback" style="display: block" role="alert">Jurnal tidak valid.</div>
@@ -187,18 +284,41 @@
 					<div class="tab-pane fade" id="nav-makalah" role="tabpanel" aria-labelledby="nav-makalah-tab">
 						<br>
 						<div class="row">
-							@foreach($list_jurnal as $jurnal)
-							<div class="col-md-3 col-sm-4 col-xs-6">
-								<div class="card" style="width: 18rem;">
-									<div class="card-body">
-										<h5 class="card-title">{{ $jurnal->name }}</h5>
-										<h6 class="card-subtitle mb-2 text-muted">{{ $jurnal->judul_jurnal }}</h6>
-										<a href="{{ url('/dashboard-training/jurnal/'.$me->id) }}" class="card-link">Lihat</a>
-										<a href="{{ url($me->file_jurnal) }}" class="card-link" target="_blank">Unduh</a>
+							@if($me->training_raya_kategori_id != 3)
+								@foreach($list_jurnal as $jurnal)
+								@if(!empty($jurnal->judul_jurnal) && !empty($jurnal->file_jurnal))
+								<div class="col-md-3 col-sm-4 col-xs-6">
+									<div class="card" style="width: 18rem;">
+										<div class="card-body">
+											<h5 class="card-title">{{ $jurnal->name }}</h5>
+											<h6 class="card-subtitle mb-2 text-muted">{{ $jurnal->judul_jurnal }}</h6>
+											<a href="{{ url('/dashboard-training/jurnal/'.$me->id) }}" class="card-link">Lihat</a>
+											<a href="{{ url($me->file_jurnal) }}" class="card-link" target="_blank">Unduh</a>
+										</div>
 									</div>
 								</div>
-							</div>
-							@endforeach
+								@endif
+								@endforeach
+							@elseif($me->training_raya_kategori_id == 3)
+								@foreach($list_jurnal as $jurnal)
+								@if(!empty($jurnal->judul_essay) && !empty($jurnal->file_essay) && !empty($jurnal->judul_sindikat) && !empty($jurnal->file_sindikat))
+								<div class="col-md-3 col-sm-4 col-xs-6">
+									<div class="card" style="width: 18rem;">
+										<div class="card-body">
+											<h5 class="card-title">{{ $jurnal->name }}</h5>
+											<h6 class="card-subtitle mb-2 text-muted">{{ $jurnal->judul_essay }}</h6>
+											<a href="{{ url('/dashboard-training/essay/'.$me->id) }}" class="card-link">Lihat Essay</a>
+											<a href="{{ url($me->file_essay) }}" class="card-link" target="_blank">Unduh</a>
+											<hr>
+											<h6 class="card-subtitle mb-2 text-muted">{{ $jurnal->judul_sindikat }}</h6>
+											<a href="{{ url('/dashboard-training/sindikat/'.$me->id) }}" class="card-link">Lihat Sindikat</a>
+											<a href="{{ url($me->file_sindikat) }}" class="card-link" target="_blank">Unduh</a>
+										</div>
+									</div>
+								</div>
+								@endif
+								@endforeach
+							@endif
 						</div>
 					</div>
 					<div class="tab-pane fade" id="nav-absensi" role="tabpanel" aria-labelledby="nav-absensi-tab">

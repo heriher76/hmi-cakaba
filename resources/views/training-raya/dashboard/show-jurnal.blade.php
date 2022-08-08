@@ -8,10 +8,10 @@
   <div class="container">
 
     <div class="d-flex justify-content-between align-items-center">
-      <h2>Lihat Jurnal</h2>
+      <h2>Lihat {{$tipe}}</h2>
       <ol>
         <li><a href="{{url('/')}}">Beranda</a></li>
-        <li>Jurnal</li>
+        <li>{{$tipe}}</li>
       </ol>
     </div>
 
@@ -28,12 +28,26 @@
         <div class="info-wrap">
           <div class="row">
             <div class="col-lg-12 info">
+                @if($tipe == 'jurnal')
                 <iframe src="{{ url($jurnal->file_jurnal) }}" style="width:100%; height:100%;" frameborder="0"></iframe>
+                @elseif($tipe == 'essay')
+                <iframe src="{{ url($jurnal->file_essay) }}" style="width:100%; height:100%;" frameborder="0"></iframe>
+                @elseif($tipe == 'sindikat')
+                <iframe src="{{ url($jurnal->file_sindikat) }}" style="width:100%; height:100%;" frameborder="0"></iframe>
+                @endif
             </div>
           </div>
           <hr>
             <center>
-                <h3>{{ $jurnal->judul_jurnal }}</h3>
+                <h3>
+                  @if($tipe == 'jurnal')
+                  {{ $jurnal->judul_jurnal }}
+                  @elseif($tipe == 'essay')
+                  {{ $jurnal->judul_essay }}
+                  @elseif($tipe == 'sindikat')
+                  {{ $jurnal->judul_sindikat }}
+                  @endif
+                </h3>
                 <b>{{ $jurnal->name }}</b>
             </center>
             <hr>
@@ -58,18 +72,13 @@
 
     <div class="row mt-5 justify-content-center">
       <div class="col-lg-10">
-        <form action="{{ url('/dashboard-training/jurnal/19/kirim-komentar') }}" method="post" role="form" class="php-email-form">
+        <form action="{{ url('/dashboard-training/kirim-komentar/'.$jurnal->id) }}" method="post">
             @csrf
           <div class="row">
           <div class="form-group mt-3">
             <textarea class="form-control" name="komentar" rows="5" placeholder="Tulis Komentar" required></textarea>
           </div>
-          <div class="my-3">
-            <div class="loading">Loading</div>
-            <div class="error-message"></div>
-            <div class="sent-message">Your message has been sent. Thank you!</div>
-          </div>
-          <div class="text-center"><button type="submit">Kirim Komentar</button></div>
+          <div class="text-center"><button type="submit" class="btn btn-success">Kirim Komentar</button></div>
         </form>
       </div>
 

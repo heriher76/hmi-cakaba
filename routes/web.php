@@ -169,7 +169,13 @@ Route::post('/daftar-training-raya', 'TrainingRaya\DaftarController@store');
 
 Route::group(['middleware' => ['auth', 'role:user-lk2|user-lkk|user-sc', 'verified']], function () {
     Route::get('/dashboard-training', 'TrainingRaya\DashboardController@index');
-    Route::get('/dashboard-training/jurnal/{id}', 'TrainingRaya\JurnalController@show');
+    Route::get('/dashboard-training/jurnal/{idUser}', 'TrainingRaya\JurnalController@show');
+    Route::get('/dashboard-training/essay/{idUser}', 'TrainingRaya\JurnalController@show_essay');
+    Route::get('/dashboard-training/sindikat/{idUser}', 'TrainingRaya\JurnalController@show_sindikat');
+    
+    Route::post('/dashboard-training/upload-persyaratan', 'TrainingRaya\UploadPersyaratanController@store');
+    
+    Route::post('/dashboard-training/kirim-komentar/{idUser}', 'TrainingRaya\KomentarController@store');
     
     Route::get('/absensi/{idKategori}/{idMateri}', 'TrainingRaya\AbsensiController@store');
 });
