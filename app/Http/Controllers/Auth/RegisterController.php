@@ -102,8 +102,7 @@ class RegisterController extends Controller
 
         // $this->guard()->login($user);
 
-        if($user == 'email_terdaftar') return redirect('/register');
-        if($user == 'kata_kunci_salah') return redirect('/register');
+        if($user == 'kata_kunci_salah' || $user == 'email_terdaftar') return back();
 
         return $this->registered($request, $user)
                         ?: redirect($this->redirectPath());
