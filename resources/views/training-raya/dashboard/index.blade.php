@@ -39,14 +39,23 @@
       <div class="row justify-content-center" data-aos="fade-up">
 
         <div class="col-lg-10">
-
+			@if($me->training_raya_status_lulus_forum == 1)
+			<div class="alert alert-success" role="alert">
+			Selamat anda dinyatakan <b>LULUS</b> Training Raya di HMI Cabang Kabupaten Bandung. Semoga ilmu yang telah didapat bermanfaat. Yakin Usaha Sampai!
+			</div>
+			@elseif($me->training_raya_status_lulus_forum == 2)
+			<div class="alert alert-warning" role="alert">
+			Mohon maaf anda dinyatakan <b>TIDAK LULUS</b> Training Raya tetapi jangan putus semangat, tetap junjung kaderisasi. Yakinkan pada diri bahwa proses tidak akan mengkhianati hasil. Yakin Usaha Sampai!
+			</div>
+			@elseif($me->training_raya_status_lulus_daftar == 1)
 			<div class="alert alert-success" role="alert">
 			Selamat anda dinyatakan <b>LULUS</b> menjadi peserta Training Raya di HMI Cabang Kabupaten Bandung. Silahkan masuk grup Whatsapp berikut. <a href="#" class="alert-link">Klik Disini</a>
 			</div>
-			
-			<div class="alert alert-warning" role="alert">
+			@elseif($me->training_raya_status_lulus_daftar == 2)
+			<div class="alert alert-danger" role="alert">
 			Mohon maaf anda dinyatakan <b>TIDAK LULUS</b> tetapi jangan putus semangat, tetap junjung kaderisasi. Yakinkan pada diri bahwa proses tidak akan mengkhianati hasil. Yakin Usaha Sampai!
 			</div>
+			@endif
 
           	<div class="info-wrap">
 			  	<nav>

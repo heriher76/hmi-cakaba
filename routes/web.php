@@ -122,6 +122,14 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
         Route::get('/training-raya/materi-screening-sc', 'TrainingRaya\MateriScreeningController@materi_screening_sc');  
         Route::post('/training-raya/materi-screening', 'TrainingRaya\MateriScreeningController@store_materi_screening');  
         Route::get('/training-raya/materi-screening/delete/{id}', 'TrainingRaya\MateriScreeningController@delete_materi_screening');  
+        
+        Route::get('/training-raya/absensi-lk2', 'TrainingRaya\LihatAbsensiController@absensi_lk2');   
+        Route::get('/training-raya/absensi-lk2/{idMateri}', 'TrainingRaya\LihatAbsensiController@absensi_lk2_list_data');   
+        Route::get('/training-raya/absensi-lkk', 'TrainingRaya\LihatAbsensiController@absensi_lkk');   
+        Route::get('/training-raya/absensi-lkk/{idMateri}', 'TrainingRaya\LihatAbsensiController@absensi_lkk_list_data');
+        Route::get('/training-raya/absensi-sc', 'TrainingRaya\LihatAbsensiController@absensi_sc');
+        Route::get('/training-raya/absensi-sc/{idMateri}', 'TrainingRaya\LihatAbsensiController@absensi_sc_list_data');
+        Route::get('/training-raya/absensi/delete/{id}', 'TrainingRaya\LihatAbsensiController@delete_absensi');   
 
         Route::get('/training-raya/resume-lk2', 'TrainingRaya\ResumeController@resume_lk2');   
         Route::get('/training-raya/resume-lk2/{idMateri}', 'TrainingRaya\ResumeController@resume_lk2_list_data');   

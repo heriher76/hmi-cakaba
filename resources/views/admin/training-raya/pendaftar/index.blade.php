@@ -42,7 +42,18 @@
                         @endif
                     </td>
                     <td>
+                      @if(!empty($user->file_jurnal))
                     	<a href="{{ url($user->file_jurnal) }}" class="btn btn-success btn-xs">Download Jurnal</a>
+                      @endif
+                      @if(!empty($user->file_essay))
+                    	<a href="{{ url($user->file_essay) }}" class="btn btn-success btn-xs">Download Essay</a>
+                      @endif
+                      @if(!empty($user->file_sindikat))
+                    	<a href="{{ url($user->file_sindikat) }}" class="btn btn-success btn-xs">Download Sindikat Wajib</a>
+                      @endif
+                      @if(!empty($user->file_sindikat_pilihan))
+                    	<a href="{{ url($user->file_sindikat_pilihan) }}" class="btn btn-success btn-xs">Download Sindikat Pilihan</a>
+                      @endif
                       <button type="button" class="btn btn-primary btn-xs openModalPlagiarism" data-toggle="modal" data-target="#plagiarismModal" data-id="{{ $user->id }}">
                       @if(!empty($user->ss_hasil_plagiarism))
                         Upload Ulang Plagiarism

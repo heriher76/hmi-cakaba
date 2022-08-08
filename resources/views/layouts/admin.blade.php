@@ -298,6 +298,12 @@
                     </a>
                   </li>
                   <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/absensi-lk2') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Absensi LK2</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
                     <a href="{{ url('/admin/training-raya/resume-lk2') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Resume LK2</p>
@@ -365,6 +371,12 @@
                     </a>
                   </li>
                   <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/absensi-lkk') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Absensi LKK</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
                     <a href="{{ url('/admin/training-raya/resume-lkk') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Resume LKK</p>
@@ -428,6 +440,12 @@
                     <a href="{{ url('/admin/training-raya/pendaftar-sc') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Pendaftar SC</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/absensi-sc') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Absensi SC</p>
                     </a>
                   </li>
                   <li class="nav-item">

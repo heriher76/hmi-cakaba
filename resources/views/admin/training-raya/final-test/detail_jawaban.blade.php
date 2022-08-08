@@ -13,9 +13,9 @@
             <table class="table">
                 @foreach($list_jawaban as $jawaban)
                 <tr>
-                    <td width="20%"><b>{{ \DB::table('training_raya_question_test')->where('id', $jawaban->training_raya_question_test_id)->first()->pertanyaan ?? '-' }}</b></td>
+                    <td width="20%"><b>{{ \DB::table('training_raya_question_test')->where('tipe', 'final')->where('id', $jawaban->training_raya_question_test_id)->first()->pertanyaan ?? '-' }}</b></td>
                     <td>:</td>
-                    <td>{{ $jawaban->jawaban }}</td>
+                    <td>{!! $jawaban->jawaban !!}</td>
                 </tr>
                 @endforeach
             </table>

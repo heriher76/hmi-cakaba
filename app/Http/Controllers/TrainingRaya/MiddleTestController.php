@@ -68,7 +68,7 @@ class MiddleTestController extends Controller
     
     public function detail_jawaban(Request $request)
     {
-        $list_jawaban = DB::table('training_raya_user_question_test')->where('user_id', $request->user_id)->orderBy('created_at', 'DESC')->get();
+        $list_jawaban = DB::table('training_raya_user_question_test')->where('tipe', 'middle')->where('user_id', $request->user_id)->orderBy('created_at', 'DESC')->get();
 
         return view('admin.training-raya.middle-test.detail_jawaban', compact('list_jawaban'));
     }

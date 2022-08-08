@@ -90,16 +90,32 @@
                       </td>
                   </tr>
                   <tr>
-                      <th>Judul Sindikat</th>
+                      <th>Judul Sindikat Wajib</th>
                       <td>:</td>
                       <td>{{ $user->judul_sindikat }}</td>
                   </tr>
                   <tr>
-                      <th>File Sindikat</th>
+                      <th>File Sindikat Wajib</th>
                       <td>:</td>
                       <td>
                         @if(!empty($user->file_sindikat))
                         <a href="{{ url($user->file_sindikat) }}" class="btn btn-primary btn-sm" target="_blank">Lihat</a>
+                        @else
+                        Belum ada
+                        @endif
+                      </td>
+                  </tr>
+                  <tr>
+                      <th>Judul Sindikat Pilihan</th>
+                      <td>:</td>
+                      <td>{{ $user->judul_sindikat_pilihan }}</td>
+                  </tr>
+                  <tr>
+                      <th>File Sindikat Pilihan</th>
+                      <td>:</td>
+                      <td>
+                        @if(!empty($user->file_sindikat_pilihan))
+                        <a href="{{ url($user->file_sindikat_pilihan) }}" class="btn btn-primary btn-sm" target="_blank">Lihat</a>
                         @else
                         Belum ada
                         @endif
