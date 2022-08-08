@@ -75,6 +75,14 @@ class RegisterController extends Controller
 
             return 'kata_kunci_salah';
         }
+        
+        $check_email = User::where('email', $request->email)->first();
+
+        if (!empty($check_email)) {
+            alert()->error('Email telah terdaftar', 'Silahkan isi kembali menggunakan email berbeda.');
+
+            return 'email_terdaftar';
+        }
 
         alert()->success('Verifikasi Email Anda', 'Silahkan cek email dan klik tombol verifikasi.');
 
@@ -94,7 +102,8 @@ class RegisterController extends Controller
 
         // $this->guard()->login($user);
 
-        if($user == 'kata_kunci_salah') return redirect('/login');
+        if($user == 'email_terdaftar') return redirect('/register');
+        if($user == 'kata_kunci_salah') return redirect('/register');
 
         return $this->registered($request, $user)
                         ?: redirect($this->redirectPath());

@@ -27,7 +27,15 @@ class DaftarController extends Controller
         if (empty($training)) {
             alert()->error('Link Anda Sepertinya Salah', 'Silahkan cek kembali pilihan training.');
 
-            return redirect('/');
+            return back();
+        }
+        
+        $check_email = DB::table('users')->where('email', $request->email)->first();
+
+        if (!empty($training)) {
+            alert()->error('Email telah terdaftar', 'Silahkan isi kembali menggunakan email berbeda.');
+
+            return back();
         }
 
         $filePhoto = $request->file('photo');
