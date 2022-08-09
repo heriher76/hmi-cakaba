@@ -32,7 +32,7 @@ class DaftarController extends Controller
         
         $check_email = DB::table('users')->where('email', $request->email)->first();
 
-        if (!empty($training)) {
+        if (!empty($check_email)) {
             alert()->error('Email telah terdaftar', 'Silahkan isi kembali menggunakan email berbeda.');
 
             return back();
