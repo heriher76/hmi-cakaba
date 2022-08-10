@@ -397,8 +397,8 @@
 										<div class="card-body">
 											<h5 class="card-title">{{ $jurnal->name }}</h5>
 											<h6 class="card-subtitle mb-2 text-muted">{{ $jurnal->judul_jurnal }}</h6>
-											<a href="{{ url('/dashboard-training/jurnal/'.$me->id) }}" class="card-link">Lihat</a>
-											<a href="{{ url($me->file_jurnal) }}" class="card-link" target="_blank">Unduh</a>
+											<a href="{{ url('/dashboard-training/jurnal/'.$jurnal->id) }}" class="card-link">Lihat</a>
+											<a href="{{ url($jurnal->file_jurnal) }}" class="card-link" target="_blank">Unduh</a>
 										</div>
 									</div>
 								</div>
@@ -412,16 +412,16 @@
 										<div class="card-body">
 											<h5 class="card-title">{{ $jurnal->name }}</h5>
 											<h6 class="card-subtitle mb-2 text-muted">{{ $jurnal->judul_essay }}</h6>
-											<a href="{{ url('/dashboard-training/essay/'.$me->id) }}" class="card-link">Lihat Essay</a>
-											<a href="{{ url($me->file_essay) }}" class="card-link" target="_blank">Unduh</a>
+											<a href="{{ url('/dashboard-training/essay/'.$jurnal->id) }}" class="card-link">Lihat Essay</a>
+											<a href="{{ url($jurnal->file_essay) }}" class="card-link" target="_blank">Unduh</a>
 											<hr>
 											<h6 class="card-subtitle mb-2 text-muted">{{ $jurnal->judul_sindikat }}</h6>
-											<a href="{{ url('/dashboard-training/sindikat-wajib/'.$me->id) }}" class="card-link">Lihat Sindikat Wajib</a>
-											<a href="{{ url($me->file_sindikat) }}" class="card-link" target="_blank">Unduh</a>
+											<a href="{{ url('/dashboard-training/sindikat-wajib/'.$jurnal->id) }}" class="card-link">Lihat Sindikat Wajib</a>
+											<a href="{{ url($jurnal->file_sindikat) }}" class="card-link" target="_blank">Unduh</a>
 											<hr>
 											<h6 class="card-subtitle mb-2 text-muted">{{ $jurnal->judul_sindikat_pilihan }}</h6>
-											<a href="{{ url('/dashboard-training/sindikat-pilihan/'.$me->id) }}" class="card-link">Lihat Sindikat Pilihan</a>
-											<a href="{{ url($me->file_sindikat_pilihan) }}" class="card-link" target="_blank">Unduh</a>
+											<a href="{{ url('/dashboard-training/sindikat-pilihan/'.$jurnal->id) }}" class="card-link">Lihat Sindikat Pilihan</a>
+											<a href="{{ url($jurnal->file_sindikat_pilihan) }}" class="card-link" target="_blank">Unduh</a>
 										</div>
 									</div>
 								</div>
