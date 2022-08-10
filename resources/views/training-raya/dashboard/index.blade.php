@@ -292,7 +292,10 @@
 								</td>
 								<td>
 									@if(!empty($check))
-									<a href="{{ url($check->bukti_foto) }}" class="btn btn-primary btn-sm" target="_blank">Lihat Bukti</a>
+									
+										@if(!empty($check->bukti_foto))
+										<a href="{{ url($check->bukti_foto) }}" class="btn btn-primary btn-sm" target="_blank">Lihat Bukti</a>
+										@endif
 									<button type="button" class="btn btn-warning btn-sm openModalScreening" data-toggle="modal" data-target="#screeningModal" data-id="{{ $materi->id }}">
 										Ubah Bukti
 									</button>
