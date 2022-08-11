@@ -104,6 +104,12 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
         Route::get('/training-raya/pendaftar-sc', 'TrainingRaya\PendaftarController@pendaftar_sc');
 
         Route::get('/training-raya/user/{id}', 'TrainingRaya\PendaftarController@detail');
+        
+        Route::get('/training-raya/informasi-lk2', 'TrainingRaya\InformasiController@informasi_lk2');  
+        Route::get('/training-raya/informasi-lkk', 'TrainingRaya\InformasiController@informasi_lkk');   
+        Route::get('/training-raya/informasi-sc', 'TrainingRaya\InformasiController@informasi_sc');
+        Route::post('/training-raya/informasi', 'TrainingRaya\InformasiController@store_informasi');  
+        Route::get('/training-raya/informasi/delete/{id}', 'TrainingRaya\InformasiController@delete_informasi');  
 
         Route::get('/training-raya/screener-lk2', 'TrainingRaya\ScreenerController@screener_lk2');  
         Route::get('/training-raya/screener-lkk', 'TrainingRaya\ScreenerController@screener_lkk');   

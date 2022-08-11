@@ -274,6 +274,12 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/informasi-lk2') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Informasi LK2</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
                     <a href="{{ url('/admin/training-raya/materi-screening-lk2') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Materi Screening LK2</p>
@@ -347,6 +353,12 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/informasi-lkk') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Informasi LKK</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
                     <a href="{{ url('/admin/training-raya/materi-screening-lkk') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Materi Screening LKK</p>
@@ -418,6 +430,12 @@
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/informasi-sc') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Informasi SC</p>
+                    </a>
+                  </li>
                   <li class="nav-item">
                     <a href="{{ url('/admin/training-raya/materi-screening-sc') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
