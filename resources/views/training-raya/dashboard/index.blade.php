@@ -62,6 +62,7 @@
 					<div class="nav nav-tabs" id="nav-tab" role="tablist">
 						<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Informasi</a>
 						<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Upload Persyaratan</a>
+						@if($me->training_raya_status_lulus_daftar == 1)
 						<a class="nav-item nav-link" id="nav-screening-tab" data-toggle="tab" href="#nav-screening" role="tab" aria-controls="nav-screening" aria-selected="false">Kartu Screening</a>
 						<a class="nav-item nav-link" id="nav-resume-tab" data-toggle="tab" href="#nav-resume" role="tab" aria-controls="nav-resume" aria-selected="false">Resume Materi</a>
 						<a class="nav-item nav-link" id="nav-respon-harian-tab" data-toggle="tab" href="#nav-respon-harian" role="tab" aria-controls="nav-respon-harian" aria-selected="false">Respon Harian</a>
@@ -75,6 +76,7 @@
 						<a class="nav-item nav-link" id="nav-absensi-tab" data-toggle="tab" href="#nav-absensi" role="tab" aria-controls="nav-absensi" aria-selected="false">Absensi</a>
 						<a class="nav-item nav-link" id="nav-middle-test-tab" data-toggle="tab" href="#nav-middle-test" role="tab" aria-controls="nav-middle-test" aria-selected="false">Middle Test</a>
 						<a class="nav-item nav-link" id="nav-final-test-tab" data-toggle="tab" href="#nav-final-test" role="tab" aria-controls="nav-final-test" aria-selected="false">Final Test</a>
+						@endif
 					</div>
 				</nav>
 				<div class="tab-content" id="nav-tabContent">
@@ -131,6 +133,30 @@
 								</div>
 							</div>
 							@else
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label for="reg-ln">Upload Bukti Lulus LK 2</label>
+										@if(!empty($me->sertifikat_lk2))
+											<input class="form-control" name="sertifikat_lk2" type="file" id="reg-ln">
+											<p style="color: red;">*Upload kembali untuk mengubah</p>
+										@else
+											<input class="form-control" name="sertifikat_lk2" type="file" id="reg-ln" required>
+										@endif
+										@if($errors->has('sertifikat_lk2'))
+											<div class="invalid-feedback" style="display: block" role="alert">File tidak valid.</div>
+										@endif
+									</div>
+								</div>
+								<div class="col-sm-6">
+									@if(!empty($me->sertifikat_lk2))
+										<br> 
+											<a href="{{ url($me->sertifikat_lk2) }}" class="btn btn-primary btn-xs" target="_blank">Lihat Bukti Lulus LK2</a>
+										<br>
+									@endif
+								</div>
+							</div>
+							<hr>
 							<div class="row">
 								<div class="col-sm-12">	
 									<div class="form-group">
@@ -269,6 +295,7 @@
 							</center>
 						</form>
 					</div>
+					@if($me->training_raya_status_lulus_daftar == 1)
 					<div class="tab-pane fade" id="nav-screening" role="tabpanel" aria-labelledby="nav-screening-tab">
 						<br>
 						<table class="table table-striped">
@@ -501,6 +528,7 @@
 						</form>
 						@endif
 					</div>
+					@endif
 				</div>
 			</div>
         

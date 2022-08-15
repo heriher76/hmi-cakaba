@@ -121,6 +121,17 @@
                         @endif
                       </td>
                   </tr>
+                  <tr>
+                      <th>Bukti Lulus LK 2</th>
+                      <td>:</td>
+                      <td>
+                        @if(!empty($user->sertifikat_lk2))
+                        <a href="{{ url($user->sertifikat_lk2) }}" class="btn btn-primary btn-sm" target="_blank">Lihat</a>
+                        @else
+                        Belum ada
+                        @endif
+                      </td>
+                  </tr>
                   @endif
                   <tr>
                       <th>Screenshot Hasil Plagiarism</th>

@@ -94,7 +94,7 @@
 		                        </div>
 		                        <div class="col-sm-6">
 		                            <div class="form-group">
-		                                <label for="reg-photo">Foto Pribadi 3 x 4</label>
+		                                <label for="reg-photo">Foto Formal 3 x 4</label>
 		                                <input type="file" class="form-control" name="photo" required="true" id="reg-photo"></input>
 		                                @if($errors->has('photo'))
 		                                <div class="invalid-feedback" style="display: block" role="alert">Masukkan foto yang valid!</div>

@@ -74,6 +74,15 @@ class UploadPersyaratanController extends Controller
                 }
                 $input['surat_rekomendasi_training_raya']->move(public_path('training-raya/surat-rekomendasi'), $namaThumbnailRekomendasi);
             }
+            
+            (isset($input['sertifikat_lk2'])) ? $namaThumbnailSertifLk2 = 'training-raya/sertifikat-lk2/'.\Str::random(16).'.'.$input['sertifikat_lk2']->getClientOriginalExtension() : true;
+    
+            if (!empty($input['sertifikat_lk2'])) {
+                if (!empty($user->sertifikat_lk2)) {
+                    unlink(public_path($user->sertifikat_lk2));
+                }
+                $input['sertifikat_lk2']->move(public_path('training-raya/sertifikat-lk2'), $namaThumbnailSertifLk2);
+            }
 
             DB::table('users')->where('id', $user->id)->update([
                 'judul_essay' => $input['judul_essay'],
@@ -83,6 +92,7 @@ class UploadPersyaratanController extends Controller
                 'judul_sindikat_pilihan' => $input['judul_sindikat_pilihan'],
                 'file_sindikat_pilihan' => $namaThumbnailSindikatPilihan ?? $user->file_sindikat_pilihan,
                 'surat_rekomendasi_training_raya' => $namaThumbnailRekomendasi ?? $user->surat_rekomendasi_training_raya,
+                'sertifikat_lk2' => $namaThumbnailSertifLk2 ?? $user->sertifikat_lk2,
             ]);
         }
 
