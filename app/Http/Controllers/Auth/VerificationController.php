@@ -49,7 +49,7 @@ class VerificationController extends Controller
         $user = User::find($request->route('id'));
 
         if (empty($user)){
-            alert()->warning('Link verifikasi kadaluarsa', 'Silahkan minta kirim kembali link verifikasi.');
+            alert()->warning('Link verifikasi kadaluarsa/salah', 'Silahkan minta kirim kembali link verifikasi.');
             return redirect($this->redirectPath());
         }
 
