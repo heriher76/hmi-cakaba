@@ -68,7 +68,25 @@
 </main><!-- End #main -->
 @stop
 
+@section('script')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+<script>
+  setTimeout(() => {
+    var txt = 'Bingung Daftar Training Raya?';
+    var hh = '<a href={{url("training-raya/Cara%20Daftar%20Training%20Raya%20Cakaba.pdf")}} class="btn btn-primary">Download Cara Daftar</a>';
+    swal({
+        html: hh,
+        title: txt,
+        confirmButtonText: "OK", 
+        allowOutsideClick: "true",
+        type:'info'
+    });
+  }, 5000);
+</script>
+@stop
+
 @section('style')
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
 <style type="text/css">
   .widget.single-news {
       margin-bottom: 20px;

@@ -40,13 +40,18 @@ class VerificationController extends Controller
     public function __construct()
     {
         // $this->middleware('auth');
-        $this->middleware('signed')->only('verify');
+        // $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
 
     public function verify(Request $request)
     {
         $user = User::find($request->route('id'));
+
+        if (empty($user)){
+            alert()->warning('Link verifikasi kadaluarsa', 'Silahkan minta kirim kembali link verifikasi.');
+            return redirect($this->redirectPath());
+        }
 
         if (!hash_equals((string) $request->route('hash'), sha1($user->getEmailForVerification()))) {
             throw new AuthorizationException;
