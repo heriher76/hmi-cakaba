@@ -30,6 +30,8 @@ class HomeController extends Controller
 
         $allNews = $output->data;
 
+        alert()->html('Bingung Daftar Training Raya?', '<a href="'.url('training-raya/Cara Daftar Training Raya Cakaba.pdf').'" class="btn btn-primary">Download Cara Daftar</a>', 'info')->autoClose(10000)->timerProgressBar();
+
         return view('index', compact('sliders', 'allNews'));
     }
 }
