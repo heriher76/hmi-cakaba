@@ -148,7 +148,7 @@
                       <th>Surat Rekomendasi</th>
                       <td>:</td>
                       <td>
-                        @if(!empty($user->file_sindikat))
+                        @if(!empty($user->surat_rekomendasi_training_raya))
                         <a href="{{ url($user->surat_rekomendasi_training_raya) }}" class="btn btn-primary btn-sm" target="_blank">Lihat</a>
                         @else
                         Belum ada
