@@ -133,7 +133,7 @@
                       </td>
                   </tr>
                   @endif
-                  <tr>
+                  <!-- <tr>
                       <th>Screenshot Hasil Plagiarism</th>
                       <td>:</td>
                       <td>
@@ -143,7 +143,7 @@
                           Belum Cek
                         @endif
                       </td>
-                  </tr>
+                  </tr> -->
                   <tr>
                       <th>Surat Rekomendasi</th>
                       <td>:</td>

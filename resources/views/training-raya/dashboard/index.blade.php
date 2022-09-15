@@ -82,15 +82,19 @@
 				<div class="tab-content" id="nav-tabContent">
 					<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 						<br>	
-						@if(count($list_informasi) == 0)
-							<center><h4>Belum ada informasi</h4></center>
+						@if($me->training_raya_status_lulus_daftar != 2)
+							@if(count($list_informasi) == 0)
+								<center><h4>Belum ada informasi</h4></center>
+							@endif
+							@foreach($list_informasi as $info)
+								<b>{{ \Carbon\Carbon::parse($info->tanggal)->locale('id')->settings(['formatFunction' => 'translatedFormat'])->format('l, j F Y') }}</b>
+								<ul>
+									<li>{{ $info->deskripsi }} @if(!empty($info->url))<a href="{{ url($info->url) }}" target="_blank">Klik Disini</a>@endif</li>
+								</ul>
+							@endforeach
+						@else
+							-
 						@endif
-						@foreach($list_informasi as $info)
-							<b>{{ \Carbon\Carbon::parse($info->tanggal)->locale('id')->settings(['formatFunction' => 'translatedFormat'])->format('l, j F Y') }}</b>
-							<ul>
-								<li>{{ $info->deskripsi }} @if(!empty($info->url))<a href="{{ url($info->url) }}" target="_blank">Klik Disini</a>@endif</li>
-							</ul>
-						@endforeach
 					</div>
 					<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
 						<br>

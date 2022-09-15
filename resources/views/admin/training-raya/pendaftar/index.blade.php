@@ -22,7 +22,7 @@
                     <th>Nama</th>
                     <th>Asal Cabang</th>
                     <th>HP</th>
-                    <th>SS Plagiarism</th>
+                    <!-- <th>SS Plagiarism</th> -->
                     <th>Jurnal</th>
                     <th>Verifikasi Lulus Berkas</th>
                   </tr>
@@ -34,13 +34,13 @@
                     <td><a href="{{ url('admin/training-raya/user/'.$user->id) }}">{{ $user->name }}</a></td>
                     <td>{{ $user->asal_cabang }}</td>
                     <td>{{ $user->phone }}</td>
-                    <td>
+                    <!-- <td>
                         @if(!empty($user->ss_hasil_plagiarism))
                             <a href="{{ url($user->ss_hasil_plagiarism) }}" target="_blank" class="btn btn-warning btn-xs">Lihat</a>
                         @else
                             Belum Cek
                         @endif
-                    </td>
+                    </td> -->
                     <td>
                       @if(!empty($user->file_jurnal))
                     	<a href="{{ url($user->file_jurnal) }}" class="btn btn-success btn-xs">Download Jurnal</a>
@@ -54,13 +54,13 @@
                       @if(!empty($user->file_sindikat_pilihan))
                     	<a href="{{ url($user->file_sindikat_pilihan) }}" class="btn btn-success btn-xs">Download Sindikat Pilihan</a>
                       @endif
-                      <button type="button" class="btn btn-primary btn-xs openModalPlagiarism" data-toggle="modal" data-target="#plagiarismModal" data-id="{{ $user->id }}">
+                      <!-- <button type="button" class="btn btn-primary btn-xs openModalPlagiarism" data-toggle="modal" data-target="#plagiarismModal" data-id="{{ $user->id }}">
                       @if(!empty($user->ss_hasil_plagiarism))
                         Upload Ulang Plagiarism
                       @else
                         Upload Plagiarism
                       @endif
-                      </button>
+                      </button> -->
                     </td>
                     <td>
                       @if($user->training_raya_status_lulus_daftar == 1)
