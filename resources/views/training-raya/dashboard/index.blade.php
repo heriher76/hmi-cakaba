@@ -274,7 +274,7 @@
 											<input class="form-control" name="surat_rekomendasi_training_raya" type="file" id="reg-ln">
 											<p style="color: red;">*Upload kembali untuk mengubah</p>
 										@else
-											<input class="form-control" name="surat_rekomendasi_training_raya" type="file" id="reg-ln" required>
+											<input class="form-control" name="surat_rekomendasi_training_raya" type="file" id="reg-ln">
 										@endif
 										@if($errors->has('surat_rekomendasi_training_raya'))
 											<div class="invalid-feedback" style="display: block" role="alert">Jurnal tidak valid.</div>

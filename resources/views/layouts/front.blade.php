@@ -71,7 +71,7 @@
         <ul>
           <li><a href="{{ url('/') }}">Beranda</a></li>
           
-          <li><a href="{{ url('/daftar-training-raya') }}">Daftar Training Raya</a></li>
+          <!-- <li><a href="{{ url('/daftar-training-raya') }}">Daftar Training Raya</a></li> -->
 
           <li class="dropdown"><a href="#"><span>Tentang</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
