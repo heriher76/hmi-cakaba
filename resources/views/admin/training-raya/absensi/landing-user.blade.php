@@ -20,7 +20,7 @@ $(document).ready(function () {
 	  <h3>Silahkan pilih nama anda, kemudian tekan tombol kirim</h3>
 	  <form method="POST" action="{{ url('absensi/'.$idKategori.'/'.$materi->id.'/'.\Str::random(32)) }}">
 	  	  @csrf
-		  <select id="select-state" placeholder="Cari nama anda.." name="user_id">
+		  <select id="select-state" placeholder="Cari nama anda.." name="user_id" required>
 		    @foreach($list_user as $user)
 		    	<option value="{{ $user->id }}">{{ $user->name }}</option>
 		    @endforeach
