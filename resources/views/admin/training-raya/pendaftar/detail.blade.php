@@ -15,6 +15,9 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
+                <center>
+                  <img src="{{ url($user->photo) }}" class="img-responsive" style="width: 20vw; height: auto;">
+                </center>
                 <table class="table">
                   <tr>
                       <th>Nama</th>

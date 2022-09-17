@@ -175,6 +175,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
         Route::get('/training-raya/tidak-lulus-training/{id}', 'TrainingRaya\StatusLulusController@tidak_lulus_training');
         
         Route::post('/training-raya/upload-plagiarism', 'TrainingRaya\PendaftarController@upload_plagiarism');
+
+        Route::get('/training-raya/sudah-bayar/{id}', 'TrainingRaya\StatusBayarController@sudah_bayar');
     });
 });
 

@@ -312,7 +312,7 @@
                   <li class="nav-item">
                     <a href="{{ url('/admin/training-raya/resume-lk2') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
-                      <p>Resume LK2</p>
+                      <p>Resume & Pre-test LK2</p>
                     </a>
                   </li>
                   <li class="nav-item">
@@ -391,7 +391,7 @@
                   <li class="nav-item">
                     <a href="{{ url('/admin/training-raya/resume-lkk') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
-                      <p>Resume LKK</p>
+                      <p>Resume & Pre-test LKK</p>
                     </a>
                   </li>
                   <li class="nav-item">
@@ -469,7 +469,7 @@
                   <li class="nav-item">
                     <a href="{{ url('/admin/training-raya/resume-sc') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
-                      <p>Resume SC</p>
+                      <p>Resume & Pre-test SC</p>
                     </a>
                   </li>
                   <li class="nav-item">

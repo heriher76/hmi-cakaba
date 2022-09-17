@@ -22,9 +22,9 @@
                     <th>Nama</th>
                     <th>Asal Cabang</th>
                     <th>HP</th>
-                    <!-- <th>SS Plagiarism</th> -->
                     <th>Jurnal</th>
                     <th>Verifikasi Lulus Berkas</th>
+                    <th>Bayar Pendaftaran</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -34,13 +34,6 @@
                     <td><a href="{{ url('admin/training-raya/user/'.$user->id) }}">{{ $user->name }}</a></td>
                     <td>{{ $user->asal_cabang }}</td>
                     <td>{{ $user->phone }}</td>
-                    <!-- <td>
-                        @if(!empty($user->ss_hasil_plagiarism))
-                            <a href="{{ url($user->ss_hasil_plagiarism) }}" target="_blank" class="btn btn-warning btn-xs">Lihat</a>
-                        @else
-                            Belum Cek
-                        @endif
-                    </td> -->
                     <td>
                       @if(!empty($user->file_jurnal))
                     	<a href="{{ url($user->file_jurnal) }}" class="btn btn-success btn-xs">Download Jurnal</a>
@@ -70,6 +63,13 @@
                       @else
                     	<a href="{{ url('/admin/training-raya/lulus-berkas/'.$user->id) }}" class="btn btn-success btn-xs" onclick="return confirm('Verifikasi Lulus Berkas Pendaftar Ini?')">Lulus</a>
                     	<a href="{{ url('/admin/training-raya/tidak-lulus-berkas/'.$user->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Verifikasi Tidak Lulus Berkas Pendaftar Ini?')">Tidak Lulus</a>
+                      @endif
+                    </td>
+                    <td>
+                      @if($user->training_raya_is_paid == 1)
+                        <p style="color: green">LUNAS</p>
+                      @else
+                        <a href="{{ url('/admin/training-raya/sudah-bayar/'.$user->id) }}" class="btn btn-warning btn-xs" onclick="return confirm('Ganti Status LUNAS untuk Pendaftar Ini?')">Verifikasi</a>
                       @endif
                     </td>
                   </tr>

@@ -32,10 +32,7 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true,
-        "platform": {
-            "php": "8.0.1"
-        }
+        "sort-packages": true
     },
     "extra": {
         "laravel": {

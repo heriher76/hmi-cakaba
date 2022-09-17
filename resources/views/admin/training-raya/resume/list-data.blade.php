@@ -44,6 +44,43 @@
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
+
+            <div class="card">
+              <div class="card-header">
+              <h1 class="m-0 text-dark">List Pre-test {{$materi->nama}} {{ $title }}</h1>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example2" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Waktu Kirim</th>
+                    <th>Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  @foreach($list_pretest as $key => $test)
+                  <tr>
+                    <td>{{ $key+1 }}</td>
+                    <td>{{ $test->nama_user }}</td>
+                    <td>{{ \Carbon\Carbon::parse($test->created_at)->locale('id')->settings(['formatFunction' => 'translatedFormat'])->format('l, j F Y H:i') }}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-xs openModalPreTest" data-toggle="modal" data-target="#preTestModal{{$test->id}}">
+                            Lihat
+                        </button>
+                      <a href="{{ url('/admin/training-raya/pre-test/delete/'.$test->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Hapus Pre-test ini?')">Hapus</a>
+                    </td>
+                  </tr>
+                  @endforeach
+                  </tfoot>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
           </div>
           <!-- /.col -->
         </div>
@@ -59,6 +96,27 @@
                 </div>
                 <div class="modal-body">
                     {!! $resume->deskripsi !!}
+                </div>
+                <div class="modal-footer">
+                
+                </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
+
+        @foreach($list_pretest as $key => $test)
+        <div class="modal fade" id="preTestModal{{$test->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleScreenerLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{ $test->nama_user }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {!! $test->deskripsi !!}
                 </div>
                 <div class="modal-footer">
                 
@@ -90,6 +148,10 @@
 <script>
   $(function () {
     $("#example1").DataTable({
+      "responsive": true,
+      "autoWidth": false,
+    });
+    $("#example2").DataTable({
       "responsive": true,
       "autoWidth": false,
     });
