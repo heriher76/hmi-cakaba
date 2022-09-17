@@ -1,5 +1,7 @@
 <html>
 <head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
 <script type="text/javascript">
@@ -13,8 +15,8 @@ $(document).ready(function () {
 </head>
 <body>
 	<center>
-	  <img src="{{ url('training-raya/logo_training_raya.png') }}" style="width: 30vw;">
-	  <h2>Absensi {{ $materi->nama }}</h2>
+	  <img src="{{ url('training-raya/logo_training_raya.png') }}" style="width: 40vw;">
+	  <h2>Absensi <br>{{ $materi->nama }}</h2>
 	  <h3>Silahkan pilih nama anda, kemudian tekan tombol kirim</h3>
 	  <form method="POST" action="{{ url('absensi/'.$idKategori.'/'.$materi->id.'/'.\Str::random(32)) }}">
 	  	  @csrf
