@@ -6,7 +6,7 @@
 		    <h2>{{ $materi->nama }}</h2>
 		    <h3>
 		    	@if($materi->training_raya_kategori_id == 1)
-		    		Latihan Kader Kohati
+		    		Latihan Kader 2
 		    	@elseif($materi->training_raya_kategori_id == 2)
 		    		Latihan Khusus Kohati
 		    	@elseif($materi->training_raya_kategori_id == 3)
