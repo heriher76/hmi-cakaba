@@ -58,4 +58,11 @@ class MateriForumController extends Controller
 
         return back();
     }
+
+    public function generate_qr($id)
+    {
+        $materi = DB::table('training_raya_materi_forum')->where('id', $id)->first();
+
+        return view('admin.training-raya.materi-forum.generate-qr', compact('materi'));
+    }
 }

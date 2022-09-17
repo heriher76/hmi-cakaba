@@ -123,6 +123,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
         Route::post('/training-raya/materi-forum', 'TrainingRaya\MateriForumController@store_materi_forum');  
         Route::get('/training-raya/materi-forum/delete/{id}', 'TrainingRaya\MateriForumController@delete_materi_forum');  
 
+        Route::get('/training-raya/materi-forum/generate-qr/{id}', 'TrainingRaya\MateriForumController@generate_qr');  
+
         Route::get('/training-raya/materi-screening-lk2', 'TrainingRaya\MateriScreeningController@materi_screening_lk2');  
         Route::get('/training-raya/materi-screening-lkk', 'TrainingRaya\MateriScreeningController@materi_screening_lkk');  
         Route::get('/training-raya/materi-screening-sc', 'TrainingRaya\MateriScreeningController@materi_screening_sc');  
@@ -213,6 +215,7 @@ Route::group(['middleware' => ['auth', 'role:user-lk2|user-lkk|user-sc', 'verifi
     Route::post('/dashboard-training/kirim-komentar/{idUser}', 'TrainingRaya\KomentarController@store');
     
     Route::post('/dashboard-training/selesai-screening', 'TrainingRaya\SelesaiScreeningController@store');
-    
-    Route::get('/absensi/{idKategori}/{idMateri}', 'TrainingRaya\AbsensiController@store');
 });
+
+Route::get('/absensi/{idKategori}/{idMateri}/{rand}', 'TrainingRaya\AbsensiController@landing');
+Route::post('/absensi/{idKategori}/{idMateri}/{rand}', 'TrainingRaya\AbsensiController@store');

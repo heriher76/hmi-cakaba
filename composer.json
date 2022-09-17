@@ -20,6 +20,7 @@
         "nazir/go2hi": "^1.0",
         "nesbot/carbon": "^2.58",
         "realrashid/sweet-alert": "^5.0",
+        "simplesoftwareio/simple-qrcode": "~4",
         "spatie/laravel-permission": "*"
     },
     "require-dev": {

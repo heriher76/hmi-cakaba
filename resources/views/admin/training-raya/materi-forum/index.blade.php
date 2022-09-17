@@ -23,16 +23,20 @@
                   <tr>
                     <th>No</th>
                     <th>Nama</th>
+                    <th>Generate QR Code</th>
                     <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
-                  @foreach($list_materi as $key => $user)
+                  @foreach($list_materi as $key => $materi)
                   <tr>
                     <td>{{ $key+1 }}</td>
-                    <td>{{ $user->nama }}</td>
+                    <td>{{ $materi->nama }}</td>
                     <td>
-                    	<a href="{{ url('/admin/training-raya/materi-forum/delete/'.$user->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Hapus Materi ini?')">Hapus</a>
+                      <a href="{{ url('/admin/training-raya/materi-forum/generate-qr/'.$materi->id) }}" target="_blank" class="btn btn-primary btn-xs">Generate</a>
+                    </td>
+                    <td>
+                    	<a href="{{ url('/admin/training-raya/materi-forum/delete/'.$materi->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Hapus Materi ini?')">Hapus</a>
                     </td>
                   </tr>
                   @endforeach

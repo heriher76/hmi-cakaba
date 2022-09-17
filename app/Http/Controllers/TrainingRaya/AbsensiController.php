@@ -10,13 +10,20 @@ use Auth;
 
 class AbsensiController extends Controller
 {
-    public function store($idKategori, $idMateri)
+    public function landing($idKategori, $idMateri, $rand)
     {
-        $check = DB::table('training_raya_absensi')->where('user_id', Auth::user()->id)->where('training_raya_materi_forum_id', $idMateri)->where('training_raya_kategori_id', $idKategori)->first();
+        $list_user = DB::table("users")->where('training_raya_kategori_id', $idKategori)->get();
+        $materi = DB::table('training_raya_materi_forum')->where('id', $idMateri)->first();
+
+        return view('admin.training-raya.absensi.landing-user', compact('list_user', 'materi', 'idKategori'));
+    }
+    public function store(Request $request, $idKategori, $idMateri, $rand)
+    {
+        $check = DB::table('training_raya_absensi')->where('user_id', $request->user_id)->where('training_raya_materi_forum_id', $idMateri)->where('training_raya_kategori_id', $idKategori)->first();
 
         if (!empty($check)) {
             alert()->info('Anda sudah absen', '');
-            return redirect('dashboard-training');
+            return redirect('/');
         }
 
         $materi = DB::table('training_raya_materi_forum')->where('training_raya_kategori_id', $idKategori)->where('id', $idMateri)->first();
@@ -27,7 +34,7 @@ class AbsensiController extends Controller
         }
         
         DB::table('training_raya_absensi')->insert([
-            'user_id' => Auth::user()->id,
+            'user_id' => $request->user_id,
             'tanggal' => Carbon::now('Asia/Jakarta'),
             'training_raya_materi_forum_id' => $idMateri,
             'training_raya_kategori_id' => $idKategori,
@@ -36,6 +43,6 @@ class AbsensiController extends Controller
         ]);
 
         alert()->success('Absen Berhasil', '');
-        return redirect('dashboard-training');
+        return redirect('/');
     }
 }
