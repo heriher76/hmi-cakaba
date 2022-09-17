@@ -70,7 +70,7 @@
                         <button type="button" class="btn btn-primary btn-xs openModalPreTest" data-toggle="modal" data-target="#preTestModal{{$test->id}}">
                             Lihat
                         </button>
-                      <a href="{{ url('/admin/training-raya/pre-test/delete/'.$test->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Hapus Pre-test ini?')">Hapus</a>
+                      <a href="{{ url('/admin/training-raya/pretest/delete/'.$test->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Hapus Pre-test ini?')">Hapus</a>
                     </td>
                   </tr>
                   @endforeach

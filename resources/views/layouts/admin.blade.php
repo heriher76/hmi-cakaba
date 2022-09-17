@@ -298,6 +298,12 @@
                     </a>
                   </li>
                   <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/hasil-screening-lk2') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Hasil Screening LK2</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
                     <a href="{{ url('/admin/training-raya/pendaftar-lk2') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Pendaftar LK2</p>
@@ -377,6 +383,12 @@
                     </a>
                   </li>
                   <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/hasil-screening-lkk') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Hasil Screening LKK</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
                     <a href="{{ url('/admin/training-raya/pendaftar-lkk') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Pendaftar LKK</p>
@@ -452,6 +464,12 @@
                     <a href="{{ url('/admin/training-raya/screener-sc') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Screener SC</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ url('/admin/training-raya/hasil-screening-sc') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Hasil Screening SC</p>
                     </a>
                   </li>
                   <li class="nav-item">

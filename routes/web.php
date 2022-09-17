@@ -137,6 +137,14 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
         Route::get('/training-raya/absensi-sc/{idMateri}', 'TrainingRaya\LihatAbsensiController@absensi_sc_list_data');
         Route::get('/training-raya/absensi/delete/{id}', 'TrainingRaya\LihatAbsensiController@delete_absensi');   
 
+        Route::get('/training-raya/hasil-screening-lk2', 'TrainingRaya\HasilScreeningController@hasil_screening_lk2');   
+        Route::get('/training-raya/hasil-screening-lk2/{idMateri}', 'TrainingRaya\HasilScreeningController@hasil_screening_lk2_list_data');   
+        Route::get('/training-raya/hasil-screening-lkk', 'TrainingRaya\HasilScreeningController@hasil_screening_lkk');   
+        Route::get('/training-raya/hasil-screening-lkk/{idMateri}', 'TrainingRaya\HasilScreeningController@hasil_screening_lkk_list_data');
+        Route::get('/training-raya/hasil-screening-sc', 'TrainingRaya\HasilScreeningController@hasil_screening_sc');
+        Route::get('/training-raya/hasil-screening-sc/{idMateri}', 'TrainingRaya\HasilScreeningController@hasil_screening_sc_list_data');
+        Route::get('/training-raya/hasil-screening/delete/{id}', 'TrainingRaya\HasilScreeningController@delete_hasil_screening'); 
+
         Route::get('/training-raya/resume-lk2', 'TrainingRaya\ResumeController@resume_lk2');   
         Route::get('/training-raya/resume-lk2/{idMateri}', 'TrainingRaya\ResumeController@resume_lk2_list_data');   
         Route::get('/training-raya/resume-lkk', 'TrainingRaya\ResumeController@resume_lkk');   
@@ -193,6 +201,8 @@ Route::group(['middleware' => ['auth', 'role:user-lk2|user-lkk|user-sc', 'verifi
     Route::post('/dashboard-training/upload-persyaratan', 'TrainingRaya\UploadPersyaratanController@store');
     
     Route::post('/dashboard-training/kirim-resume', 'TrainingRaya\KirimResumeController@store');
+
+    Route::post('/dashboard-training/kirim-pretest', 'TrainingRaya\KirimResumeController@store_pretest');
     
     Route::post('/dashboard-training/kirim-respon-harian', 'TrainingRaya\KirimResponHarianController@store');
     

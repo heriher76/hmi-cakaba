@@ -18,11 +18,30 @@ class KirimResumeController extends Controller
             'user_id' => Auth::user()->id,
             'training_raya_materi_forum_id' => $request->training_raya_materi_forum,
             'training_raya_kategori_id' => $request->training_raya_kategori_id,
+            'kategori' => 'resume',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
 
         alert()->success('Berhasil kirim resume', '');
+
+        return back();
+    }
+
+    public function store_pretest(Request $request)
+    {
+        DB::table('training_raya_resume')->insert([
+            'judul' => $request->judul_resume,
+            'deskripsi' => $request->deskripsi,
+            'user_id' => Auth::user()->id,
+            'training_raya_materi_forum_id' => $request->training_raya_materi_forum,
+            'training_raya_kategori_id' => $request->training_raya_kategori_id,
+            'kategori' => 'pretest',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        alert()->success('Berhasil kirim pretest', '');
 
         return back();
     }

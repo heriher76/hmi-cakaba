@@ -51,6 +51,9 @@
 			<div class="alert alert-success" role="alert">
 			Selamat anda dinyatakan <b>LULUS</b> menjadi peserta Training Raya di HMI Cabang Kabupaten Bandung. Silahkan masuk grup Whatsapp berikut. <a href="https://s.id/grup-wa-trainingraya-cakaba" class="alert-link">Klik Disini</a>
 			</div>
+				@if($me->training_raya_is_paid != 1)
+					<div class="alert alert-warning" role="alert">Anda belum membayar biaya registrasi sehingga fitur lain tidak dapat diakses. Silahkan selesaikan pembayaran di meja registrasi.</div>
+				@endif
 			@elseif($me->training_raya_status_lulus_daftar == 2)
 			<div class="alert alert-danger" role="alert">
 			Mohon maaf anda dinyatakan <b>TIDAK LULUS</b> tetapi jangan putus semangat, tetap junjung kaderisasi. Yakinkan pada diri bahwa proses tidak akan mengkhianati hasil. Yakin Usaha Sampai!
@@ -64,6 +67,7 @@
 						<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Upload Persyaratan</a>
 						@if($me->training_raya_status_lulus_daftar == 1 && $me->training_raya_is_paid == 1)
 						<a class="nav-item nav-link" id="nav-screening-tab" data-toggle="tab" href="#nav-screening" role="tab" aria-controls="nav-screening" aria-selected="false">Kartu Screening</a>
+						<a class="nav-item nav-link" id="nav-pretest-tab" data-toggle="tab" href="#nav-pretest" role="tab" aria-controls="nav-pretest" aria-selected="false">Pre-test</a>
 						<a class="nav-item nav-link" id="nav-resume-tab" data-toggle="tab" href="#nav-resume" role="tab" aria-controls="nav-resume" aria-selected="false">Resume Materi</a>
 						<a class="nav-item nav-link" id="nav-respon-harian-tab" data-toggle="tab" href="#nav-respon-harian" role="tab" aria-controls="nav-respon-harian" aria-selected="false">Respon Harian</a>
 						<a class="nav-item nav-link" id="nav-makalah-tab" data-toggle="tab" href="#nav-makalah" role="tab" aria-controls="nav-makalah" aria-selected="false">
@@ -339,6 +343,63 @@
 							</tr>
 							@endforeach
 						</table>
+					</div>
+					<div class="tab-pane fade" id="nav-pretest" role="tabpanel" aria-labelledby="nav-pretest-tab">
+						<br>
+						<center><h5>Pre-test yang telah dikirim</h5></center>
+						<table class="table table-striped">
+							<tr>
+								<th>No</th>
+								<th>Materi</th>
+								<th>Waktu Dikirim</th>
+							</tr>
+							@foreach($my_pretest as $key => $pretest)
+							<tr>
+								<td>{{ $key+1 }}</td>
+								<td>{{ $pretest->nama ?? '-' }}</td>
+								<td>{{ \Carbon\Carbon::parse($pretest->created_at)->locale('id')->settings(['formatFunction' => 'translatedFormat'])->format('l, j F Y H:i') ?? '-' }}</td>
+							</tr>
+							@endforeach
+						</table>
+						<br>
+						<hr>
+						<br>
+						<center><h5>Buat Pre-test</h5></center>
+						<form action="{{ url('/dashboard-training/kirim-pretest') }}" id="formResumeModal" method="POST">
+							@csrf
+							<input type="hidden" name="training_raya_kategori_id" value="{{ $me->training_raya_kategori_id }}">
+							<div class="form-group">
+								<label for="reg-ln">Pilih Pre-test</label>
+								<select name="training_raya_materi_forum" id="" class="form-control">
+									@foreach($all_materi_forum as $materi)
+									<option value="{{$materi->id}}">{{ $materi->nama }}</option>
+									@endforeach
+								</select>
+								@if($errors->has('training_raya_materi_forum'))
+								<div class="invalid-feedback" style="display: block" role="alert">Data tidak valid.</div>
+								@endif
+							</div>
+							<br>
+							<div class="form-group">
+								<label for="reg-ln">Judul Pre-test</label>
+								<input type="text" name="judul_resume" class="form-control">
+								@if($errors->has('judul_resume'))
+									<div class="invalid-feedback" style="display: block" role="alert">Data tidak valid.</div>
+								@endif
+							</div>
+							<br>
+							<div class="form-group">
+								<label for="reg-ln">Isi Pre-test</label>
+								<textarea name="deskripsi" cols="30" rows="10"></textarea>
+								@if($errors->has('deskripsi'))
+									<div class="invalid-feedback" style="display: block" role="alert">Data tidak valid.</div>
+								@endif
+							</div>
+							<br>
+							<center>
+								<button type="submit" class="btn btn-primary">Kirim</button>
+							</center>
+						</form>
 					</div>
 					<div class="tab-pane fade" id="nav-resume" role="tabpanel" aria-labelledby="nav-resume-tab">
 						<br>
