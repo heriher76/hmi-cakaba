@@ -49,7 +49,7 @@
 			</div>
 			@elseif($me->training_raya_status_lulus_daftar == 1)
 			<div class="alert alert-success" role="alert">
-			Selamat anda dinyatakan <b>LULUS</b> menjadi peserta Training Raya di HMI Cabang Kabupaten Bandung. Silahkan masuk grup Whatsapp berikut. <a href="#" class="alert-link">Klik Disini</a>
+			Selamat anda dinyatakan <b>LULUS</b> menjadi peserta Training Raya di HMI Cabang Kabupaten Bandung. Silahkan masuk grup Whatsapp berikut. <a href="https://s.id/grup-wa-trainingraya-cakaba" class="alert-link">Klik Disini</a>
 			</div>
 			@elseif($me->training_raya_status_lulus_daftar == 2)
 			<div class="alert alert-danger" role="alert">
