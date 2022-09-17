@@ -12,7 +12,7 @@ class AbsensiController extends Controller
 {
     public function landing($idKategori, $idMateri, $rand)
     {
-        $list_user = DB::table("users")->where('training_raya_kategori_id', $idKategori)->get();
+        $list_user = DB::table("users")->where('training_raya_kategori_id', $idKategori)->where('training_raya_is_paid', 1)->where('training_raya_status_lulus_daftar', 1)->get();
         $materi = DB::table('training_raya_materi_forum')->where('id', $idMateri)->first();
 
         return view('admin.training-raya.absensi.landing-user', compact('list_user', 'materi', 'idKategori'));
