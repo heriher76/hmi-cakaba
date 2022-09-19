@@ -17,8 +17,6 @@ class DashboardController extends Controller
 
         $list_materi_screening = DB::table('training_raya_materi_screening')
                                     ->where('training_raya_materi_screening.training_raya_kategori_id', $me->training_raya_kategori_id)
-                                    ->leftJoin('training_raya_kartu_screening', 'training_raya_materi_screening.id', '=', 'training_raya_kartu_screening.training_raya_materi_screening_id')
-                                    ->select('training_raya_materi_screening.*', 'training_raya_kartu_screening.status')
                                     ->get();
 
         $list_screener = DB::table('training_raya_screener')->where('training_raya_kategori_id', $me->training_raya_kategori_id)->get();
