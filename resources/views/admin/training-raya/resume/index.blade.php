@@ -11,7 +11,7 @@
 
             <div class="card">
               <div class="card-header">
-            	<h1 class="m-0 text-dark">Resume & Pre-test Materi {{ $title }}</h1>
+            	<h1 class="m-0 text-dark">Penugasan Materi {{ $title }}</h1>
               </div>
               <!-- /.card-header -->
               <div class="card-body">

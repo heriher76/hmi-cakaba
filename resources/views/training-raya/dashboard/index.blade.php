@@ -67,8 +67,8 @@
 						<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Upload Persyaratan</a>
 						@if($me->training_raya_status_lulus_daftar == 1 && $me->training_raya_is_paid == 1)
 						<a class="nav-item nav-link" id="nav-screening-tab" data-toggle="tab" href="#nav-screening" role="tab" aria-controls="nav-screening" aria-selected="false">Kartu Screening</a>
-						<a class="nav-item nav-link" id="nav-pretest-tab" data-toggle="tab" href="#nav-pretest" role="tab" aria-controls="nav-pretest" aria-selected="false">Pre-test</a>
-						<a class="nav-item nav-link" id="nav-resume-tab" data-toggle="tab" href="#nav-resume" role="tab" aria-controls="nav-resume" aria-selected="false">Resume Materi</a>
+						<!--<a class="nav-item nav-link" id="nav-pretest-tab" data-toggle="tab" href="#nav-pretest" role="tab" aria-controls="nav-pretest" aria-selected="false">Pre-test</a>-->
+						<a class="nav-item nav-link" id="nav-resume-tab" data-toggle="tab" href="#nav-resume" role="tab" aria-controls="nav-resume" aria-selected="false">Penugasan Materi</a>
 						<a class="nav-item nav-link" id="nav-respon-harian-tab" data-toggle="tab" href="#nav-respon-harian" role="tab" aria-controls="nav-respon-harian" aria-selected="false">Respon Harian</a>
 						<a class="nav-item nav-link" id="nav-makalah-tab" data-toggle="tab" href="#nav-makalah" role="tab" aria-controls="nav-makalah" aria-selected="false">
 							@if($me->training_raya_kategori_id != 3)
@@ -344,76 +344,21 @@
 							@endforeach
 						</table>
 					</div>
-					<div class="tab-pane fade" id="nav-pretest" role="tabpanel" aria-labelledby="nav-pretest-tab">
-						<br>
-						<center><h5>Pre-test yang telah dikirim</h5></center>
-						<table class="table table-striped">
-							<tr>
-								<th>No</th>
-								<th>Materi</th>
-								<th>Waktu Dikirim</th>
-							</tr>
-							@foreach($my_pretest as $key => $pretest)
-							<tr>
-								<td>{{ $key+1 }}</td>
-								<td>{{ $pretest->nama ?? '-' }}</td>
-								<td>{{ \Carbon\Carbon::parse($pretest->created_at)->locale('id')->settings(['formatFunction' => 'translatedFormat'])->format('l, j F Y H:i') ?? '-' }}</td>
-							</tr>
-							@endforeach
-						</table>
-						<br>
-						<hr>
-						<br>
-						<center><h5>Buat Pre-test</h5></center>
-						<form action="{{ url('/dashboard-training/kirim-pretest') }}" id="formResumeModal" method="POST">
-							@csrf
-							<input type="hidden" name="training_raya_kategori_id" value="{{ $me->training_raya_kategori_id }}">
-							<div class="form-group">
-								<label for="reg-ln">Pilih Pre-test</label>
-								<select name="training_raya_materi_forum" id="" class="form-control">
-									@foreach($all_materi_forum as $materi)
-									<option value="{{$materi->id}}">{{ $materi->nama }}</option>
-									@endforeach
-								</select>
-								@if($errors->has('training_raya_materi_forum'))
-								<div class="invalid-feedback" style="display: block" role="alert">Data tidak valid.</div>
-								@endif
-							</div>
-							<br>
-							<div class="form-group">
-								<label for="reg-ln">Judul Pre-test</label>
-								<input type="text" name="judul_resume" class="form-control">
-								@if($errors->has('judul_resume'))
-									<div class="invalid-feedback" style="display: block" role="alert">Data tidak valid.</div>
-								@endif
-							</div>
-							<br>
-							<div class="form-group">
-								<label for="reg-ln">Isi Pre-test</label>
-								<textarea name="deskripsi" cols="30" rows="10"></textarea>
-								@if($errors->has('deskripsi'))
-									<div class="invalid-feedback" style="display: block" role="alert">Data tidak valid.</div>
-								@endif
-							</div>
-							<br>
-							<center>
-								<button type="submit" class="btn btn-primary">Kirim</button>
-							</center>
-						</form>
-					</div>
 					<div class="tab-pane fade" id="nav-resume" role="tabpanel" aria-labelledby="nav-resume-tab">
 						<br>
-						<center><h5>Resume yang telah dikirim</h5></center>
+						<center><h5>Tugas yang telah dikirim</h5></center>
 						<table class="table table-striped">
 							<tr>
 								<th>No</th>
 								<th>Materi</th>
+								<th>Kategori</th>
 								<th>Waktu Dikirim</th>
 							</tr>
 							@foreach($my_resume as $key => $resume)
 							<tr>
 								<td>{{ $key+1 }}</td>
 								<td>{{ $resume->nama ?? '-' }}</td>
+								<td>{{ $resume->kategori ?? '-' }}</td>
 								<td>{{ \Carbon\Carbon::parse($resume->created_at)->locale('id')->settings(['formatFunction' => 'translatedFormat'])->format('l, j F Y H:i') ?? '-' }}</td>
 							</tr>
 							@endforeach
@@ -421,8 +366,8 @@
 						<br>
 						<hr>
 						<br>
-						<center><h5>Buat resume</h5></center>
-						<form action="{{ url('/dashboard-training/kirim-resume') }}" id="formResumeModal" method="POST">
+						<center><h5>Buat Tugas</h5></center>
+						<form action="{{ url('/dashboard-training/kirim-resume') }}" id="formResumeModal" method="POST" enctype="multipart/form-data">
 							@csrf
 							<input type="hidden" name="training_raya_kategori_id" value="{{ $me->training_raya_kategori_id }}">
 							<div class="form-group">
@@ -437,16 +382,53 @@
 								@endif
 							</div>
 							<br>
+							@if($me->training_raya_kategori_id == 3)
+						    <div class="form-group">
+    							<label for="reg-ln">Pilih Kategori Tugas</label>
+    							<select name="training_raya_sc_kategori_tugas" id="training_raya_sc_kategori_tugas" class="form-control">
+    								<option value="resume">Resume</option>
+    								<option value="critical_review">Critical Review</option>
+    								<option value="mind_map">Mind Map</option>
+    							</select>
+    							@if($errors->has('training_raya_sc_kategori_tugas'))
+    							<div class="invalid-feedback" style="display: block" role="alert">Data tidak valid.</div>
+    							@endif
+    						</div>
+							@endif
+							<br>
 							<div class="form-group">
-								<label for="reg-ln">Judul Resume</label>
+								<label for="reg-ln">
+								    Judul Tugas
+								</label>
 								<input type="text" name="judul_resume" class="form-control">
 								@if($errors->has('judul_resume'))
 									<div class="invalid-feedback" style="display: block" role="alert">Data tidak valid.</div>
 								@endif
 							</div>
 							<br>
-							<div class="form-group">
-								<label for="reg-ln">Isi Resume</label>
+							@if($me->training_raya_kategori_id == 3)
+							<div class="form-group tugas_file_sc" style="display:none;">
+								<label for="reg-ln">File Tugas</label>
+								<input type="file" name="file_tugas" class="form_control">
+								@if($errors->has('deskripsi'))
+									<div class="invalid-feedback" style="display: block" role="alert">Data tidak valid.</div>
+								@endif
+							</div>
+							@endif
+							<br>
+							@if($me->training_raya_kategori_id == 3)
+							<div class="form-group tugas_file_sc" style="display:none;">
+								<label for="reg-ln">Apakah Video? <input type="checkbox" name="apakah_video" class="form_control"> <b>Ya</b>
+								    <br>*Jika Gambar Maka Biarkan Jangan diceklis
+								</label>
+								@if($errors->has('apakah_video'))
+									<div class="invalid-feedback" style=" display: block" role="alert">Data tidak valid.</div>
+								@endif
+							</div>
+							@endif
+							<br>
+							<div class="form-group tugas_selain_file_sc">
+								<label for="reg-ln">Isi Tugas</label>
 								<textarea name="deskripsi" cols="30" rows="10"></textarea>
 								@if($errors->has('deskripsi'))
 									<div class="invalid-feedback" style="display: block" role="alert">Data tidak valid.</div>
@@ -485,7 +467,7 @@
 								@foreach($list_jurnal as $jurnal)
 								@if(!empty($jurnal->judul_jurnal) && !empty($jurnal->file_jurnal))
 								<div class="col-md-3 col-sm-4 col-xs-6">
-									<div class="card" style="width: 18rem;">
+									<div class="card">
 										<div class="card-body">
 											<h5 class="card-title">{{ $jurnal->name }}</h5>
 											<h6 class="card-subtitle mb-2 text-muted">{{ $jurnal->judul_jurnal }}</h6>
@@ -500,7 +482,7 @@
 								@foreach($list_jurnal as $jurnal)
 								@if(!empty($jurnal->judul_essay) && !empty($jurnal->file_essay) && !empty($jurnal->judul_sindikat) && !empty($jurnal->file_sindikat) && !empty($jurnal->judul_sindikat_pilihan) && !empty($jurnal->file_sindikat_pilihan))
 								<div class="col-md-3 col-sm-4 col-xs-6">
-									<div class="card" style="width: 18rem;">
+									<div class="card">
 										<div class="card-body">
 											<h5 class="card-title">{{ $jurnal->name }}</h5>
 											<h6 class="card-subtitle mb-2 text-muted">{{ $jurnal->judul_essay }}</h6>
@@ -655,6 +637,17 @@
 		var materiId = $(this).data('id');
 		$("#idMateri").val(materiId);
 	});
+	
+	var $kategori_tugas = $('#training_raya_sc_kategori_tugas');
+	$kategori_tugas.change(function(){
+        if($(this).val() == 'mind_map') {
+            $('.tugas_file_sc').show();
+            $('.tugas_selain_file_sc').hide();
+        }else{
+            $('.tugas_file_sc').hide();
+            $('.tugas_selain_file_sc').show();
+        }
+    });
 </script>
 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 <script type="text/javascript">
