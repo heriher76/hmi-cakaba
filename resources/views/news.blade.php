@@ -62,9 +62,11 @@
 
           <div class="blog-pagination">
             <ul class="justify-content-center">
-              @for ($i=1; $i <= $allNews->last_page; $i++) 
-                  <li @if($allNews->current_page == $i) class="active" @endif><a href="{{ url('/berita/'.$categorySlug.'?page='.$i) }}">{{ $i }}</a></li>
-              @endfor
+              @if(!empty($allNews->last_page))
+                @for ($i=1; $i <= $allNews->last_page; $i++) 
+                    <li @if($allNews->current_page == $i) class="active" @endif><a href="{{ url('/berita/'.$categorySlug.'?page='.$i) }}">{{ $i }}</a></li>
+                @endfor
+              @endif
             </ul>
           </div>
 
