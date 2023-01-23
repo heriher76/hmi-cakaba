@@ -25,39 +25,40 @@
       <div class="row">
 
         <div class="col-lg-8 entries">
+          @if(!empty($allNews->data))
+            @foreach($allNews->data as $news)
 
-          @foreach($allNews->data as $news)
+            <article class="entry">
 
-          <article class="entry">
-
-            <div class="entry-img">
-              <img src="{{ env('URL_API_NEWS', 'http://localhost/pembaharuan') }}/public/images/{{ $news->image }}" alt="" class="img-fluid">
-            </div>
-
-            <h2 class="entry-title">
-              <a href="{{ url('/berita/'.$categorySlug.'/'.$news->slug) }}">{{ $news->title }}</a>
-            </h2>
-
-            <div class="entry-meta">
-              <ul>
-                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="{{ url('/berita/'.$categorySlug.'/'.$news->slug) }}">{{ $news->user_name }}</a></li>
-                <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="{{ url('/berita/'.$categorySlug.'/'.$news->slug) }}"><time datetime="{{ $news->created_at }}">{{ $news->created_at }}</time></a></li>
-                <!-- <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li> -->
-              </ul>
-            </div>
-
-            <div class="entry-content">
-              <p>
-                {!! \Str::limit($news->details,200) !!}
-              </p>
-              <div class="read-more">
-                <a href="{{ url('/berita/'.$categorySlug.'/'.$news->slug) }}">Baca Selanjutnya</a>
+              <div class="entry-img">
+                <img src="{{ env('URL_API_NEWS', 'http://localhost/pembaharuan') }}/public/images/{{ $news->image }}" alt="" class="img-fluid">
               </div>
-            </div>
 
-          </article><!-- End blog entry -->
+              <h2 class="entry-title">
+                <a href="{{ url('/berita/'.$categorySlug.'/'.$news->slug) }}">{{ $news->title }}</a>
+              </h2>
 
-          @endforeach
+              <div class="entry-meta">
+                <ul>
+                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="{{ url('/berita/'.$categorySlug.'/'.$news->slug) }}">{{ $news->user_name }}</a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="{{ url('/berita/'.$categorySlug.'/'.$news->slug) }}"><time datetime="{{ $news->created_at }}">{{ $news->created_at }}</time></a></li>
+                  <!-- <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li> -->
+                </ul>
+              </div>
+
+              <div class="entry-content">
+                <p>
+                  {!! \Str::limit($news->details,200) !!}
+                </p>
+                <div class="read-more">
+                  <a href="{{ url('/berita/'.$categorySlug.'/'.$news->slug) }}">Baca Selanjutnya</a>
+                </div>
+              </div>
+
+            </article><!-- End blog entry -->
+
+            @endforeach
+          @endif
 
           <div class="blog-pagination">
             <ul class="justify-content-center">
