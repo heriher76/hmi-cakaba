@@ -12,24 +12,32 @@ class NewsController extends Controller
     {
         $pageNumber = $_GET['page'] ?? '1';
 
-        $client = new Client();
-        $response = $client->get(env('URL_API_NEWS', 'http://localhost/pembaharuan').'/api/news/'.$categorySlug.'?page='.$pageNumber); 
-        $output = json_decode($response->getBody()->getContents());
+        try {
+            $client = new Client();
+            $response = $client->get(env('URL_API_NEWS', 'http://localhost/pembaharuan').'/api/news/'.$categorySlug.'?page='.$pageNumber); 
+            $output = json_decode($response->getBody()->getContents());
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
 
-        $allNews = $output->data;
-        $popularNews = $output->popular;
+        $allNews = $output->data ?? [];
+        $popularNews = $output->popular ?? [];
 
         return view('news', compact('allNews', 'popularNews', 'categorySlug'));
     }
 
     public function show($categorySlug, $slug)
     {
-        $client = new Client();
-        $response = $client->get(env('URL_API_NEWS', 'http://localhost/pembaharuan').'/api/news/'.$categorySlug.'/'.$slug); 
-        $output = json_decode($response->getBody()->getContents());
+        try {
+            $client = new Client();
+            $response = $client->get(env('URL_API_NEWS', 'http://localhost/pembaharuan').'/api/news/'.$categorySlug.'/'.$slug); 
+            $output = json_decode($response->getBody()->getContents());
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
 
-        $news = $output->data;
-        $popularNews = $output->popular;
+        $news = $output->data ?? [];
+        $popularNews = $output->popular ?? [];
 
         return view('news-detail', compact('news', 'popularNews', 'categorySlug'));
     }
