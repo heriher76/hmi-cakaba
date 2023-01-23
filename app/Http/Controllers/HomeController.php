@@ -18,17 +18,21 @@ class HomeController extends Controller
         $sliders = DB::table('sliders')->get();
         $slug_category = DB::table('news_categories')->get()->pluck('name')->toArray();
         
-        $client = new Client();
-        $response = $client->post(env('URL_API_NEWS', 'http://localhost/pembaharuan').'/api/news',
-                    [
-                        \GuzzleHttp\RequestOptions::JSON => 
-                        ['slug_category' => $slug_category]
-                    ],
-                    ['Content-Type' => 'application/json']);
+        try {
+            $client = new Client();
+            $response = $client->post(env('URL_API_NEWS', 'http://localhost/pembaharuan').'/api/news',
+                        [
+                            \GuzzleHttp\RequestOptions::JSON => 
+                            ['slug_category' => $slug_category]
+                        ],
+                        ['Content-Type' => 'application/json']);
 
-        $output = json_decode($response->getBody()->getContents());
+            $output = json_decode($response->getBody()->getContents());
+        } catch (\Throwable $th) {
+            $responseBody = $th;
+        }
 
-        $allNews = $output->data;
+        $allNews = $output->data ?? [];
 
         // alert()->html('Bingung Daftar Training Raya?', '<a href="'.url('training-raya/Cara Daftar Training Raya Cakaba.pdf').'" class="btn btn-primary">Download Cara Daftar</a>', 'info')->autoClose(10000)->timerProgressBar();
 
